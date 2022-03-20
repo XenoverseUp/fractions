@@ -1,4 +1,3 @@
-import { getData, isAuthenticated } from "./services/services.js";
 import is from "./utils/is.js";
 import LoginView from "./views/LoginView.js";
 import DailyView from "./views/DailyView.js";
@@ -13,7 +12,7 @@ export const View = Object.freeze({
 class App {
 	#state = View.LOADING;
 	#root = document.getElementById("root");
-	#duration = 500; //ms
+	#duration = 250; //ms
 	#data;
 
 	constructor() {
@@ -92,7 +91,14 @@ class App {
 	#renderView(state) {
 		const view = is(LoginView())
 			.if(state === View.LOGIN)
-			.is(DailyView())
+			.is(
+				DailyView({
+					total: 1883.27,
+					taxRate: 10,
+					level: 8,
+					monthlyTotal: 357.4,
+				})
+			)
 			.if(state === View.DAILY)
 			.else(null);
 

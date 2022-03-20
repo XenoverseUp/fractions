@@ -32,9 +32,9 @@ a {
 }
 
 html {
-  min-width: 450px;
+  min-width: 400px;
   height: 600px;
-  font-size: 15px;
+  font-size: 14.5px;
 }
 
 body {
@@ -193,6 +193,206 @@ main #root #login #content button {
   border: 2px dashed rgba(0, 0, 0, 0.1);
 }
 
+main #root #daily {
+  position: absolute;
+  inset: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.75rem;
+}
+
+main #root #daily #total {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 var(--padding);
+  gap: 1rem;
+}
+
+main #root #daily #total #total-balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+main #root #daily #total #total-balance h2 {
+  font-size: 2.75rem;
+}
+
+main #root #daily #total #total-balance p {
+  font-size: 1rem;
+  opacity: 0.75;
+}
+
+main #root #daily #total #total-balance p span {
+  font-weight: 700;
+}
+
+main #root #daily #total #chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+main #root #daily #total #chart img {
+  width: 90%;
+  margin: auto;
+}
+
+main #root #daily #separator {
+  font-weight: 800;
+  font-size: 0.85rem;
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #root #daily #separator::after, main #root #daily #separator::before {
+  content: "";
+  position: absolute;
+  height: 0.5px;
+  width: calc(50% - 0.85rem * 4);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+main #root #daily #separator::after {
+  right: 0;
+}
+
+main #root #daily #separator::before {
+  left: 0;
+}
+
+main #root #daily #monthly {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 var(--padding);
+  padding-bottom: 1rem;
+  gap: 2rem;
+}
+
+main #root #daily #monthly article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main #root #daily #monthly article #monthly-balance h3 {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+main #root #daily #monthly article #monthly-balance p {
+  opacity: 0.7;
+}
+
+main #root #daily #monthly article #monthly-balance p span {
+  font-weight: 700;
+}
+
+main #root #daily #monthly article #info {
+  max-width: 180px;
+  font-size: 0.8rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+main #root #daily #monthly #stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+main #root #daily #monthly #stats .stat-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+main #root #daily #monthly #stats .stat-line h4 {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+main #root #daily #monthly #stats .stat-line span {
+  font-weight: 700;
+}
+
+main #root #daily #monthly #stats .stat-line a {
+  font-weight: 600;
+  color: #e4800d;
+}
+
 main header,
 main footer {
   padding: 0 var(--padding);
@@ -212,6 +412,11 @@ main footer {
 main header:not(footer),
 main footer:not(footer) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+main header:not(footer) h1,
+main footer:not(footer) h1 {
+  font-weight: 800;
 }
 
 main header:not(footer) #version,

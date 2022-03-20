@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((request, sender, sendRes) => {
+chrome.runtime.onMessage.addListener((request, _, sendRes) => {
 	if (request.getData) {
 		getEarningData().then(res => {
 			console.log(res);

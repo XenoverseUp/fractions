@@ -27,9 +27,9 @@ a {
 }
 
 html {
-	min-width: 450px;
+	min-width: 400px;
 	height: 600px;
-	font-size: 15px;
+	font-size: 14.5px;
 }
 
 body {
@@ -154,6 +154,149 @@ main {
 				}
 			}
 		}
+
+		#daily {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+
+			#total {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				padding: 0 var(--padding);
+				gap: 1rem;
+
+				#total-balance {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+					margin-top: 1.5rem;
+
+					h2 {
+						font-size: 2.75rem;
+					}
+
+					p {
+						font-size: 1rem;
+						opacity: 0.75;
+
+						span {
+							font-weight: 700;
+						}
+					}
+				}
+
+				#chart {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-grow: 1;
+
+					img {
+						width: 90%;
+						margin: auto;
+					}
+				}
+			}
+
+			#separator {
+				font-weight: 800;
+				font-size: 0.85rem;
+				position: relative;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				&::after,
+				&::before {
+					content: "";
+					position: absolute;
+					height: 0.5px;
+					width: calc(50% - 0.85rem * 4);
+					top: 50%;
+					transform: translateY(-50%);
+					background-color: rgba(0, 0, 0, 0.1);
+				}
+
+				&::after {
+					right: 0;
+				}
+
+				&::before {
+					left: 0;
+				}
+			}
+
+			#monthly {
+				display: flex;
+				flex-direction: column;
+				padding: 0 var(--padding);
+				padding-bottom: 1rem;
+				gap: 2rem;
+
+				article {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					#monthly-balance {
+						h3 {
+							font-weight: 700;
+							font-size: 1.4rem;
+						}
+
+						p {
+							opacity: 0.7;
+
+							span {
+								font-weight: 700;
+							}
+						}
+					}
+
+					#info {
+						max-width: 180px;
+						font-size: 0.8rem;
+						width: fit-content;
+					}
+				}
+
+				#stats {
+					display: flex;
+					flex-direction: column;
+					width: 100%;
+					gap: 0.75rem;
+					margin-bottom: 0.75rem;
+
+					.stat-line {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						font-size: 0.85rem;
+
+						h4 {
+							font-weight: 600;
+							opacity: 0.85;
+						}
+
+						span {
+							font-weight: 700;
+						}
+
+						a {
+							font-weight: 600;
+							color: #e4800d;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	header,
@@ -168,6 +311,10 @@ main {
 		// Header specific styles
 		&:not(footer) {
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+			h1 {
+				font-weight: 800;
+			}
 
 			#version {
 				display: flex;

@@ -1,4 +1,4 @@
-import { isAuthenticated } from "./services/services.js";
+import { getData, isAuthenticated } from "./services/services.js";
 import is from "./utils/is.js";
 import LoginView from "./views/LoginView.js";
 import DailyView from "./views/DailyView.js";
@@ -14,13 +14,16 @@ class App {
 	#state = View.LOADING;
 	#root = document.getElementById("root");
 	#duration = 500; //ms
+	#data;
 
 	constructor() {
-		this.#initializeApp();
+		chrome.runtime.sendMessage({ getData: true }, res => {
+			this.#initializeApp(res.authenticated, res?.data);
+		});
 	}
 
-	async #initializeApp() {
-		const authenticated = await isAuthenticated();
+	async #initializeApp(authenticated, data = {}) {
+		this.#data = data;
 
 		if (authenticated) this.setState(View.DAILY);
 		else this.setState(View.LOGIN);

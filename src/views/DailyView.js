@@ -1,17 +1,14 @@
 import htmlToNode from "../utils/htmlToNode.js";
 import StatLine from "../components/StatLine.js";
 
-const DailyView = ({ total, taxRate, level, monthlyTotal }) => {
-	const totalTax = (total * taxRate) / 100;
-	const monthlyTax = (monthlyTotal * taxRate) / 100;
-
+const DailyView = ({ total, totalTax, monthlyTax, monthlyTotal }) => {
 	return htmlToNode(
 		`
 			<div id="daily">
 				<div id="total">
 					<div id="total-balance">
-						<h2> $ ${total} </h2>
-						<p>with <span>$ ${totalTax}</span> tax</p>
+						<h2> $ ${(total / 100).toFixed(2)} </h2>
+						<p>with <span>$ ${(totalTax / 100).toFixed(2)}</span> tax</p>
 					</div>
 					<div id="chart">
 						<img src="/src/assets/slider.svg" alt="slider" />
@@ -21,8 +18,8 @@ const DailyView = ({ total, taxRate, level, monthlyTotal }) => {
 				<div id="monthly">
 					<article>
 						<div id="monthly-balance">
-							<h3>$ ${monthlyTotal}</h3>
-							<p>with <span>$ ${monthlyTax}</span> tax</p>
+							<h3>$ ${(monthlyTotal / 100).toFixed(2)}</h3>
+							<p>with <span>$ ${(monthlyTax / 100).toFixed(2)}</span> tax</p>
 						</div>
 						<p id="info">
 							Monthly earnings are updated daily based on where you live.

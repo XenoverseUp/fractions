@@ -18,6 +18,7 @@ class App {
 	constructor() {
 		chrome.runtime.sendMessage({ getData: true }, res => {
 			this.#initializeApp(res.authenticated, res?.data);
+			console.log(this.#data);
 		});
 	}
 
@@ -93,10 +94,10 @@ class App {
 			.if(state === View.LOGIN)
 			.is(
 				DailyView({
-					total: 1883.27,
-					taxRate: 10,
-					level: 8,
-					monthlyTotal: 357.4,
+					total: this.#data.total,
+					totalTax: this.#data.totalTax,
+					monthlyTax: this.#data.monthlyTax,
+					monthlyTotal: this.#data.thisMonth,
 				})
 			)
 			.if(state === View.DAILY)

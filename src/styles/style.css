@@ -109,6 +109,8 @@ main #root #loader > span {
 main #root #loader > span:nth-child(1) {
   height: 95%;
   width: 95%;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   border-radius: 38% 62% 64% 36% / 43% 35% 65% 57%;
@@ -256,6 +258,10 @@ main #root #daily #total #chart {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -267,9 +273,75 @@ main #root #daily #total #chart {
           flex-grow: 1;
 }
 
-main #root #daily #total #chart img {
+main #root #daily #total #chart #top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+main #root #daily #total #chart #top span {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+main #root #daily #total #chart #top p {
+  font-weight: 600;
+}
+
+main #root #daily #total #chart #plot {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #root #daily #total #chart #plot img {
   width: 90%;
   margin: auto;
+}
+
+main #root #daily #total #chart #plot img:last-child {
+  --width: 10%;
+  width: calc(90% - 5px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-clip-path: polygon(0 0, var(--width) 0, var(--width) 100%, 0% 100%);
+          clip-path: polygon(0 0, var(--width) 0, var(--width) 100%, 0% 100%);
+}
+
+main #root #daily #total #chart #bottom {
+  margin-top: 0.75rem;
+  font-weight: 800;
+  opacity: 0.5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
 }
 
 main #root #daily #separator {

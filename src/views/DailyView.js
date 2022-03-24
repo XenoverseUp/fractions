@@ -1,6 +1,78 @@
 import htmlToNode from "../utils/htmlToNode.js"
+import map from "../utils/map.js"
 import StatLine from "../components/StatLine.js"
 import toReadable from "../utils/toReadable.js"
+
+const levels = [
+  {
+    from: 0,
+    to: 5,
+  },
+  {
+    from: 5,
+    to: 20,
+  },
+  {
+    from: 20,
+    to: 50,
+  },
+  {
+    from: 50,
+    to: 100,
+  },
+  {
+    from: 100,
+    to: 200,
+  },
+  {
+    from: 200,
+    to: 500,
+  },
+  {
+    from: 500,
+    to: 1000,
+  },
+  {
+    from: 1000,
+    to: 2000,
+  },
+  {
+    from: 2000,
+    to: 5000,
+  },
+  {
+    from: 5000,
+    to: 10_000,
+  },
+  {
+    from: 10_000,
+    to: 20_000,
+  },
+  {
+    from: 20_000,
+    to: 50_000,
+  },
+  {
+    from: 50_000,
+    to: 100_000,
+  },
+  {
+    from: 100_000,
+    to: 200_000,
+  },
+  {
+    from: 200_000,
+    to: 500_000,
+  },
+  {
+    from: 500_000,
+    to: 1_000_000,
+  },
+  {
+    from: 1_000_000,
+    to: 2_000_000,
+  },
+]
 
 const DailyView = ({
   total,
@@ -11,16 +83,42 @@ const DailyView = ({
   yesterdayEarnings,
   valuableStoryId,
 }) => {
+  const totalInUSD = (total / 100).toFixed(2)
+
+  const level = levels.find(
+    (level) => totalInUSD < level.to && totalInUSD >= level.from
+  )
+  const levelNumber = levels.findIndex((l) => l === level) + 1
+
+  const percent = map(totalInUSD, level.from, level.to, 0, 100)
+
   return htmlToNode(
     `
 			<div id="daily">
 				<div id="total">
 					<div id="total-balance" title="Net $${((total - totalTax) / 100).toFixed(2)}">
-						<h2> $ ${(total / 100).toFixed(2)} </h2>
+						<h2> $ ${totalInUSD} </h2>
 						<p>with <span>$ ${(totalTax / 100).toFixed(2)}</span> tax</p>
 					</div>
 					<div id="chart">
-						<img src="/src/assets/slider.svg" alt="slider" />
+						<div id="top">
+							<span>Level ${levelNumber}</span>
+							<p>Currency: <strong>USD</strong></p>
+						</div>
+						<div id="plot">
+							<img src="/src/assets/slider.svg" alt="slider" />
+							<img src="/src/assets/slider-inner.png" alt="slider inner" style="--width: ${map(
+                percent,
+                0,
+                100,
+                3,
+                97
+              )}%" />
+						</div>
+						<div id="bottom">
+								<span>$ ${level.from}</span>
+								<span>$ ${level.to}</span>
+						</div>
 					</div>
 				</div>
 				<span id="separator">This Month</span>

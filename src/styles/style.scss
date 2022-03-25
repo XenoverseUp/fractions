@@ -229,7 +229,7 @@ main {
               margin: auto;
 
               &:last-child {
-                --width: 10%;
+                --width: 0%;
                 width: calc(90% - 5px);
                 position: absolute;
                 left: 50%;

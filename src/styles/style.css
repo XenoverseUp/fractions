@@ -317,7 +317,7 @@ main #root #daily #total #chart #plot img {
 }
 
 main #root #daily #total #chart #plot img:last-child {
-  --width: 10%;
+  --width: 0%;
   width: calc(90% - 5px);
   position: absolute;
   left: 50%;

@@ -120,10 +120,16 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
           })
           .catch((err) => console.log(err))
       } else if (res.success === false)
-        sendRes({
-          authenticated: false,
-          error: "You must be logged in to perform this action.",
-        })
+        if (res.error === "User does not have permission to partner program.")
+          sendRes({
+            authenticated: true,
+            error: "not enrolled to MPP",
+          })
+        else
+          sendRes({
+            authenticated: false,
+            error: "not logged in",
+          })
     })
   }
 

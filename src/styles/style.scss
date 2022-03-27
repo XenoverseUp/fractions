@@ -169,13 +169,29 @@ main {
         flex-direction: column;
         padding: 0 var(--padding);
         gap: 1rem;
+        position: relative;
+
+        #monthly-button {
+          position: absolute;
+          top: 1.5rem;
+          right: var(--padding);
+
+          #mouse-down {
+            background-color: red;
+          }
+
+          #mouse-up {
+            background-color: blue;
+          }
+        }
 
         #total-balance {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 100%;
+          width: fit-content;
+          margin: 0 auto;
           margin-top: 1.5rem;
 
           h2 {
@@ -223,6 +239,34 @@ main {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            // &:hover {
+            //   animation: shake 100ms cubic-bezier(0.36, 0.07, 0.19, 0.97)
+            //     infinite;
+            // }
+
+            // @keyframes shake {
+            //   10%,
+            //   90% {
+            //     transform: rotate(0.25deg);
+            //   }
+
+            //   20%,
+            //   80% {
+            //     transform: rotate(0.5deg);
+            //   }
+
+            //   30%,
+            //   50%,
+            //   70% {
+            //     transform: rotate(0.75deg);
+            //   }
+
+            //   40%,
+            //   60% {
+            //     transform: rotate(0.1deg);
+            //   }
+            // }
 
             img {
               width: 90%;

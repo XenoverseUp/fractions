@@ -96,9 +96,12 @@ const DailyView = ({
     `
 			<div id="daily">
 				<div id="total">
-					<div id="total-balance" title="Net $${((total - totalTax) / 100).toFixed(2)}">
-						<h2> $ ${totalInUSD} </h2>
-						<p>with <span>$ ${(totalTax / 100).toFixed(2)}</span> tax</p>
+          <button id="monthly-button">⩟</button>
+					<div id="total-balance" >
+						<h2 title="Net $${((total - totalTax) / 100).toFixed(2)}"> $ ${totalInUSD} </h2>
+						<p title="Net $${((total - totalTax) / 100).toFixed(2)}">
+              with <span>$ ${(totalTax / 100).toFixed(2)} </span> tax
+            </p>
 					</div>
 					<div id="chart">
 						<div id="top">

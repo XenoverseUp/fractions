@@ -1,6 +1,7 @@
 import is from "./utils/is.js"
 import LoginView from "./views/LoginView.js"
 import DailyView from "./views/DailyView.js"
+import MonthlyView from "./views/MonthlyView.js"
 
 export const View = Object.freeze({
   LOGIN: 0,
@@ -8,6 +9,7 @@ export const View = Object.freeze({
   MONTHLY: 2,
   LOADING: 3,
   ERROR: 4,
+  MPP_ENROLL: 5,
 })
 
 class App {
@@ -45,14 +47,34 @@ class App {
     this.#renderView(nextState)
   }
 
+  #renderView(state) {
+    const view = is(LoginView())
+      .if(state === View.LOGIN)
+      .is(
+        DailyView({
+          total: this.#data.total,
+          totalTax: this.#data.totalTax,
+          monthlyTax: this.#data.monthlyTax,
+          monthlyTotal: this.#data.thisMonth,
+          dailyReadingTime: this.#data.dailyReadingTime,
+          valuableStoryId: this.#data.valuableStoryId,
+          yesterdayEarnings: this.#data.yesterdayEarnings,
+        })
+      )
+      .if(state === View.DAILY)
+      .is(MonthlyView())
+      .if(state === View.MONTHLY)
+      .else(null)
+
+    setTimeout(() => {
+      this.#root.appendChild(view)
+      this.#root.children[0].style.animation = "fade-in ease-out 150ms forwards"
+      this.#setEventHandlers(state)
+    }, this.#duration * 1.4)
+  }
+
   #removeView(state) {
-    if (state == View.LOGIN) {
-      // Remove login screen
-    } else if (state == View.DAILY) {
-      // Remove daily screen
-    } else if (state == View.MONTHLY) {
-      // Remove monthly screen
-    } else if (state == View.LOADING) {
+    if (state == View.LOADING) {
       // Remove loading screen
       const loader = document.getElementById("loader")
       const loadingText = document.getElementById("loading-text")
@@ -91,30 +113,32 @@ class App {
       )
 
       setTimeout(() => this.#root.removeChild(loader), this.#duration)
+    } else {
+      this.#root.children[0].style.animation =
+        "fade-in ease-out 150ms reverse forwards"
+
+      setTimeout(() => {
+        this.#root.removeChild(this.#root.children[0])
+      }, 150)
     }
   }
 
-  #renderView(state) {
-    const view = is(LoginView())
-      .if(state === View.LOGIN)
-      .is(
-        DailyView({
-          total: this.#data.total,
-          totalTax: this.#data.totalTax,
-          monthlyTax: this.#data.monthlyTax,
-          monthlyTotal: this.#data.thisMonth,
-          dailyReadingTime: this.#data.dailyReadingTime,
-          valuableStoryId: this.#data.valuableStoryId,
-          yesterdayEarnings: this.#data.yesterdayEarnings,
-        })
-      )
-      .if(state === View.DAILY)
-      .else(null)
+  #setEventHandlers(state) {
+    if (state === View.DAILY) {
+      const switchButton = document.querySelector("#monthly-button")
 
-    setTimeout(() => {
-      this.#root.appendChild(view)
-      this.#root.children[0].style.animation = "fade-in ease-out 150ms forwards"
-    }, this.#duration * 1.4)
+      switchButton.addEventListener("click", () => {
+        this.setState(View.MONTHLY)
+        console.log("done")
+      })
+    }
+  }
+
+  #removeEventHandlers(state) {
+    if (state === View.DAILY) {
+      const switchButton = document.querySelector("#monthly-button")
+      switchButton.removeEventListener()
+    }
   }
 }
 

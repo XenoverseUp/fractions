@@ -221,6 +221,21 @@ main #root #daily #total {
           flex-direction: column;
   padding: 0 var(--padding);
   gap: 1rem;
+  position: relative;
+}
+
+main #root #daily #total #monthly-button {
+  position: absolute;
+  top: 1.5rem;
+  right: var(--padding);
+}
+
+main #root #daily #total #monthly-button #mouse-down {
+  background-color: red;
+}
+
+main #root #daily #total #monthly-button #mouse-up {
+  background-color: blue;
 }
 
 main #root #daily #total #total-balance {
@@ -237,7 +252,10 @@ main #root #daily #total #total-balance {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
   margin-top: 1.5rem;
 }
 

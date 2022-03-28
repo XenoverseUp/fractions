@@ -1,8 +1,8 @@
-import htmlToNode from "../utils/htmlToNode.js";
+import h from "../utils/h.js"
 
 const LoginView = () =>
-	htmlToNode(
-		`
+  h(
+    `
 		<div id="login">
 			<div id="illustration">
 				<img src="./src/assets/login_illustration.png" alt="3 Stacked Dominoes" title="Illustration by Ihor Hedz on Dribbble" />
@@ -19,6 +19,6 @@ const LoginView = () =>
 			
 		</div>
 	`
-	);
+  )
 
-export default LoginView;
+export default LoginView

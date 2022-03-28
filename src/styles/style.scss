@@ -51,6 +51,7 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden;
 
     #loader {
       position: relative;
@@ -74,7 +75,6 @@ main {
         &:nth-child(1) {
           height: 95%;
           width: 95%;
-          animation-duration: 2s;
           animation-timing-function: linear;
           border-radius: 38% 62% 64% 36% / 43% 35% 65% 57%;
           filter: blur(10px);
@@ -173,15 +173,32 @@ main {
 
         #monthly-button {
           position: absolute;
-          top: 1.5rem;
+          top: 1rem;
           right: var(--padding);
+          width: 2.5rem;
+          height: 2.5rem;
+          background-color: unset;
+          border: 1px solid rgba(0, 0, 0, 0.055);
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          overflow: hidden;
+          transition: ease-in-out 100ms border;
 
-          #mouse-down {
-            background-color: red;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.01);
           }
 
-          #mouse-up {
-            background-color: blue;
+          &:active {
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            background-color: rgba(0, 0, 0, 0.025);
+          }
+
+          img {
+            width: 4rem;
+            transition: ease-in-out 80ms all;
           }
         }
 
@@ -330,7 +347,7 @@ main {
         }
       }
 
-      #monthly {
+      #monthly-stats {
         display: flex;
         flex-direction: column;
         padding: 0 var(--padding);
@@ -483,5 +500,16 @@ main {
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1) translateY(5px);
   }
 }

@@ -1,4 +1,4 @@
-import htmlToNode from "../utils/htmlToNode.js"
+import h from "../utils/h.js"
 import map from "../utils/map.js"
 import StatLine from "../components/StatLine.js"
 import toReadable from "../utils/toReadable.js"
@@ -92,11 +92,13 @@ const DailyView = ({
 
   const percent = map(totalInUSD, level.from, level.to, 0, 100)
 
-  return htmlToNode(
+  return h(
     `
 			<div id="daily">
 				<div id="total">
-          <button id="monthly-button">⩟</button>
+          <button id="monthly-button" title="Monthly View">
+            <img src="/src/assets/month.svg" alt="moon" />
+          </button>
 					<div id="total-balance" >
 						<h2 title="Net $${((total - totalTax) / 100).toFixed(2)}"> $ ${totalInUSD} </h2>
 						<p title="Net $${((total - totalTax) / 100).toFixed(2)}">
@@ -125,7 +127,7 @@ const DailyView = ({
 					</div>
 				</div>
 				<span id="separator">This Month</span>
-				<div id="monthly">
+				<div id="monthly-stats">
 					<article>
 						<div id="monthly-balance" title="Net $${(
               (monthlyTotal - monthlyTax) /

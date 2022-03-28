@@ -10,6 +10,7 @@ export const View = Object.freeze({
   LOADING: 3,
   ERROR: 4,
   MPP_ENROLL: 5,
+  SKELETON: 6,
 })
 
 class App {
@@ -62,7 +63,14 @@ class App {
         })
       )
       .if(state === View.DAILY)
-      .is(MonthlyView())
+      .is(
+        MonthlyView({
+          monthlyTotal: this.#data.thisMonth,
+          monthlyTax: this.#data.monthlyTax,
+          completedMonths: this.#data.completedMonths,
+          valuableStoryId: this.#data.monthlyValuableStoryId,
+        })
+      )
       .if(state === View.MONTHLY)
       .else(null)
 
@@ -115,10 +123,11 @@ class App {
       setTimeout(() => this.#root.removeChild(loader), this.#duration)
     } else {
       this.#root.children[0].style.animation =
-        "fade-in ease-out 150ms reverse forwards"
+        "fade-out ease-out 100ms forwards"
 
       setTimeout(() => {
         this.#root.removeChild(this.#root.children[0])
+        this.#removeEventHandlers(state)
       }, 150)
     }
   }
@@ -127,17 +136,16 @@ class App {
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
 
-      switchButton.addEventListener("click", () => {
-        this.setState(View.MONTHLY)
-        console.log("done")
-      })
+      switchButton.addEventListener("click", () => this.setState(View.MONTHLY))
     }
   }
 
   #removeEventHandlers(state) {
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
-      switchButton.removeEventListener()
+      switchButton.removeEventListener("click", () =>
+        this.setState(View.MONTHLY)
+      )
     }
   }
 }

@@ -75,6 +75,7 @@ main #root {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 main #root #loader {
@@ -109,8 +110,6 @@ main #root #loader > span {
 main #root #loader > span:nth-child(1) {
   height: 95%;
   width: 95%;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   border-radius: 38% 62% 64% 36% / 43% 35% 65% 57%;
@@ -226,16 +225,41 @@ main #root #daily #total {
 
 main #root #daily #total #monthly-button {
   position: absolute;
-  top: 1.5rem;
+  top: 1rem;
   right: var(--padding);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: unset;
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transition: ease-in-out 100ms border;
+  transition: ease-in-out 100ms border;
 }
 
-main #root #daily #total #monthly-button #mouse-down {
-  background-color: red;
+main #root #daily #total #monthly-button:hover {
+  background-color: rgba(0, 0, 0, 0.01);
 }
 
-main #root #daily #total #monthly-button #mouse-up {
-  background-color: blue;
+main #root #daily #total #monthly-button:active {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+main #root #daily #total #monthly-button img {
+  width: 4rem;
+  -webkit-transition: ease-in-out 80ms all;
+  transition: ease-in-out 80ms all;
 }
 
 main #root #daily #total #total-balance {
@@ -397,7 +421,7 @@ main #root #daily #separator::before {
   left: 0;
 }
 
-main #root #daily #monthly {
+main #root #daily #monthly-stats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -410,7 +434,7 @@ main #root #daily #monthly {
   gap: 2rem;
 }
 
-main #root #daily #monthly article {
+main #root #daily #monthly-stats article {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -422,20 +446,20 @@ main #root #daily #monthly article {
           justify-content: space-between;
 }
 
-main #root #daily #monthly article #monthly-balance h3 {
+main #root #daily #monthly-stats article #monthly-balance h3 {
   font-weight: 700;
   font-size: 1.4rem;
 }
 
-main #root #daily #monthly article #monthly-balance p {
+main #root #daily #monthly-stats article #monthly-balance p {
   opacity: 0.7;
 }
 
-main #root #daily #monthly article #monthly-balance p span {
+main #root #daily #monthly-stats article #monthly-balance p span {
   font-weight: 700;
 }
 
-main #root #daily #monthly article #info {
+main #root #daily #monthly-stats article #info {
   max-width: 180px;
   font-size: 0.8rem;
   width: -webkit-fit-content;
@@ -443,7 +467,7 @@ main #root #daily #monthly article #info {
   width: fit-content;
 }
 
-main #root #daily #monthly #stats {
+main #root #daily #monthly-stats #stats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -456,7 +480,7 @@ main #root #daily #monthly #stats {
   margin-bottom: 0.75rem;
 }
 
-main #root #daily #monthly #stats .stat-line {
+main #root #daily #monthly-stats #stats .stat-line {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -469,16 +493,16 @@ main #root #daily #monthly #stats .stat-line {
   font-size: 0.85rem;
 }
 
-main #root #daily #monthly #stats .stat-line h4 {
+main #root #daily #monthly-stats #stats .stat-line h4 {
   font-weight: 600;
   opacity: 0.85;
 }
 
-main #root #daily #monthly #stats .stat-line span {
+main #root #daily #monthly-stats #stats .stat-line span {
   font-weight: 700;
 }
 
-main #root #daily #monthly #stats .stat-line a {
+main #root #daily #monthly-stats #stats .stat-line a {
   font-weight: 600;
   color: #e4800d;
 }
@@ -633,6 +657,32 @@ main footer:not(header) #phrase a {
     opacity: 1;
     -webkit-transform: scale(1) translateY(0);
             transform: scale(1) translateY(0);
+  }
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+    -webkit-transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1) translateY(5px);
+            transform: scale(1) translateY(5px);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    -webkit-transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: scale(1) translateY(5px);
+            transform: scale(1) translateY(5px);
   }
 }
 /*# sourceMappingURL=style.css.map */

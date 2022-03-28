@@ -45,7 +45,6 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
         )
           .then((results) => {
             const postData = results.filter((result) => result !== null)
-            console.log(postData)
 
             const dailyReadingTime = postData.reduce(
               (aggr, post) => aggr + safe(post.dailyStats.at(-1)?.memberTtr),
@@ -98,13 +97,24 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
                 0
               ) + monthlyTax
 
+            const completedMonths = [
+              ...payload.completedMonthlyAmounts.map((month) => ({
+                amount:
+                  month.amount + safe(month?.hightowerConvertedMemberEarnings),
+                tax: month.withholdingAmount,
+                date: month.createdAt,
+              })),
+            ]
+
+            const monthlyValuableStoryId = payload.postAmounts[0].post.id
+
             const data = {
               userId: payload.userId,
               username: payload.username,
               country: payload.userTaxWithholding.treatyCountry,
               taxRate: payload.userTaxWithholding.withholdingPercentage,
 
-              // calculations
+              // Calculations
               total,
               totalTax,
               thisMonth,
@@ -112,9 +122,9 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               dailyReadingTime,
               yesterdayEarnings,
               valuableStoryId,
+              completedMonths,
+              monthlyValuableStoryId,
             }
-
-            console.log(data)
 
             sendRes({ authenticated: true, data })
           })
@@ -181,6 +191,6 @@ async function getEarningOfPost(post) {
     const payload = JSON.parse(text)
     return await payload.data.post
   } catch (error) {
-    return loadingFailed(error)
+    return console.log(error)
   }
 }

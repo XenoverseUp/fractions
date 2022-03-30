@@ -464,7 +464,7 @@ main #root #daily #total #chart #plot img {
 
 main #root #daily #total #chart #plot img:last-child {
   --width: 0%;
-  width: calc(90% - 5px);
+  width: 89%;
   position: absolute;
   left: 50%;
   top: 50%;

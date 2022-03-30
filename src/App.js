@@ -44,7 +44,6 @@ class App {
     })
 
     /* !! TESTS */
-
     // this.#initializeApp(false, fakeRes) // Logged out
     // this.#initializeApp(true, fakeRes) // Logged in
     // this.#initializeApp(true, fakeRes2) // MPP enroll error
@@ -156,11 +155,9 @@ class App {
   #setEventHandlers(state) {
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
-
       switchButton.addEventListener("click", () => this.setState(View.MONTHLY))
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button")
-
       switchButton.addEventListener("click", () => this.setState(View.DAILY))
     }
   }

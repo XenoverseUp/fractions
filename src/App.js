@@ -1,3 +1,12 @@
+/* !TODO */
+
+// Bind data
+// Estimate month-end earning
+// Create a button to stats
+// Split request line in background
+// Modularize CSS for components and views
+// Set up a bundler
+
 import LoginView from "./views/LoginView.js"
 import DailyView from "./views/DailyView.js"
 import MonthlyView from "./views/MonthlyView.js"

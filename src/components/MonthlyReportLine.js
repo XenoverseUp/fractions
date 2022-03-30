@@ -7,7 +7,7 @@ const MonthlyReportLine = ({ date, monthlyTotal, monthlyTax }) => {
       100
     ).toFixed(2)}">
 			<h3>${dated.getPreviousMonthName()}, ${dated.getAdjustedYear()}</h3>
-			<p>$ ${(monthlyTotal / 100).toFixed(2)}</p>
+			<p>$ ${(monthlyTotal / 100).toPrecision(5)}</p>
 		</div>
 	`
 }

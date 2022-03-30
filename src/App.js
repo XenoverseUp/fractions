@@ -1,20 +1,22 @@
 /* !TODO */
 
-// Bind data
-// Estimate month-end earning
-// Create a button to stats
+// Bind data ✅
+// Slider fill animation ✅
+// Estimate month-end earning ✅
 // Split request line in background
 // Modularize CSS for components and views
 // Set up a bundler
+// Currency converter
 
+import "./prototypes/Date.js"
 import LoginView from "./views/LoginView.js"
 import DailyView from "./views/DailyView.js"
 import MonthlyView from "./views/MonthlyView.js"
-import fakeRes from "./data/valid.js"
-import fakeRes2 from "./data/enroll-error.js"
-import "./prototypes/Date.js"
 import EnrollView from "./views/EnrollView.js"
 import Enum from "./utils/enum.js"
+
+import fakeRes from "./data/valid.js"
+import fakeRes2 from "./data/enroll-error.js"
 
 export const View = Enum([
   "LOGIN",
@@ -33,17 +35,17 @@ class App {
   #data
 
   constructor() {
-    // chrome.runtime.sendMessage({ getData: true }, (res) => {
-    //   try {
-    //     this.#initializeApp(res.authenticated, res?.data)
-    //   } catch (error) {
-    //     this.setState(View.ERROR)
-    //   }
-    // })
+    chrome.runtime.sendMessage({ getData: true }, (res) => {
+      try {
+        this.#initializeApp(res.authenticated, res?.data)
+      } catch (error) {
+        this.setState(View.ERROR)
+      }
+    })
 
     /* !! TESTS */
 
-    this.#initializeApp(false, fakeRes) // Logged out
+    // this.#initializeApp(false, fakeRes) // Logged out
     // this.#initializeApp(true, fakeRes) // Logged in
     // this.#initializeApp(true, fakeRes2) // MPP enroll error
   }
@@ -82,6 +84,7 @@ class App {
             dailyReadingTime: this.#data.dailyReadingTime,
             valuableStoryId: this.#data.valuableStoryId,
             yesterdayEarnings: this.#data.yesterdayEarnings,
+            estimatedEarnings: this.#data.estimatedEarnings,
           })
         : state === View.MONTHLY
         ? MonthlyView({

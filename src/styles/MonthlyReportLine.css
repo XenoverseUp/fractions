@@ -1,5 +1,5 @@
 .monthly-report-line {
-  background-color: rgba(0, 0, 0, 0.0075);
+  background-color: rgba(0, 0, 0, 0.0085);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,7 +9,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 10px;
 }
 

@@ -3,6 +3,7 @@ import map from "../utils/map.js"
 import StatLine from "../components/StatLine.js"
 import toReadable from "../utils/toReadable.js"
 import Separator from "../components/Separator.js"
+import longNumFormatter from "../utils/longNumformatter.js"
 
 const levels = [
   {
@@ -83,6 +84,7 @@ const DailyView = ({
   dailyReadingTime,
   yesterdayEarnings,
   valuableStoryId,
+  estimatedEarnings,
 }) => {
   const totalInUSD = (total / 100).toFixed(2)
 
@@ -101,9 +103,11 @@ const DailyView = ({
             <img src="/src/assets/month.svg" alt="moon" />
           </button>
 					<div id="total-balance" >
-						<h2 title="Net $${((total - totalTax) / 100).toFixed(2)}"> $ ${totalInUSD} </h2>
-						<p title="Net $${((total - totalTax) / 100).toFixed(2)}">
-              with <span>$ ${(totalTax / 100).toFixed(2)} </span> tax
+						<h2 title="Net $${longNumFormatter(
+              (total - totalTax) / 100
+            )}"> $ ${totalInUSD} </h2>
+						<p title="Net $${longNumFormatter((total - totalTax) / 100)}">
+              with <span>$ ${longNumFormatter(totalTax / 100)} </span> tax
             </p>
 					</div>
 					<div id="chart">
@@ -111,7 +115,7 @@ const DailyView = ({
 							<span>Level ${levelNumber}</span>
 							<p>Currency: <strong>USD</strong></p>
 						</div>
-						<div id="plot">
+						<div id="plot" title="%${longNumFormatter(percent)}">
 							<img src="/src/assets/slider.svg" alt="slider" />
 							<img src="/src/assets/slider-inner.png" alt="slider inner" style="--width: ${map(
                 percent,
@@ -130,12 +134,11 @@ const DailyView = ({
 				${Separator({ title: "This Month" })}
 				<div id="monthly-stats">
 					<article>
-						<div id="monthly-balance" title="Net $${(
-              (monthlyTotal - monthlyTax) /
-              100
-            ).toFixed(2)}">
-							<h3>$ ${(monthlyTotal / 100).toFixed(2)}</h3>
-							<p>with <span>$ ${(monthlyTax / 100).toFixed(2)}</span> tax</p>
+						<div id="monthly-balance" title="Net $${longNumFormatter(
+              (monthlyTotal - monthlyTax) / 100
+            )}">
+							<h3>$ ${longNumFormatter(monthlyTotal / 100)}</h3>
+							<p>with <span>$ ${longNumFormatter(monthlyTax / 100)}</span> tax</p>
 						</div>
 						<p id="info">
 							Monthly earnings are updated daily based on where you live.
@@ -148,9 +151,12 @@ const DailyView = ({
             })}		
 						${StatLine({
               title: "Yesterday's Earnings",
-              value: `$ ${(yesterdayEarnings / 100).toFixed(2)}`,
+              value: `$ ${longNumFormatter(yesterdayEarnings / 100)}`,
             })}		
-						${StatLine({ title: "This Months's Estimated Earnings", value: "$ 387.95" })}		
+						${StatLine({
+              title: "This Months's Estimated Earnings",
+              value: `$ ${longNumFormatter(estimatedEarnings / 100)}`,
+            })}		
 						${StatLine({
               title: "Yesterday's Most Valuable Story",
               link: `https://medium.com/me/stats/post/${valuableStoryId}/`,

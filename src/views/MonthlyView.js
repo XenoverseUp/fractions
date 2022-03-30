@@ -2,6 +2,7 @@ import h from "../utils/h.js"
 import MonthlyReportLine from "../components/MonthlyReportLine.js"
 import StatLine from "../components/StatLine.js"
 import Separator from "../components/Separator.js"
+import longNumFormatter from "../utils/longNumformatter.js"
 
 const MonthlyView = ({
   monthlyTotal,
@@ -33,22 +34,24 @@ const MonthlyView = ({
           <button id="daily-button" title="Daily View">
             <img src="/src/assets/day.svg" alt="day" />
           </button>
-          <div id="monthly-balance" title="Net $331.12">
+          <div id="monthly-balance" title="Net $${longNumFormatter(
+            (monthlyTotal - monthlyTax) / 100
+          )}">
             <p>This month you've earned</p>
-            <h2>$ ${(monthlyTotal / 100).toFixed(2)}</h2>
+            <h2>$ ${longNumFormatter(monthlyTotal / 100)}</h2>
             <p>
-              with <span>$ ${(monthlyTax / 100).toFixed(2)}</span> tax
+              with <span>$ ${longNumFormatter(monthlyTax / 100)}</span> tax
             </p>
           </div>
         </div>
         <div id="monthly-stats">
           ${StatLine({
             title: "Daily Average Earnings",
-            value: `$ ${(
+            value: `$ ${longNumFormatter(
               monthlyTotal /
-              (date.getDate() === 1 ? 1 : date.getDate() - 1) /
-              100
-            ).toFixed(2)}`,
+                (date.getDate() === 1 ? 1 : date.getDate() - 1) /
+                100
+            )}`,
           })}
           ${StatLine({
             title: "Difference From Previous Month",

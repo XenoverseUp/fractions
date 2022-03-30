@@ -108,6 +108,11 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               })),
             ]
 
+            const estimatedEarnings = estimate(
+              thisMonth,
+              completedMonths?.[0].amount
+            )
+
             const monthlyValuableStoryId = payload.postAmounts[0].post.id
 
             const data = {
@@ -126,6 +131,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               valuableStoryId,
               completedMonths,
               monthlyValuableStoryId,
+              estimatedEarnings,
             }
 
             sendRes({ authenticated: true, data })
@@ -185,7 +191,6 @@ async function getEarningOfPost(post) {
     })
     if (res.status !== 200) {
       const message = `Fail to fetch data: (${res.status}) - ${res.statusText}`
-      // loadingFailed(message);
       console.log("another log message", message)
       return []
     }
@@ -195,4 +200,17 @@ async function getEarningOfPost(post) {
   } catch (error) {
     return console.log(error)
   }
+}
+
+function estimate(currentMonth, previousMonth = currentMonth) {
+  const now = new Date()
+  const day = now.getDate()
+
+  var d = new Date(now.getFullYear(), now.getMonth() + 1, 0)
+  monthDay = d.getDate()
+
+  return (
+    currentMonth +
+    (1 - (day - 1) / monthDay) * ((previousMonth + currentMonth) / 2)
+  )
 }

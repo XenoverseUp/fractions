@@ -1,5 +1,5 @@
 {
-  "name": "Statier",
+  "name": "Fractions",
   "version": "1.0.0",
   "description": "",
   "manifest_version": 2,
@@ -12,7 +12,7 @@
   "content_scripts": [],
   "icons": {},
   "browser_action": {
-    "default_title": "Statier",
+    "default_title": "Fractions",
     "default_popup": "/popup.html"
   }
 }

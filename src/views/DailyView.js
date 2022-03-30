@@ -2,6 +2,7 @@ import h from "../utils/h.js"
 import map from "../utils/map.js"
 import StatLine from "../components/StatLine.js"
 import toReadable from "../utils/toReadable.js"
+import Separator from "../components/Separator.js"
 
 const levels = [
   {
@@ -126,7 +127,7 @@ const DailyView = ({
 						</div>
 					</div>
 				</div>
-				<span id="separator">This Month</span>
+				${Separator({ title: "This Month" })}
 				<div id="monthly-stats">
 					<article>
 						<div id="monthly-balance" title="Net $${(

@@ -2,6 +2,8 @@ import is from "./utils/is.js"
 import LoginView from "./views/LoginView.js"
 import DailyView from "./views/DailyView.js"
 import MonthlyView from "./views/MonthlyView.js"
+import fakeRes from "./data/valid-data.js"
+import "./prototypes/Date.js"
 
 export const View = Object.freeze({
   LOGIN: 0,
@@ -20,20 +22,23 @@ class App {
   #data
 
   constructor() {
-    chrome.runtime.sendMessage({ getData: true }, (res) => {
-      try {
-        this.#initializeApp(res.authenticated, res?.data)
-        console.log(this.#data)
-      } catch (error) {
-        this.setState(View.ERROR)
-      }
-    })
+    // chrome.runtime.sendMessage({ getData: true }, (res) => {
+    //   try {
+    //     this.#initializeApp(res.authenticated, res?.data)
+    //     console.log(this.#data)
+    //     console.log(JSON.stringify(this.#data, null, 2))
+    //   } catch (error) {
+    //     this.setState(View.ERROR)
+    //   }
+    // })
+
+    this.#initializeApp(true, fakeRes)
   }
 
   async #initializeApp(authenticated, data = {}) {
     this.#data = data
 
-    if (authenticated) this.setState(View.DAILY)
+    if (authenticated) this.setState(View.MONTHLY) //this.setState(View.DAILY)
     else this.setState(View.LOGIN)
   }
 
@@ -49,6 +54,7 @@ class App {
   }
 
   #renderView(state) {
+    // !TODO / Runs 2 times, maybe remove ()
     const view = is(LoginView())
       .if(state === View.LOGIN)
       .is(
@@ -126,8 +132,8 @@ class App {
         "fade-out ease-out 100ms forwards"
 
       setTimeout(() => {
-        this.#root.removeChild(this.#root.children[0])
         this.#removeEventHandlers(state)
+        this.#root.removeChild(this.#root.children[0])
       }, 150)
     }
   }

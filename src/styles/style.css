@@ -1,3 +1,4 @@
+@import url("./MonthlyReportLine.css");
 *,
 ::before,
 ::after {
@@ -14,6 +15,26 @@
 
 ::selection {
   background-color: #fffac8;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+  margin-bottom: 0.75rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.212);
+  border-radius: 999px;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.252);
 }
 
 :root {
@@ -386,10 +407,7 @@ main #root #daily #total #chart #bottom {
   width: 90%;
 }
 
-main #root #daily #separator {
-  font-weight: 800;
-  font-size: 0.85rem;
-  position: relative;
+main #root #daily .separator-outer {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -400,25 +418,26 @@ main #root #daily #separator {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  margin: 0.25rem 0;
 }
 
-main #root #daily #separator::after, main #root #daily #separator::before {
+main #root #daily .separator-outer::after {
   content: "";
   position: absolute;
-  height: 0.5px;
-  width: calc(50% - 0.85rem * 4);
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-main #root #daily #separator::after {
-  right: 0;
-}
-
-main #root #daily #separator::before {
   left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 0.5px;
+  z-index: -1;
+}
+
+main #root #daily .separator-outer .separator-inner {
+  background-color: #fff;
+  padding: 0 0.75rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 main #root #daily #monthly-stats {
@@ -505,6 +524,155 @@ main #root #daily #monthly-stats #stats .stat-line span {
 main #root #daily #monthly-stats #stats .stat-line a {
   font-weight: 600;
   color: #e4800d;
+}
+
+main #root #monthly {
+  position: absolute;
+  inset: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.75rem;
+}
+
+main #root #monthly #monthly-total {
+  width: 100%;
+}
+
+main #root #monthly #monthly-total #monthly-balance {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 1.5rem;
+}
+
+main #root #monthly #monthly-total #monthly-balance h2 {
+  font-size: 2.75rem;
+}
+
+main #root #monthly #monthly-total #monthly-balance p {
+  font-size: 1rem;
+}
+
+main #root #monthly #monthly-total #monthly-balance p:first-child {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+main #root #monthly #monthly-total #monthly-balance p:last-child {
+  opacity: 0.75;
+}
+
+main #root #monthly #monthly-total #monthly-balance p span {
+  font-weight: 700;
+}
+
+main #root #monthly #monthly-stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: calc(var(--padding) / 2) var(--padding) 0 var(--padding);
+}
+
+main #root #monthly #monthly-stats .stat-line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+main #root #monthly #monthly-stats .stat-line h4 {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+main #root #monthly #monthly-stats .stat-line span {
+  font-weight: 700;
+}
+
+main #root #monthly #monthly-stats .stat-line a {
+  font-weight: 600;
+  color: #e4800d;
+}
+
+main #root #monthly .separator-outer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  margin: 0 0 0.25rem 0;
+}
+
+main #root #monthly .separator-outer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 0.5px;
+  z-index: -1;
+}
+
+main #root #monthly .separator-outer .separator-inner {
+  background-color: #fff;
+  padding: 0 0.75rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+main #root #monthly #monthly-report {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow-y: overlay;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  padding: 0.75rem var(--padding);
 }
 
 main header,

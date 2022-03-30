@@ -1,0 +1,17 @@
+.monthly-report-line {
+  background-color: rgba(0, 0, 0, 0.0075);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+
+  h3 {
+    opacity: 0.75;
+  }
+
+  p {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}

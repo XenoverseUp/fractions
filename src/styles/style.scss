@@ -1,4 +1,6 @@
+@import url("./Separator.css");
 @import url("./MonthlyReportLine.css");
+@import url("./StatLine.css");
 
 *,
 ::before,
@@ -340,33 +342,6 @@ main {
         }
       }
 
-      .separator-outer {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin: 0.25rem 0;
-
-        &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          right: 0;
-          background-color: rgba(0, 0, 0, 0.1);
-          height: 0.5px;
-          z-index: -1;
-        }
-
-        .separator-inner {
-          background-color: #fff;
-          padding: 0 0.75rem;
-          font-weight: 800;
-          font-size: 0.85rem;
-          color: rgba(0, 0, 0, 0.85);
-        }
-      }
-
       #monthly-stats {
         display: flex;
         flex-direction: column;
@@ -407,27 +382,6 @@ main {
           width: 100%;
           gap: 0.75rem;
           margin-bottom: 0.75rem;
-
-          .stat-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.85rem;
-
-            h4 {
-              font-weight: 600;
-              opacity: 0.85;
-            }
-
-            span {
-              font-weight: 700;
-            }
-
-            a {
-              font-weight: 600;
-              color: #e4800d;
-            }
-          }
         }
       }
     }
@@ -481,54 +435,6 @@ main {
         gap: 0.75rem;
         margin-bottom: 0.75rem;
         padding: calc(var(--padding) / 2) var(--padding) 0 var(--padding);
-
-        .stat-line {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 0.85rem;
-
-          h4 {
-            font-weight: 600;
-            opacity: 0.85;
-          }
-
-          span {
-            font-weight: 700;
-          }
-
-          a {
-            font-weight: 600;
-            color: #e4800d;
-          }
-        }
-      }
-
-      .separator-outer {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin: 0 0 0.25rem 0;
-
-        &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          right: 0;
-          background-color: rgba(0, 0, 0, 0.1);
-          height: 0.5px;
-          z-index: -1;
-        }
-
-        .separator-inner {
-          background-color: #fff;
-          padding: 0 0.75rem;
-          font-weight: 800;
-          font-size: 0.85rem;
-          color: rgba(0, 0, 0, 0.85);
-        }
       }
 
       #monthly-report {

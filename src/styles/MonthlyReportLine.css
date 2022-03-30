@@ -15,10 +15,11 @@
 
 .monthly-report-line h3 {
   opacity: 0.75;
+  font-weight: 600;
 }
 
 .monthly-report-line p {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
 }
 /*# sourceMappingURL=MonthlyReportLine.css.map */

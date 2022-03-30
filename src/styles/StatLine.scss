@@ -1,0 +1,20 @@
+.stat-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+
+  h4 {
+    font-weight: 600;
+    opacity: 0.85;
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  a {
+    font-weight: 600;
+    color: #e4800d;
+  }
+}

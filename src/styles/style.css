@@ -1,4 +1,6 @@
+@import url("./Separator.css");
 @import url("./MonthlyReportLine.css");
+@import url("./StatLine.css");
 *,
 ::before,
 ::after {
@@ -407,39 +409,6 @@ main #root #daily #total #chart #bottom {
   width: 90%;
 }
 
-main #root #daily .separator-outer {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  margin: 0.25rem 0;
-}
-
-main #root #daily .separator-outer::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 0.5px;
-  z-index: -1;
-}
-
-main #root #daily .separator-outer .separator-inner {
-  background-color: #fff;
-  padding: 0 0.75rem;
-  font-weight: 800;
-  font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.85);
-}
-
 main #root #daily #monthly-stats {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -497,33 +466,6 @@ main #root #daily #monthly-stats #stats {
   width: 100%;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
-}
-
-main #root #daily #monthly-stats #stats .stat-line {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  font-size: 0.85rem;
-}
-
-main #root #daily #monthly-stats #stats .stat-line h4 {
-  font-weight: 600;
-  opacity: 0.85;
-}
-
-main #root #daily #monthly-stats #stats .stat-line span {
-  font-weight: 700;
-}
-
-main #root #daily #monthly-stats #stats .stat-line a {
-  font-weight: 600;
-  color: #e4800d;
 }
 
 main #root #monthly {
@@ -597,66 +539,6 @@ main #root #monthly #monthly-stats {
   gap: 0.75rem;
   margin-bottom: 0.75rem;
   padding: calc(var(--padding) / 2) var(--padding) 0 var(--padding);
-}
-
-main #root #monthly #monthly-stats .stat-line {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  font-size: 0.85rem;
-}
-
-main #root #monthly #monthly-stats .stat-line h4 {
-  font-weight: 600;
-  opacity: 0.85;
-}
-
-main #root #monthly #monthly-stats .stat-line span {
-  font-weight: 700;
-}
-
-main #root #monthly #monthly-stats .stat-line a {
-  font-weight: 600;
-  color: #e4800d;
-}
-
-main #root #monthly .separator-outer {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  margin: 0 0 0.25rem 0;
-}
-
-main #root #monthly .separator-outer::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.1);
-  height: 0.5px;
-  z-index: -1;
-}
-
-main #root #monthly .separator-outer .separator-inner {
-  background-color: #fff;
-  padding: 0 0.75rem;
-  font-weight: 800;
-  font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.85);
 }
 
 main #root #monthly #monthly-report {

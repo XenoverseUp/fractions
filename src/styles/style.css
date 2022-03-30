@@ -214,7 +214,88 @@ main #root #login #content button {
   font-weight: 900;
   margin-left: -2px;
   cursor: pointer;
-  border: 2px dashed rgba(0, 0, 0, 0.1);
+}
+
+main #root #enroll {
+  position: absolute;
+  inset: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 7fr 4fr;
+      grid-template-rows: 7fr 4fr;
+  padding: var(--padding);
+  padding-top: 0;
+}
+
+main #root #enroll #illustration {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #root #enroll #illustration img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 250px;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+main #root #enroll #content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+main #root #enroll #content h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+main #root #enroll #content p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 161%;
+  opacity: 0.75;
+  width: 100%;
+  max-width: 90%;
+  min-width: 100px;
+  margin-bottom: 1.25rem;
+}
+
+main #root #enroll #content button {
+  background-color: var(--accent-color);
+  border: none;
+  padding: 0.5rem 3rem;
+  border-radius: 9999px;
+  font-weight: 900;
+  margin-left: -2px;
+  cursor: pointer;
 }
 
 main #root #daily {
@@ -485,6 +566,43 @@ main #root #monthly #monthly-total {
   width: 100%;
 }
 
+main #root #monthly #monthly-total #daily-button {
+  position: absolute;
+  top: 1rem;
+  right: var(--padding);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: unset;
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transition: ease-in-out 100ms border;
+  transition: ease-in-out 100ms border;
+}
+
+main #root #monthly #monthly-total #daily-button:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+main #root #monthly #monthly-total #daily-button:active {
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+main #root #monthly #monthly-total #daily-button img {
+  width: 2.5rem;
+}
+
 main #root #monthly #monthly-total #monthly-balance {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -687,8 +805,8 @@ main footer:not(header) #phrase a {
 @-webkit-keyframes fade-in {
   from {
     opacity: 0;
-    -webkit-transform: scale(0.98) translateY(5px);
-            transform: scale(0.98) translateY(5px);
+    -webkit-transform: scale(0.99) translateY(7.5px);
+            transform: scale(0.99) translateY(7.5px);
   }
   to {
     opacity: 1;
@@ -700,8 +818,8 @@ main footer:not(header) #phrase a {
 @keyframes fade-in {
   from {
     opacity: 0;
-    -webkit-transform: scale(0.98) translateY(5px);
-            transform: scale(0.98) translateY(5px);
+    -webkit-transform: scale(0.99) translateY(7.5px);
+            transform: scale(0.99) translateY(7.5px);
   }
   to {
     opacity: 1;
@@ -713,26 +831,26 @@ main footer:not(header) #phrase a {
 @-webkit-keyframes fade-out {
   from {
     opacity: 1;
-    -webkit-transform: scale(1) translateY(0);
-            transform: scale(1) translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   to {
     opacity: 0;
-    -webkit-transform: scale(1) translateY(5px);
-            transform: scale(1) translateY(5px);
+    -webkit-transform: translateY(-7.5px);
+            transform: translateY(-7.5px);
   }
 }
 
 @keyframes fade-out {
   from {
     opacity: 1;
-    -webkit-transform: scale(1) translateY(0);
-            transform: scale(1) translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   to {
     opacity: 0;
-    -webkit-transform: scale(1) translateY(5px);
-            transform: scale(1) translateY(5px);
+    -webkit-transform: translateY(-7.5px);
+            transform: translateY(-7.5px);
   }
 }
 /*# sourceMappingURL=style.css.map */

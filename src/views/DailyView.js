@@ -91,7 +91,7 @@ const DailyView = ({
   )
   const levelNumber = levels.findIndex((l) => l === level) + 1
 
-  const percent = map(totalInUSD, level.from, level.to, 0, 100)
+  const percent = map(totalInUSD, level?.from, level?.to, 0, 100) ?? 0
 
   return h(
     `

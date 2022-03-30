@@ -2,6 +2,8 @@
 @import url("./MonthlyReportLine.css");
 @import url("./StatLine.css");
 
+// !TODO Separate view and component styles
+
 *,
 ::before,
 ::after {
@@ -175,7 +177,64 @@ main {
           font-weight: 900;
           margin-left: -2px;
           cursor: pointer;
-          border: 2px dashed rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+
+    #enroll {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 7fr 4fr;
+      padding: var(--padding);
+      padding-top: 0;
+
+      #illustration {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 250px;
+          transform: scale(1.2);
+        }
+      }
+
+      #content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 1.25rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+          font-weight: 600;
+          line-height: 161%;
+          opacity: 0.75;
+          width: 100%;
+          max-width: 90%;
+          min-width: 100px;
+          margin-bottom: 1.25rem;
+        }
+
+        button {
+          background-color: var(--accent-color);
+          border: none;
+          padding: 0.5rem 3rem;
+          border-radius: 9999px;
+          font-weight: 900;
+          margin-left: -2px;
+          cursor: pointer;
         }
       }
     }
@@ -396,6 +455,36 @@ main {
       #monthly-total {
         width: 100%;
 
+        #daily-button {
+          position: absolute;
+          top: 1rem;
+          right: var(--padding);
+          width: 2.5rem;
+          height: 2.5rem;
+          background-color: unset;
+          border: 1px solid rgba(0, 0, 0, 0.055);
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          overflow: hidden;
+          transition: ease-in-out 100ms border;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.01);
+          }
+
+          &:active {
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            background-color: rgba(0, 0, 0, 0.025);
+          }
+
+          img {
+            width: 2.5rem;
+          }
+        }
+
         #monthly-balance {
           display: flex;
           justify-content: center;
@@ -530,7 +619,7 @@ main {
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: scale(0.98) translateY(5px);
+    transform: scale(0.99) translateY(7.5px);
   }
   to {
     opacity: 1;
@@ -541,10 +630,10 @@ main {
 @keyframes fade-out {
   from {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: scale(1) translateY(5px);
+    transform: translateY(-7.5px);
   }
 }

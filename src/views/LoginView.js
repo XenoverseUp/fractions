@@ -14,9 +14,10 @@ const LoginView = () =>
 					Go ahead, login and come back to start 
 					your journey with <strong>Statier</strong>.
 				</p>
-				<a href="https://medium.com/m/signin" target="_blank"><button>LOGIN</button></a>
+				<a href="https://medium.com/m/signin" target="_blank">
+					<button>LOGIN</button>
+				</a>
 			</div>
-			
 		</div>
 	`
   )

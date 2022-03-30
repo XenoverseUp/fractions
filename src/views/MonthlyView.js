@@ -11,11 +11,28 @@ const MonthlyView = ({
 }) => {
   const date = new Date()
   const previousMonthEarnings = completedMonths[0].amount
+  const percentDifference =
+    previousMonthEarnings === 0
+      ? "∞"
+      : (
+          ((monthlyTotal - previousMonthEarnings) / previousMonthEarnings) *
+          100
+        ).toFixed(1)
+
+  const increased = percentDifference > 0 || percentDifference === "∞"
+
+  const icon = {
+    value: increased ? "▲" : "▼",
+    color: increased ? 0x10cc00 : 0xcc1800,
+  }
 
   return h(
     `
       <div id="monthly">
         <div id="monthly-total">
+          <button id="daily-button" title="Daily View">
+            <img src="/src/assets/day.svg" alt="day" />
+          </button>
           <div id="monthly-balance" title="Net $331.12">
             <p>This month you've earned</p>
             <h2>$ ${(monthlyTotal / 100).toFixed(2)}</h2>
@@ -35,17 +52,9 @@ const MonthlyView = ({
           })}
           ${StatLine({
             title: "Difference From Previous Month",
-            value: `% ${
-              previousMonthEarnings === 0
-                ? "∞"
-                : (
-                    ((monthlyTotal - previousMonthEarnings) /
-                      previousMonthEarnings) *
-                    100
-                  ).toFixed(1)
-            }`,
-            icon: "▲",
-            iconColor: 0x10cc00,
+            value: `% ${Math.abs(percentDifference)}`,
+            icon: icon.value,
+            iconColor: icon.color,
           })}
           ${StatLine({
             title: "This Month's Star Story",
@@ -54,15 +63,6 @@ const MonthlyView = ({
         </div>
         ${Separator({ title: "Monthly Report" })}
         <div id="monthly-report">
-          ${completedMonths
-            .map((month) =>
-              MonthlyReportLine({
-                monthlyTotal: month.amount,
-                monthlyTax: month.tax,
-                date: month.date,
-              })
-            )
-            .join("\n")}
           ${completedMonths
             .map((month) =>
               MonthlyReportLine({

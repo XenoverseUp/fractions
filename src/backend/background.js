@@ -34,6 +34,8 @@ fragment StatsPostChart_dailyEarnings on Post {
 
 const oneDayInMilliseconds = 24 * 3600 * 1000
 
+// !TODO Firstly send authenticated data, then the heavy ones.
+
 chrome.runtime.onMessage.addListener((request, _, sendRes) => {
   if (request.getData) {
     getEarningData().then((res) => {
@@ -133,7 +135,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
         if (res.error === "User does not have permission to partner program.")
           sendRes({
             authenticated: true,
-            error: "not enrolled to MPP",
+            data: { error: "not enrolled to MPP" },
           })
         else
           sendRes({

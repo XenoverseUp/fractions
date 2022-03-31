@@ -18,13 +18,13 @@
 <br/>
 
 <p align="center">
-	<a href="https://ko-fi.com/candurmuss" style="margin-right: 10px">
+	<a href="https://ko-fi.com/candurmuss" >
 		<img src="docs/kofi.svg" height="50">
 	</a>
-	<a href="https://candurmuss.bio.link/" style="margin-right: 10px">
+	<a href="https://candurmuss.bio.link/" >
 		<img src="docs/biolink.svg" height="50">
 	</a>
-	<a href="https://www.patreon.com/candurmuss" style="margin-right: 10px">
+	<a href="https://www.patreon.com/candurmuss" >
 		<img src="docs/patreon.svg" height="50">
 	</a>
 	<a href="https://mailchi.mp/a45f8fb96cc9/subscribe" >

@@ -1,10 +1,10 @@
 {
   "name": "Fractions",
   "version": "1.0.0",
-  "description": "",
+  "description": "A better Partner Dashboard for Medium",
   "manifest_version": 2,
   "author": "Can Durmus <@candurmuss>",
-  "permissions": ["storage", "activeTab", "https://medium.com/"],
+  "permissions": ["https://medium.com/"],
   "background": {
     "scripts": ["/src/backend/background.js"],
     "persistent": false

@@ -5,7 +5,7 @@ const EnrollView = () =>
     `
 		<div id="enroll">
 			<div id="illustration">
-				<img src="/src/assets/mpp_enroll.webp" alt="MPP Error" />
+				<img src="mpp_enroll.webp" alt="MPP Error" />
 			</div>
 			<div id="content">
 				<h2>Not cool man...</h2>

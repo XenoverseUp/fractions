@@ -35,10 +35,6 @@
   border-right: 1px solid #fff;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.252);
-}
-
 :root {
   --accent-color: #ffd119;
   --padding: 2rem;

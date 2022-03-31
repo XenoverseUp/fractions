@@ -1,12 +1,19 @@
 {
   "name": "fractions",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "description": "A Better Partner Dashboard for Medium",
+  "author": "Can Durmus <@candurmuss>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "parcel build manifest.json",
+    "watch": "parcel watch manifest.json"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/config-webextension": "^2.4.1",
+    "parcel": "^2.4.1"
+  },
+  "devDependencies": {
+    "parcel-reporter-static-files-copy": "^1.3.4"
+  }
 }

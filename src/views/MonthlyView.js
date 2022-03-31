@@ -32,7 +32,7 @@ const MonthlyView = ({
       <div id="monthly">
         <div id="monthly-total">
           <button id="daily-button" title="Daily View">
-            <img src="/src/assets/day.svg" alt="day" />
+            <img src="day.svg" alt="day" />
           </button>
           <div id="monthly-balance" title="Net $${longNumFormatter(
             (monthlyTotal - monthlyTax) / 100

@@ -100,7 +100,7 @@ const DailyView = ({
 			<div id="daily">
 				<div id="total">
           <button id="monthly-button" title="Monthly View">
-            <img src="/src/assets/month.svg" alt="moon" />
+            <img src="month.svg" alt="moon" />
           </button>
 					<div id="total-balance" >
 						<h2 title="Net $${longNumFormatter(
@@ -116,8 +116,8 @@ const DailyView = ({
 							<p>Currency: <strong>USD</strong></p>
 						</div>
 						<div id="plot" title="%${longNumFormatter(percent)}">
-							<img src="/src/assets/slider.svg" alt="slider" />
-							<img src="/src/assets/slider-inner.png" alt="slider inner" style="--width: ${map(
+							<img src="slider.svg" alt="slider" />
+							<img src="slider-inner.png" alt="slider inner" style="--width: ${map(
                 percent,
                 0,
                 100,

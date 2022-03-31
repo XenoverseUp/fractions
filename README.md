@@ -15,9 +15,20 @@
 - monthly predicted tax,
 - net earnings.
 
+<br/>
+
 <p align="center">
-	<a href="https://ko-fi.com/candurmuss">
-		<img src="https://cdn.ko-fi.com/cdn/kofi3.png?v=2" width="150">
+	<a href="https://ko-fi.com/candurmuss" style="margin-right: 10px">
+		<img src="docs/kofi.svg" height="50">
+	</a>
+	<a href="https://candurmuss.bio.link/" style="margin-right: 10px">
+		<img src="docs/biolink.svg" height="50">
+	</a>
+	<a href="https://www.patreon.com/candurmuss" style="margin-right: 10px">
+		<img src="docs/patreon.svg" height="50">
+	</a>
+	<a href="https://mailchi.mp/a45f8fb96cc9/subscribe" >
+		<img src="docs/mail.svg" height="50">
 	</a>
 </p>
 
@@ -29,11 +40,11 @@
 
 ### Contents
 
-- [Why I created Fractions?](#why-i-created-fractions?)
-- [How is it different from Partner Dashboard?](#how-is-it-different-from-partner-dashboard?)
-- [Features](#)
-- [Tech Stack](#)
-- [Support Me](#)
+- [Why I created Fractions?](#why-i-created-fractions)
+- [How is it different from Partner Dashboard?](#how-is-it-different-from-partner-dashboard)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Who am I?](#who-am-i)
 - [Downloads](#)
 - [Future Fixes and Features](#)
 - [Known Issues](#)  
@@ -56,3 +67,48 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 ## Features
 
 - Daily total member reading time
+- Monthly earning estimation
+- Daily earning amount (yesterday)
+- Daily average earning
+- Net earnings, calculated without taxes
+- Daily top earning story
+- Monthly top earning story
+- Total earning
+- Monthly earning report
+- Earning levels
+- Percent difference from previous period
+
+## Tech Stack
+
+- Vanilla JavaScript
+- HTML
+- SASS
+
+In this project, I decided to use nothing but Vanilla JavaScript. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS.
+
+## Who am I?
+
+I am a 21-year old sophomore Electric and Electronics Engineering student in Koc University, Turkey. Besides, I am doing double major on Computer Sciences. I have a [blog](https://candurmuss.medium.com/) that I write about tech, programming and art. If you liked my work, you can [support](https://ko-fi.com/candurmuss) me.
+
+## Future fixes and bugs
+
+- Currency conversion
+- More animations
+- Seperation of styles for components and views
+- Partial request from backend and skeleton loading
+- A better estimation algorithm
+- Setting up a bundler
+
+## **Known issues**
+
+### **Slow loading time**
+
+I tried this extension just for my blog which has 35 story currently, and it takes a few seconds to fetch the data. As the number of stories grow, the retrieving time also increases since I make a request for each story, separately. I'll find a way to get around this. Please try the extension and give me feedback about it.
+
+### **Currency converter doesn't work**
+
+This feature will be implemented later on.
+
+### **Monthly estimation is not close to real**
+
+I implemented an algortihm that approximately estimates earnings based on your previous month's data. It is just a silly algortihm for now but it'll get better gradually.

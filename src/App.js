@@ -89,6 +89,7 @@ class App {
         ? MonthlyView({
             monthlyTotal: this.#data.thisMonth,
             monthlyTax: this.#data.monthlyTax,
+            taxRate: this.#data.taxRate,
             completedMonths: this.#data.completedMonths,
             valuableStoryId: this.#data.monthlyValuableStoryId,
           })

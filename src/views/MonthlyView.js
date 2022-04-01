@@ -7,6 +7,7 @@ import longNumFormatter from "../utils/longNumformatter.js"
 const MonthlyView = ({
   monthlyTotal,
   monthlyTax,
+  taxRate,
   completedMonths,
   monthlyValuableStoryId,
 }) => {
@@ -72,6 +73,7 @@ const MonthlyView = ({
                 monthlyTotal: month.amount,
                 monthlyTax: month.tax,
                 date: month.date,
+                taxRate,
               })
             )
             .join("\n")}

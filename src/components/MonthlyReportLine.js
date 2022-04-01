@@ -1,5 +1,6 @@
-const MonthlyReportLine = ({ date, monthlyTotal, monthlyTax }) => {
-  const dated = new Date(date)
+const MonthlyReportLine = ({ date, monthlyTotal, monthlyTax, taxRate }) => {
+  let dated = date ? new Date(date) : new Date()
+  monthlyTax = monthlyTax || (monthlyTotal * taxRate) / 100
 
   return `
 		<div class="monthly-report-line" title="Net $${(

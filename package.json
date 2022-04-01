@@ -4,7 +4,7 @@
   "description": "A Better Partner Dashboard for Medium",
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
-    "build": "parcel build manifest.json",
+    "build": "rm -rf dist && parcel build manifest.json",
     "watch": "parcel watch manifest.json"
   },
   "keywords": [],

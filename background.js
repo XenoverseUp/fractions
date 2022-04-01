@@ -72,6 +72,8 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               }
             }
 
+            const taxRate = payload.userTaxWithholding.withholdingPercentage
+
             const thisMonth =
               payload.currentMonthAmount.amount +
               safe(
@@ -95,7 +97,11 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
 
             const totalTax =
               [...payload.completedMonthlyAmounts].reduce(
-                (aggr, month) => aggr + safe(month?.withholdingAmount),
+                (aggr, month) =>
+                  aggr + month?.withholdingAmount ??
+                  (month.amount +
+                    safe(month?.hightowerConvertedMemberEarnings)) /
+                    taxRate,
                 0
               ) + monthlyTax
 
@@ -119,9 +125,9 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               userId: payload.userId,
               username: payload.username,
               country: payload.userTaxWithholding.treatyCountry,
-              taxRate: payload.userTaxWithholding.withholdingPercentage,
 
               // Calculations
+              taxRate,
               total,
               totalTax,
               thisMonth,

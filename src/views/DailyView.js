@@ -103,9 +103,7 @@ const DailyView = ({
             <img src="month.svg" alt="moon" />
           </button>
 					<div id="total-balance" >
-						<h2 title="Net $${longNumFormatter(
-              (total - totalTax) / 100
-            )}"> $ ${totalInUSD} </h2>
+						<h2 title="$${totalInUSD}"> $ ${longNumFormatter(totalInUSD)} </h2>
 						<p title="Net $${longNumFormatter((total - totalTax) / 100)}">
               with <span>$ ${longNumFormatter(totalTax / 100)} </span> tax
             </p>

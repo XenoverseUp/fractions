@@ -5,15 +5,15 @@
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
     "build": "rm -rf dist && parcel build manifest.json",
-    "watch": "parcel watch manifest.json"
+    "watch": "parcel watch manifest.json",
+    "dev": "parcel serve manifest.json"
   },
   "keywords": [],
   "license": "ISC",
-  "dependencies": {
-    "@parcel/config-webextension": "^2.4.1",
-    "parcel": "^2.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "parcel": "^2.4.1",
+    "@parcel/config-webextension": "^2.4.1",
     "parcel-reporter-static-files-copy": "^1.3.4"
   }
 }

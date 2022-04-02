@@ -83,6 +83,7 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 - Vanilla JavaScript
 - HTML
 - SASS
+- Parcel
 
 In this project, I decided to use nothing but Vanilla JavaScript. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS.
 

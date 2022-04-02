@@ -53,11 +53,12 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               0
             )
 
-            const yesterdayEarnings = postData.reduce(
-              (aggr, post) =>
-                aggr + safe(post.earnings.dailyEarnings.at(-1)?.amount),
-              0
-            )
+            let yesterdayEarnings = 0
+
+            for (let post of postData) {
+              if (safe(post.earnings.dailyEarnings.at(-1)?.amount === 0)) break
+              yesterdayEarnings += post.earnings?.dailyEarnings.at(-1)?.amount
+            }
 
             let valuableStoryId,
               valuableStoryEarning = 0
@@ -71,8 +72,6 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
                 valuableStoryId = post.id
               }
             }
-
-            const taxRate = payload.userTaxWithholding.withholdingPercentage
 
             const thisMonth =
               payload.currentMonthAmount.amount +
@@ -95,15 +94,17 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
                 0
               ) + thisMonth
 
+            const taxRate = payload.userTaxWithholding.withholdingPercentage
+
             const totalTax =
-              [...payload.completedMonthlyAmounts].reduce(
-                (aggr, month) =>
-                  aggr + month?.withholdingAmount ??
-                  (month.amount +
-                    safe(month?.hightowerConvertedMemberEarnings)) /
-                    taxRate,
-                0
-              ) + monthlyTax
+              [...payload.completedMonthlyAmounts].reduce((aggr, month) => {
+                const tax =
+                  month.state === 2
+                    ? month?.withholdingAmount
+                    : month.amount * (taxRate / 100)
+
+                return aggr + tax
+              }, 0) + monthlyTax
 
             const completedMonths = [
               ...payload.completedMonthlyAmounts.map((month) => ({
@@ -127,7 +128,6 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               country: payload.userTaxWithholding.treatyCountry,
 
               // Calculations
-              taxRate,
               total,
               totalTax,
               thisMonth,

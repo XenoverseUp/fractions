@@ -6,7 +6,7 @@
   "author": "Can Durmus <@candurmuss>",
   "host_permissions": ["https://medium.com/"],
   "background": {
-    "service_worker": "/service-worker.js"
+    "service_worker": "/serviceWorker.js"
   },
   "icons": {
     "16": "/icons/16.png",

@@ -9,7 +9,7 @@ const MonthlyView = ({
   monthlyTax,
   taxRate,
   completedMonths,
-  monthlyValuableStoryId,
+  valuableStoryId,
 }) => {
   const date = new Date()
   const previousMonthEarnings = completedMonths[0].amount
@@ -62,7 +62,7 @@ const MonthlyView = ({
           })}
           ${StatLine({
             title: "This Month's Star Story",
-            link: `https://medium.com/me/stats/post/${monthlyValuableStoryId}/`,
+            link: `https://medium.com/me/stats/post/${valuableStoryId}/`,
           })}
         </div>
         ${Separator({ title: "Monthly Report" })}

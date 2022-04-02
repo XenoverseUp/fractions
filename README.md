@@ -1,16 +1,16 @@
 # Fractions
 
-**Fractions** is a fully featured Chrome extension that helps you analyze and visualize your Medium Partner Program earnings. It is way powerful than default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
+**Fractions** is a fully-featured Chrome extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 
-- lifetime earnings since you enrolled in to Medium Partner Program,
+- lifetime earnings since you enrolled into Medium Partner Program,
 - monthly earnings,
 - daily total member reading time,
 - yesterday's total earnings,
-- yesterday's top earning post,
+- yesterday's top-earning post,
 - estimated earnings by the end of the month---_with a special algortihm_,
 - daily average earnings,
 - percent difference from the previous month,
-- this month's top earning post,
+- this month's top-earning post,
 - total tax you pay,
 - monthly predicted tax,
 - net earnings.

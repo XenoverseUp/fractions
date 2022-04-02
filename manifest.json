@@ -6,7 +6,7 @@
   "author": "Can Durmus <@candurmuss>",
   "permissions": ["https://medium.com/"],
   "background": {
-    "scripts": ["service-worker.js"],
+    "scripts": ["serviceWorker.js"],
     "persistent": false
   },
   "content_scripts": [],

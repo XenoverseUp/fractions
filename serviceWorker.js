@@ -129,6 +129,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
 
               // Calculations
               total,
+              taxRate,
               totalTax,
               thisMonth,
               monthlyTax,

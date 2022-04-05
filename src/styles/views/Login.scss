@@ -1,0 +1,47 @@
+#login {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 7fr 4fr;
+  padding: var(--padding);
+  padding-top: 0;
+
+  #illustration {
+    overflow: hidden;
+    display: grid;
+    justify-items: center;
+
+    img {
+      width: 350px;
+      transform: scale(1.2);
+    }
+  }
+
+  #content {
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 161%;
+      opacity: 0.75;
+      width: 100%;
+      max-width: 80%;
+      min-width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: var(--accent-color);
+      border: none;
+      padding: 0.5rem 3rem;
+      border-radius: 9999px;
+      font-weight: 900;
+      margin-left: -2px;
+      cursor: pointer;
+    }
+  }
+}

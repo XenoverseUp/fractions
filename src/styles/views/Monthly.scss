@@ -1,0 +1,90 @@
+#monthly {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  #monthly-total {
+    width: 100%;
+
+    #daily-button {
+      position: absolute;
+      top: 1rem;
+      right: var(--padding);
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: unset;
+      border: 1px solid rgba(0, 0, 0, 0.055);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: ease-in-out 100ms border;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.01);
+      }
+
+      &:active {
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        background-color: rgba(0, 0, 0, 0.025);
+      }
+
+      img {
+        width: 2.5rem;
+      }
+    }
+
+    #monthly-balance {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: fit-content;
+      margin: 0 auto;
+      margin-top: 1.5rem;
+
+      h2 {
+        font-size: 2.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+
+        &:first-child {
+          font-size: 0.95rem;
+          font-weight: 500;
+        }
+
+        &:last-child {
+          opacity: 0.75;
+        }
+
+        span {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  #monthly-stats {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: calc(var(--padding) / 2) var(--padding) 0 var(--padding);
+  }
+
+  #monthly-report {
+    flex-grow: 1;
+    overflow-y: overlay;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem var(--padding);
+  }
+}

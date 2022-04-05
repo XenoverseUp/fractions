@@ -3,9 +3,9 @@
 // Bind data ✅
 // Slider fill animation ✅
 // Estimate month-end earning ✅
+// Modularize CSS for components and views ✅
+// Set up a bundler ✅
 // Split request line in background
-// Modularize CSS for components and views
-// Set up a bundler
 // Currency converter
 
 import "./prototypes/Date.js"

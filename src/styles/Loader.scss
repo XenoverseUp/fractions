@@ -1,0 +1,53 @@
+#loader {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in ease-out 150ms forwards;
+
+  & > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    border: 2px solid rgb(0, 0, 0);
+    pointer-events: none;
+    animation: spin-loader 7s ease-out infinite;
+
+    &:nth-child(1) {
+      height: 95%;
+      width: 95%;
+      animation-timing-function: linear;
+      border-radius: 38% 62% 64% 36% / 43% 35% 65% 57%;
+      filter: blur(10px);
+    }
+
+    &:nth-child(2) {
+      animation-direction: reverse;
+      border-radius: 41% 59% 40% 60% / 65% 66% 34% 35%;
+    }
+
+    &:nth-child(3) {
+      animation-duration: 4.5s;
+
+      border-radius: 73% 27% 56% 44% / 57% 54% 26% 43%;
+    }
+  }
+
+  h2 {
+    span {
+      &:nth-child(1) {
+        animation: dots 2s ease-in-out 0.2s infinite;
+      }
+      &:nth-child(2) {
+        animation: dots 2s ease-in-out 0.3s infinite;
+      }
+      &:nth-child(3) {
+        animation: dots 2s ease-in-out 0.4s infinite;
+      }
+    }
+  }
+}

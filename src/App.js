@@ -39,15 +39,15 @@ class App {
 
     // this.#initializeApp(false, fakeRes) // Logged out
     // this.#initializeApp(true, fakeRes) // Logged in
-    // this.#initializeApp(true, fakeRes2) // MPP enroll error
+    this.#initializeApp(true, fakeRes2) // MPP enroll error
 
-    chrome.runtime.sendMessage({ getData: true }, (res) => {
-      try {
-        this.#initializeApp(res.authenticated, res?.data)
-      } catch (error) {
-        this.setState(View.ERROR)
-      }
-    })
+    // chrome.runtime.sendMessage({ getData: true }, (res) => {
+    //   try {
+    //     this.#initializeApp(res.authenticated, res?.data)
+    //   } catch (error) {
+    //     this.setState(View.ERROR)
+    //   }
+    // })
   }
 
   async #initializeApp(authenticated, data = {}) {

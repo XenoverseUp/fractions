@@ -5,7 +5,7 @@ const LoginView = () =>
     `
 		<div id="login">
 			<div id="illustration">
-				<img src="login_illustration.png" alt="3 Stacked Dominoes" title="Illustration by Ihor Hedz on Dribbble" />
+				<img src="dominoes.svg" alt="3 Stacked Dominoes" title="Illustration by Ihor Hedz on Dribbble" />
 			</div>
 			<div id="content">
 				<h2>Hi Mate :)</h2>

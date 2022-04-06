@@ -4,6 +4,9 @@ import StatLine from "../components/StatLine.js"
 import toReadable from "../utils/toReadable.js"
 import Separator from "../components/Separator.js"
 import longNumFormatter from "../utils/longNumformatter.js"
+import Select from "../components/Select.js"
+
+import currencies from "../data/currencies.json"
 
 const levels = [
   {
@@ -85,6 +88,8 @@ const DailyView = ({
   yesterdayEarnings,
   valuableStoryId,
   estimatedEarnings,
+  currency,
+  currencySign,
 }) => {
   const totalInUSD = (total / 100).toFixed(2)
 
@@ -111,7 +116,15 @@ const DailyView = ({
 					<div id="chart">
 						<div id="top">
 							<span>Level ${levelNumber}</span>
-							<p>Currency: <strong>USD</strong></p>
+              <div id="currency-converter">
+                <p>Currency: </p>
+                ${Select.Base(
+                  { value: currency, sign: currencySign },
+                  currencies.map(({ code, symbolNative }) =>
+                    Select.Option(code, symbolNative)
+                  )
+                )}
+              </div>
 						</div>
 						<div id="plot" title="%${longNumFormatter(percent)}">
 							<img src="slider.svg" alt="slider" />

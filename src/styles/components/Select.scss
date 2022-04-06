@@ -1,0 +1,22 @@
+.custom-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .value {
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  img {
+    cursor: pointer;
+    width: 15px;
+  }
+
+  .options {
+    top: 0;
+    position: absolute;
+    display: none;
+  }
+}

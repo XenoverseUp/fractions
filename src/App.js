@@ -17,6 +17,7 @@ import Enum from "./utils/enum.js"
 
 import fakeRes from "./data/valid.js"
 import fakeRes2 from "./data/enroll-error.js"
+import { getRate } from "./services/services.js"
 
 export const View = Enum([
   "LOGIN",
@@ -33,21 +34,23 @@ class App {
   #root = document.getElementById("root")
   #duration = 250 //ms
   #data
+  #currency = "USD"
+  #currencySign = "$"
 
   constructor() {
     /* !! TESTS */
 
     // this.#initializeApp(false, fakeRes) // Logged out
     // this.#initializeApp(true, fakeRes) // Logged in
-    this.#initializeApp(true, fakeRes2) // MPP enroll error
+    // this.#initializeApp(true, fakeRes2) // MPP enroll error
 
-    // chrome.runtime.sendMessage({ getData: true }, (res) => {
-    //   try {
-    //     this.#initializeApp(res.authenticated, res?.data)
-    //   } catch (error) {
-    //     this.setState(View.ERROR)
-    //   }
-    // })
+    chrome.runtime.sendMessage({ getData: true }, (res) => {
+      try {
+        this.#initializeApp(res.authenticated, res?.data)
+      } catch (error) {
+        this.setState(View.ERROR)
+      }
+    })
   }
 
   async #initializeApp(authenticated, data = {}) {
@@ -62,6 +65,29 @@ class App {
     if (this.#state === nextState) return
     this.#updateUI(this.#state, nextState)
     this.#state = nextState
+  }
+
+  async #updateCurrency(currency_code) {
+    if (currency === this.#currency) return
+    const rate = await getRate(currency_code)
+
+    if (rate === null) return
+
+    this.#currency = currency
+
+    this.#data.total = this.#data.total * rate
+    this.#data.taxRate = this.#data.taxRate * rate
+    this.#data.totalTax = this.#data.totalTax * rate
+    this.#data.thisMonth = this.#data.thisMonth * rate
+    this.#data.monthlyTax = this.#data.monthlyTax * rate
+    this.#data.dailyReadingTime = this.#data.dailyReadingTime * rate
+    this.#data.yesterdayEarnings = this.#data.yesterdayEarnings * rate
+    this.#data.valuableStoryId = this.#data.valuableStoryId * rate
+    this.#data.completedMonths = this.#data.completedMonths * rate
+    this.#data.monthlyValuableStoryId = this.#data.monthlyValuableStoryId * rate
+    this.#data.estimatedEarnings = this.#data.estimatedEarnings * rate
+
+    this.#updateUI(this.#state, this.#state)
   }
 
   #updateUI(previousState, nextState) {
@@ -85,6 +111,8 @@ class App {
             valuableStoryId: this.#data.valuableStoryId,
             yesterdayEarnings: this.#data.yesterdayEarnings,
             estimatedEarnings: this.#data.estimatedEarnings,
+            currency: this.#currency,
+            currencySign: this.#currencySign,
           })
         : state === View.MONTHLY
         ? MonthlyView({
@@ -93,6 +121,7 @@ class App {
             taxRate: this.#data.taxRate,
             completedMonths: this.#data.completedMonths,
             valuableStoryId: this.#data.monthlyValuableStoryId,
+            currencySign: this.#currencySign,
           })
         : null
 

@@ -10,6 +10,7 @@ const MonthlyView = ({
   taxRate,
   completedMonths,
   valuableStoryId,
+  currencySign,
 }) => {
   const date = new Date()
   const previousMonthEarnings = completedMonths[0].amount
@@ -35,20 +36,22 @@ const MonthlyView = ({
           <button id="daily-button" title="Daily View">
             <img src="day.svg" alt="day" />
           </button>
-          <div id="monthly-balance" title="Net $${longNumFormatter(
-            (monthlyTotal - monthlyTax) / 100
-          )}">
+          <div id="monthly-balance" title="Net ${currencySign}${longNumFormatter(
+      (monthlyTotal - monthlyTax) / 100
+    )}">
             <p>This month you've earned</p>
-            <h2>$ ${longNumFormatter(monthlyTotal / 100)}</h2>
+            <h2>${currencySign} ${longNumFormatter(monthlyTotal / 100)}</h2>
             <p>
-              with <span>$ ${longNumFormatter(monthlyTax / 100)}</span> tax
+              with <span>${currencySign} ${longNumFormatter(
+      monthlyTax / 100
+    )}</span> tax
             </p>
           </div>
         </div>
         <div id="monthly-stats">
           ${StatLine({
             title: "Daily Average Earnings",
-            value: `$ ${longNumFormatter(
+            value: `${currencySign} ${longNumFormatter(
               monthlyTotal /
                 (date.getDate() === 1 ? 1 : date.getDate() - 1) /
                 100

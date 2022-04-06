@@ -87,8 +87,15 @@
           opacity: 0.85;
         }
 
-        p {
-          font-weight: 600;
+        #currency-converter {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+
+          p {
+            font-weight: 600;
+          }
         }
       }
 

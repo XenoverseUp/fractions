@@ -118,11 +118,15 @@ class App {
           })
         : null
 
-    setTimeout(() => {
-      this.#root.appendChild(view)
-      this.#root.children[0].style.animation = "fade-in ease-out 150ms forwards"
-      this.#setEventHandlers(state)
-    }, this.#duration)
+    setTimeout(
+      () => {
+        this.#root.appendChild(view)
+        this.#root.children[0].style.animation =
+          "fade-in ease-out 150ms forwards"
+        this.#setEventHandlers(state)
+      },
+      state === View.LOADING ? 0 : this.#duration
+    )
   }
 
   #removeView(state) {

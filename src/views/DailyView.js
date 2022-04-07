@@ -147,12 +147,8 @@ const DailyView = ({
               )}%" />
 						</div>
 						<div id="bottom">
-								<span>${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, level.from)
-    )}</span>
-								<span>${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, level.to)
-    )}</span>
+								<span>${currency} ${longNumFormatter(toConverted(rate, level.from))}</span>
+								<span>${currency} ${longNumFormatter(toConverted(rate, level.to))}</span>
 						</div>
 					</div>
 				</div>
@@ -162,10 +158,12 @@ const DailyView = ({
 						<div id="monthly-balance" title="Net ${getSign(currency)}${longNumFormatter(
       toConverted(rate, (monthlyTotal - monthlyTax) / 100)
     )}">
-							<h3>$ ${longNumFormatter(toConverted(rate, monthlyTotal / 100))}</h3>
-							<p>with <span>$ ${longNumFormatter(
-                toConverted(rate, monthlyTax / 100)
-              )}</span> tax</p>
+							<h3>${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, monthlyTotal / 100)
+    )}</h3>
+							<p>with <span>${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, monthlyTax / 100)
+    )}</span> tax</p>
 						</div>
 						<p id="info">
 							Monthly earnings are updated daily based on where you live.

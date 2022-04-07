@@ -1,5 +1,5 @@
 const Select = {
-  Base: ({ value, sign }, children) => `
+  Base: ({ value }, children) => `
 		<div class="custom-select">
 			<div class="value">${value}</div>
 			<img src="arrow-down.svg" alt="arrow down" />
@@ -9,8 +9,8 @@ const Select = {
 			</div>
 		</div>
 	`,
-  Option: (value, sign) => `
-		<div class="option"> ${sign} ${value} </div>
+  Option: (value) => `
+		<div class="option"> ${value} </div>
 	`,
 }
 

@@ -15,8 +15,61 @@
   }
 
   .options {
-    top: 0;
+    top: calc(100% + 5px);
+    left: -12px;
     position: absolute;
-    display: none;
+    background-color: #fff;
+    z-index: 2;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.2rem;
+    padding-top: 0.3rem;
+    user-select: none;
+    border-radius: 7.5px;
+    box-shadow: 0px 0.8px 1.9px rgba(0, 0, 0, 0.018),
+      0px 1.8px 4.3px rgba(0, 0, 0, 0.026), 0px 3.2px 7.7px rgba(0, 0, 0, 0.032),
+      0px 5.3px 12.8px rgba(0, 0, 0, 0.038),
+      0px 8.7px 21.2px rgba(0, 0, 0, 0.044),
+      0px 15.3px 37px rgba(0, 0, 0, 0.052), 0px 33px 80px rgba(0, 0, 0, 0.07);
+    height: 300px;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      margin-top: 10px;
+    }
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: ease 150ms all;
+    pointer-events: none;
+
+    &.visible {
+      pointer-events: all;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      transition: ease 150ms all;
+      padding: 3px 0;
+      font-weight: 500;
+      opacity: 0.75;
+
+      &:hover {
+        background-color: rgb(240, 240, 240);
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
   }
 }

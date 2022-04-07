@@ -5,7 +5,7 @@
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
     "build": "rm -rf dist && rm -rf build.zip && parcel build manifest.json && cp manifest.v3.json dist/manifest.json && 7z a -tzip build.zip -w ./dist/*",
-    "watch": "parcel watch manifest.json",
+    "watch": "rm -rf dist && parcel watch manifest.json",
     "dev": "parcel serve manifest.json"
   },
   "keywords": [],

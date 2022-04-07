@@ -7,6 +7,8 @@ import longNumFormatter from "../utils/longNumformatter.js"
 import Select from "../components/Select.js"
 
 import currencies from "../data/currencies.json"
+import getSign from "../utils/getSign.js"
+import toConverted from "../utils/toConverted.js"
 
 const levels = [
   {
@@ -89,7 +91,7 @@ const DailyView = ({
   valuableStoryId,
   estimatedEarnings,
   currency,
-  currencySign,
+  rate,
 }) => {
   const totalInUSD = (total / 100).toFixed(2)
 
@@ -108,9 +110,17 @@ const DailyView = ({
             <img src="month.svg" alt="moon" />
           </button>
 					<div id="total-balance" >
-						<h2 title="$${totalInUSD}"> $ ${longNumFormatter(totalInUSD)} </h2>
-						<p title="Net $${longNumFormatter((total - totalTax) / 100)}">
-              with <span>$ ${longNumFormatter(totalTax / 100)} </span> tax
+						<h2 title="${getSign(currency)} ${toConverted(rate, totalInUSD)}"> 
+              ${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, totalInUSD)
+    )} 
+            </h2>
+						<p title="Net ${getSign(currency)}${longNumFormatter(
+      toConverted(rate, (total - totalTax) / 100)
+    )}">
+              with <span>${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, totalTax / 100)
+    )} </span> tax
             </p>
 					</div>
 					<div id="chart">
@@ -119,9 +129,9 @@ const DailyView = ({
               <div id="currency-converter">
                 <p>Currency: </p>
                 ${Select.Base(
-                  { value: currency, sign: currencySign },
-                  currencies.map(({ code, symbolNative }) =>
-                    Select.Option(code, symbolNative)
+                  { value: currency },
+                  currencies.map(({ code }) =>
+                    code !== currency ? Select.Option(code) : null
                   )
                 )}
               </div>
@@ -137,19 +147,25 @@ const DailyView = ({
               )}%" />
 						</div>
 						<div id="bottom">
-								<span>$ ${level.from}</span>
-								<span>$ ${level.to}</span>
+								<span>${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, level.from)
+    )}</span>
+								<span>${getSign(currency)} ${longNumFormatter(
+      toConverted(rate, level.to)
+    )}</span>
 						</div>
 					</div>
 				</div>
 				${Separator({ title: "This Month" })}
 				<div id="monthly-stats">
 					<article>
-						<div id="monthly-balance" title="Net $${longNumFormatter(
-              (monthlyTotal - monthlyTax) / 100
-            )}">
-							<h3>$ ${longNumFormatter(monthlyTotal / 100)}</h3>
-							<p>with <span>$ ${longNumFormatter(monthlyTax / 100)}</span> tax</p>
+						<div id="monthly-balance" title="Net ${getSign(currency)}${longNumFormatter(
+      toConverted(rate, (monthlyTotal - monthlyTax) / 100)
+    )}">
+							<h3>$ ${longNumFormatter(toConverted(rate, monthlyTotal / 100))}</h3>
+							<p>with <span>$ ${longNumFormatter(
+                toConverted(rate, monthlyTax / 100)
+              )}</span> tax</p>
 						</div>
 						<p id="info">
 							Monthly earnings are updated daily based on where you live.
@@ -162,11 +178,15 @@ const DailyView = ({
             })}		
 						${StatLine({
               title: "Yesterday's Earnings",
-              value: `$ ${longNumFormatter(yesterdayEarnings / 100)}`,
+              value: `${getSign(currency)} ${longNumFormatter(
+                toConverted(rate, yesterdayEarnings / 100)
+              )}`,
             })}		
 						${StatLine({
               title: "This Months's Estimated Earnings",
-              value: `$ ${longNumFormatter(estimatedEarnings / 100)}`,
+              value: `${getSign(currency)} ${longNumFormatter(
+                toConverted(rate, estimatedEarnings / 100)
+              )}`,
             })}		
 						${StatLine({
               title: "Yesterday's Most Valuable Story",

@@ -297,15 +297,6 @@
     "namePlural": "Algerian dinars"
   },
   {
-    "name": "Estonian Kroon",
-    "symbol": "Ekr",
-    "symbolNative": "kr",
-    "decimalDigits": 2,
-    "rounding": 0,
-    "code": "EEK",
-    "namePlural": "Estonian kroons"
-  },
-  {
     "name": "Egyptian Pound",
     "symbol": "EGP",
     "symbolNative": "ج.م.",

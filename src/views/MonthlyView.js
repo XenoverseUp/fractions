@@ -1,32 +1,23 @@
-import h from "../utils/h.js"
-import MonthlyReportLine from "../components/MonthlyReportLine.js"
-import StatLine from "../components/StatLine.js"
-import Separator from "../components/Separator.js"
-import longNumFormatter from "../utils/longNumformatter.js"
+import h from "h";
 
-const MonthlyView = ({
-  monthlyTotal,
-  monthlyTax,
-  taxRate,
-  completedMonths,
-  valuableStoryId,
-}) => {
-  const date = new Date()
-  const previousMonthEarnings = completedMonths[0].amount
-  const percentDifference =
-    previousMonthEarnings === 0
-      ? "∞"
-      : (
-          ((monthlyTotal - previousMonthEarnings) / previousMonthEarnings) *
-          100
-        ).toFixed(1)
+import getSign from "_/getSign";
+import convert from "_/convert";
 
-  const increased = percentDifference > 0 || percentDifference === "∞"
+import MonthlyReportLine from "c/MonthlyReportLine";
+import StatLine from "c/StatLine";
+import Separator from "c/Separator";
+
+const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valuableStoryId, currency, rate }) => {
+  const date = new Date();
+  const previousMonthEarnings = completedMonths[0].amount;
+  const percentDifference = previousMonthEarnings === 0 ? "∞" : (((monthlyTotal - previousMonthEarnings) / previousMonthEarnings) * 100).toFixed(1);
+
+  const increased = percentDifference > 0 || percentDifference === "∞";
 
   const icon = {
     value: increased ? "▲" : "▼",
     color: increased ? 0x10cc00 : 0xcc1800,
-  }
+  };
 
   return h(
     `
@@ -35,24 +26,18 @@ const MonthlyView = ({
           <button id="daily-button" title="Daily View">
             <img src="day.svg" alt="day" />
           </button>
-          <div id="monthly-balance" title="Net $${longNumFormatter(
-            (monthlyTotal - monthlyTax) / 100
-          )}">
+          <div id="monthly-balance" title="Net ${getSign(currency)}${convert(rate, (monthlyTotal - monthlyTax) / 100).toShort()}">
             <p>This month you've earned</p>
-            <h2>$ ${longNumFormatter(monthlyTotal / 100)}</h2>
+            <h2>${getSign(currency)} ${convert(rate, monthlyTotal / 100).toShort()}</h2>
             <p>
-              with <span>$ ${longNumFormatter(monthlyTax / 100)}</span> tax
+              with <span>${getSign(currency)} ${convert(rate, monthlyTax / 100).toShort()}</span> tax
             </p>
           </div>
         </div>
         <div id="monthly-stats">
           ${StatLine({
             title: "Daily Average Earnings",
-            value: `$ ${longNumFormatter(
-              monthlyTotal /
-                (date.getDate() === 1 ? 1 : date.getDate() - 1) /
-                100
-            )}`,
+            value: `${getSign(currency)} ${convert(rate, monthlyTotal / (date.getDate() === 1 ? 1 : date.getDate() - 1) / 100).toShort()}`,
           })}
           ${StatLine({
             title: "Difference From Previous Month",
@@ -68,10 +53,10 @@ const MonthlyView = ({
         ${Separator({ title: "Monthly Report" })}
         <div id="monthly-report">
           ${completedMonths
-            .map((month) =>
+            .map(month =>
               MonthlyReportLine({
-                monthlyTotal: month.amount,
-                monthlyTax: month.tax,
+                monthlyTotal: convert(rate, month.amount),
+                monthlyTax: convert(rate, month.tax),
                 date: month.date,
                 taxRate,
               })
@@ -80,7 +65,7 @@ const MonthlyView = ({
         </div>
       </div>
 	  `
-  )
-}
+  );
+};
 
-export default MonthlyView
+export default MonthlyView;

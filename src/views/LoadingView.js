@@ -1,4 +1,4 @@
-import h from "../utils/h.js"
+import h from "h";
 
 const LoadingView = () =>
   h(`
@@ -7,9 +7,12 @@ const LoadingView = () =>
 		<span class="spinner"></span>
 		<span class="spinner"></span>
 		<h2 id="loading-text">
-			Gimme a sec <span>.</span><span>.</span><span>.</span>
+			Gimme a sec 
+			<span>.</span>
+			<span>.</span>
+			<span>.</span>
 		</h2>
 	</div>
-`)
+`);
 
-export default LoadingView
+export default LoadingView;

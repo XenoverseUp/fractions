@@ -5,42 +5,39 @@
 // Estimate month-end earning ✅
 // Modularize CSS for components and views ✅
 // Set up a bundler ✅
+// Currency converter ✅
+// Animate currency converter arrow
 // Split request line in background
-// Currency converter
 
-import "./prototypes/Date.js"
-import LoadingView from "./views/LoadingView.js"
-import LoginView from "./views/LoginView.js"
-import DailyView from "./views/DailyView.js"
-import MonthlyView from "./views/MonthlyView.js"
-import EnrollView from "./views/EnrollView.js"
-import Enum from "./utils/enum.js"
+import "prototypes/Date";
+import "prototypes/Number";
 
-import fakeRes from "./data/valid.js"
-import fakeRes2 from "./data/enroll-error.js"
-import { getRate } from "./services/services.js"
-import wait from "./utils/wait.js"
+import Enum from "_/enum";
+import wait from "_/wait";
 
-export const View = Enum([
-  "LOGIN",
-  "DAILY",
-  "MONTHLY",
-  "LOADING",
-  "ERROR",
-  "MPP_ENROLL",
-  "SKELETON",
-])
+import LoadingView from "@/LoadingView";
+import LoginView from "@/LoginView";
+import DailyView from "@/DailyView";
+import MonthlyView from "@/MonthlyView";
+import EnrollView from "@/EnrollView";
+
+import getRate from "services/getRate";
+
+import fakeRes from "data/valid";
+import fakeRes2 from "data/enroll-error";
+
+export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "SKELETON"]);
 
 class App {
-  #state = View.LOADING
-  #root = document.getElementById("root")
-  #duration = 250 //ms
-  #data
-  #currency = "USD"
-  #rate = 1
+  #state = View.LOADING;
+  #root = document.getElementById("root");
+  #duration = 250; //ms
+  #data;
+  #currency = "USD";
+  #rate = 1;
 
   constructor() {
-    this.#renderView(View.LOADING)
+    this.#renderView(View.LOADING);
 
     /* !! TESTS */
 
@@ -48,43 +45,43 @@ class App {
     // this.#initializeApp(true, fakeRes) // Logged in
     // this.#initializeApp(true, fakeRes2) // MPP enroll error
 
-    chrome.runtime.sendMessage({ getData: true }, (res) => {
+    chrome.runtime.sendMessage({ getData: true }, res => {
       try {
-        this.#initializeApp(res.authenticated, res?.data)
+        this.#initializeApp(res.authenticated, res?.data);
       } catch (error) {
-        this.setState(View.ERROR)
+        this.setState(View.ERROR);
       }
-    })
+    });
   }
 
   async #initializeApp(authenticated, data = {}) {
-    this.#data = data
+    this.#data = data;
 
-    if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
-    else if (authenticated && !data?.error) this.setState(View.DAILY)
-    else this.setState(View.LOGIN)
+    if (authenticated && data?.error) this.setState(View.MPP_ENROLL);
+    else if (authenticated && !data?.error) this.setState(View.DAILY);
+    else this.setState(View.LOGIN);
   }
 
   setState(nextState) {
-    if (this.#state === nextState) return
-    this.#updateUI(this.#state, nextState)
-    this.#state = nextState
+    if (this.#state === nextState) return;
+    this.#updateUI(this.#state, nextState);
+    this.#state = nextState;
   }
 
   async #updateCurrency(currency_code) {
-    if (currency_code === this.#currency) return
-    const rate = await getRate(currency_code)
+    if (currency_code === this.#currency) return;
+    const rate = await getRate(currency_code);
 
-    if (rate === null) return
+    if (rate === null) return;
 
-    this.#currency = currency_code
-    this.#rate = rate
-    this.#updateUI(View.DAILY, View.DAILY)
+    this.#currency = currency_code;
+    this.#rate = rate;
+    this.#updateUI(View.DAILY, View.DAILY);
   }
 
   #updateUI(previousState, nextState) {
-    this.#removeView(previousState)
-    this.#renderView(nextState)
+    this.#removeView(previousState);
+    this.#renderView(nextState);
   }
 
   #renderView(state) {
@@ -115,27 +112,28 @@ class App {
             taxRate: this.#data.taxRate,
             completedMonths: this.#data.completedMonths,
             valuableStoryId: this.#data.monthlyValuableStoryId,
+            currency: this.#currency,
+            rate: this.#rate,
           })
-        : null
+        : null;
 
     setTimeout(
       () => {
-        this.#root.appendChild(view)
-        this.#root.children[0].style.animation =
-          "fade-in ease-out 150ms forwards"
-        this.#setEventHandlers(state)
+        this.#root.appendChild(view);
+        this.#root.children[0].style.animation = "fade-in ease-out 150ms forwards";
+        this.#setEventHandlers(state);
       },
       state === View.LOADING ? 0 : this.#duration
-    )
+    );
   }
 
   #removeView(state) {
     if (state == View.LOADING) {
       // Remove loading screen
-      const loader = document.getElementById("loader")
+      const loader = document.getElementById("loader");
       setTimeout(() => {
-        const loadingText = document.getElementById("loading-text")
-        const spinners = document.querySelectorAll(".spinner")
+        const loadingText = document.getElementById("loading-text");
+        const spinners = document.querySelectorAll(".spinner");
         spinners.forEach((spinner, i) =>
           spinner.animate(
             [
@@ -152,7 +150,7 @@ class App {
               delay: (i - 1) * (this.#duration / 4),
             }
           )
-        )
+        );
 
         loadingText.animate(
           [
@@ -167,69 +165,59 @@ class App {
             delay: this.#duration / 3,
             fill: "forwards",
           }
-        )
-      }, 0)
+        );
+      }, 0);
 
-      setTimeout(() => this.#root.removeChild(loader), this.#duration)
+      setTimeout(() => this.#root.removeChild(loader), this.#duration);
     } else {
-      this.#root.children[0].style.animation =
-        "fade-out ease-out 150ms forwards"
+      this.#root.children[0].style.animation = "fade-out ease-out 150ms forwards";
 
       setTimeout(() => {
-        this.#removeEventHandlers(state)
-        this.#root.removeChild(this.#root.children[0])
-      }, 150)
+        this.#removeEventHandlers(state);
+        this.#root.removeChild(this.#root.children[0]);
+      }, 150);
     }
   }
 
   #setEventHandlers(state) {
     if (state === View.DAILY) {
-      const switchButton = document.querySelector("#monthly-button")
-      const currencySelect = document.querySelector(".custom-select")
-      const currencyOptions = document.querySelector(
-        ".custom-select > .options"
-      )
+      const switchButton = document.querySelector("#monthly-button");
+      const currencySelect = document.querySelector(".custom-select");
+      const currencyOptions = document.querySelector(".custom-select > .options");
 
-      const currencies = document.querySelectorAll(
-        ".custom-select > .options > .option"
-      )
+      const currencies = document.querySelectorAll(".custom-select > .options > .option");
 
-      const isOptionsVisible = () =>
-        currencyOptions.classList.contains("visible")
+      const isOptionsVisible = () => currencyOptions.classList.contains("visible");
 
-      switchButton.addEventListener("click", () => this.setState(View.MONTHLY))
+      switchButton.addEventListener("click", () => this.setState(View.MONTHLY));
 
-      addEventListener("click", (e) => {
-        if (isOptionsVisible() && !currencyOptions.contains(e.target))
-          currencyOptions.classList.remove("visible")
+      addEventListener("click", e => {
+        if (isOptionsVisible() && !currencyOptions.contains(e.target)) currencyOptions.classList.remove("visible");
 
-        if (!isOptionsVisible() && currencySelect.contains(e.target))
-          currencyOptions.classList.add("visible")
+        if (!isOptionsVisible() && currencySelect.contains(e.target)) currencyOptions.classList.add("visible");
 
-        currencies.forEach((currency) => {
+        currencies.forEach(currency => {
           if (currency.contains(e.target)) {
-            currencyOptions.classList.remove("visible")
-            this.#updateCurrency(e.target.innerText)
+            currencyOptions.classList.remove("visible");
+            this.#updateCurrency(e.target.innerText);
           }
-        })
-      })
+        });
+      });
     } else if (state === View.MONTHLY) {
-      const switchButton = document.querySelector("#daily-button")
-      switchButton.addEventListener("click", () => this.setState(View.DAILY))
+      const switchButton = document.querySelector("#daily-button");
+      switchButton.addEventListener("click", () => this.setState(View.DAILY));
     }
   }
 
   #removeEventHandlers(state) {
     if (state === View.DAILY) {
-      const switchButton = document.querySelector("#monthly-button")
-      switchButton.removeEventListener("click", () =>
-        this.setState(View.MONTHLY)
-      )
+      const switchButton = document.querySelector("#monthly-button");
+      switchButton.removeEventListener("click", () => this.setState(View.MONTHLY));
     } else if (state === View.MONTHLY) {
-      const switchButton = document.querySelector("#daily-button")
-      switchButton.removeEventListener("click", () => this.setState(View.DAILY))
+      const switchButton = document.querySelector("#daily-button");
+      switchButton.removeEventListener("click", () => this.setState(View.DAILY));
     }
   }
 }
 
-export default App
+export default App;

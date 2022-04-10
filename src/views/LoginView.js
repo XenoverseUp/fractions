@@ -1,4 +1,4 @@
-import h from "../utils/h.js"
+import h from "h";
 
 const LoginView = () =>
   h(
@@ -20,6 +20,6 @@ const LoginView = () =>
 			</div>
 		</div>
 	`
-  )
+  );
 
-export default LoginView
+export default LoginView;

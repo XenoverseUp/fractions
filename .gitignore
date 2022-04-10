@@ -22,3 +22,4 @@ parcel-bundle-reports/
 .verdaccio_storage/
 sourcemap-info.json
 build.zip
+.env

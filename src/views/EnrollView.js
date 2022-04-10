@@ -1,4 +1,4 @@
-import h from "../utils/h.js"
+import h from "h";
 
 const EnrollView = () =>
   h(
@@ -21,6 +21,6 @@ const EnrollView = () =>
 			</div>
 		</div>
 	`
-  )
+  );
 
-export default EnrollView
+export default EnrollView;

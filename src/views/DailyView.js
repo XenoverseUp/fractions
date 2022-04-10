@@ -1,85 +1,16 @@
-import h from "../utils/h.js"
-import map from "../utils/map.js"
-import StatLine from "../components/StatLine.js"
-import toReadable from "../utils/toReadable.js"
-import Separator from "../components/Separator.js"
-import longNumFormatter from "../utils/longNumformatter.js"
-import Select from "../components/Select.js"
+import h from "h";
 
-import currencies from "../data/currencies.json"
-import getSign from "../utils/getSign.js"
-import toConverted from "../utils/toConverted.js"
+import map from "_/map";
+import toReadable from "_/toReadable";
+import getSign from "_/getSign";
+import convert from "_/convert";
 
-const levels = [
-  {
-    from: 0,
-    to: 5,
-  },
-  {
-    from: 5,
-    to: 20,
-  },
-  {
-    from: 20,
-    to: 50,
-  },
-  {
-    from: 50,
-    to: 100,
-  },
-  {
-    from: 100,
-    to: 200,
-  },
-  {
-    from: 200,
-    to: 500,
-  },
-  {
-    from: 500,
-    to: 1000,
-  },
-  {
-    from: 1000,
-    to: 2000,
-  },
-  {
-    from: 2000,
-    to: 5000,
-  },
-  {
-    from: 5000,
-    to: 10_000,
-  },
-  {
-    from: 10_000,
-    to: 20_000,
-  },
-  {
-    from: 20_000,
-    to: 50_000,
-  },
-  {
-    from: 50_000,
-    to: 100_000,
-  },
-  {
-    from: 100_000,
-    to: 200_000,
-  },
-  {
-    from: 200_000,
-    to: 500_000,
-  },
-  {
-    from: 500_000,
-    to: 1_000_000,
-  },
-  {
-    from: 1_000_000,
-    to: 2_000_000,
-  },
-]
+import StatLine from "c/StatLine";
+import Separator from "c/Separator";
+import Select from "c/Select";
+
+import levels from "data/levels.json";
+import currencies from "data/currencies.json";
 
 const DailyView = ({
   total,
@@ -93,14 +24,12 @@ const DailyView = ({
   currency,
   rate,
 }) => {
-  const totalInUSD = (total / 100).toFixed(2)
+  const totalInUSD = (total / 100).toFixed(2);
 
-  const level = levels.find(
-    (level) => totalInUSD < level.to && totalInUSD >= level.from
-  )
-  const levelNumber = levels.findIndex((l) => l === level) + 1
+  const level = levels.find(level => totalInUSD < level.to && totalInUSD >= level.from);
+  const levelNumber = levels.findIndex(l => l === level) + 1;
 
-  const percent = map(totalInUSD, level?.from, level?.to, 0, 100) ?? 0
+  const percent = map(totalInUSD, level?.from, level?.to, 0, 100) ?? 0;
 
   return h(
     `
@@ -110,17 +39,11 @@ const DailyView = ({
             <img src="month.svg" alt="moon" />
           </button>
 					<div id="total-balance" >
-						<h2 title="${getSign(currency)} ${toConverted(rate, totalInUSD)}"> 
-              ${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, totalInUSD)
-    )} 
+						<h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}"> 
+              ${getSign(currency)} ${convert(rate, totalInUSD).toShort()} 
             </h2>
-						<p title="Net ${getSign(currency)}${longNumFormatter(
-      toConverted(rate, (total - totalTax) / 100)
-    )}">
-              with <span>${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, totalTax / 100)
-    )} </span> tax
+						<p title="Net ${getSign(currency)}${convert(rate, (total - totalTax) / 100).toShort()}">
+              with <span>${getSign(currency)} ${convert(rate, totalTax / 100).toShort()} </span> tax
             </p>
 					</div>
 					<div id="chart">
@@ -130,40 +53,26 @@ const DailyView = ({
                 <p>Currency: </p>
                 ${Select.Base(
                   { value: currency },
-                  currencies.map(({ code }) =>
-                    code !== currency ? Select.Option(code) : null
-                  )
+                  currencies.map(({ code }) => (code !== currency ? Select.Option(code) : null))
                 )}
               </div>
 						</div>
-						<div id="plot" title="%${longNumFormatter(percent)}">
+						<div id="plot" title="%${percent.toShort()}">
 							<img src="slider.svg" alt="slider" />
-							<img src="slider-inner.png" alt="slider inner" style="--width: ${map(
-                percent,
-                0,
-                100,
-                3,
-                97
-              )}%" />
+							<img src="slider-inner.png" alt="slider inner" style="--width: ${map(percent, 0, 100, 3, 97)}%" />
 						</div>
 						<div id="bottom">
-								<span>${currency} ${longNumFormatter(toConverted(rate, level.from))}</span>
-								<span>${currency} ${longNumFormatter(toConverted(rate, level.to))}</span>
+								<span>${currency} ${convert(rate, level.from).toShort()}</span>
+								<span>${currency} ${convert(rate, level.to).toShort()}</span>
 						</div>
 					</div>
 				</div>
 				${Separator({ title: "This Month" })}
 				<div id="monthly-stats">
 					<article>
-						<div id="monthly-balance" title="Net ${getSign(currency)}${longNumFormatter(
-      toConverted(rate, (monthlyTotal - monthlyTax) / 100)
-    )}">
-							<h3>${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, monthlyTotal / 100)
-    )}</h3>
-							<p>with <span>${getSign(currency)} ${longNumFormatter(
-      toConverted(rate, monthlyTax / 100)
-    )}</span> tax</p>
+						<div id="monthly-balance" title="Net ${getSign(currency)}${convert(rate, (monthlyTotal - monthlyTax) / 100).toShort()}">
+							<h3>${getSign(currency)} ${convert(rate, monthlyTotal / 100).toShort()}</h3>
+							<p>with <span>${getSign(currency)} ${convert(rate, monthlyTax / 100).toShort()}</span> tax</p>
 						</div>
 						<p id="info">
 							Monthly earnings are updated daily based on where you live.
@@ -176,15 +85,11 @@ const DailyView = ({
             })}		
 						${StatLine({
               title: "Yesterday's Earnings",
-              value: `${getSign(currency)} ${longNumFormatter(
-                toConverted(rate, yesterdayEarnings / 100)
-              )}`,
+              value: `${getSign(currency)} ${convert(rate, yesterdayEarnings / 100).toShort()}`,
             })}		
 						${StatLine({
               title: "This Months's Estimated Earnings",
-              value: `${getSign(currency)} ${longNumFormatter(
-                toConverted(rate, estimatedEarnings / 100)
-              )}`,
+              value: `${getSign(currency)} ${convert(rate, estimatedEarnings / 100).toShort()}`,
             })}		
 						${StatLine({
               title: "Yesterday's Most Valuable Story",
@@ -194,7 +99,7 @@ const DailyView = ({
 				</div>
 			</div>
 		`
-  )
-}
+  );
+};
 
-export default DailyView
+export default DailyView;

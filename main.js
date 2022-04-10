@@ -1,3 +1,3 @@
-import App, { View } from "./src/App.js"
+import App, { View } from "./src/App";
 
-new App(View.LOGIN)
+new App(View.LOGIN);

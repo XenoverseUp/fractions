@@ -68,6 +68,11 @@ class App {
     this.#state = nextState;
   }
 
+  setVersion(version) {
+    const v = document.getElementById("version-num");
+    v.innerText = `v${version}`;
+  }
+
   async #updateCurrency(currency_code) {
     if (currency_code === this.#currency) return;
     const rate = await getRate(currency_code);

@@ -10,7 +10,7 @@ import Separator from "c/Separator";
 import Select from "c/Select";
 
 import levels from "data/levels.json";
-import currencies from "data/currencies.json";
+import currencyCodes from "data/currency_codes.json";
 
 const DailyView = ({
   total,
@@ -33,7 +33,7 @@ const DailyView = ({
 
   return h(
     `
-			<div id="daily">
+    	<div id="daily">
 				<div id="total">
           <button id="monthly-button" title="Monthly View">
             <img src="month.svg" alt="moon" />
@@ -53,7 +53,7 @@ const DailyView = ({
                 <p>Currency: </p>
                 ${Select.Base(
                   { value: currency },
-                  currencies.map(({ code }) => (code !== currency ? Select.Option(code) : null))
+                  currencyCodes.map(code => (code !== currency ? Select.Option(code) : null))
                 )}
               </div>
 						</div>

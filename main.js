@@ -1,3 +1,5 @@
-import App, { View } from "./src/App";
+import App from "./src/App";
+import { version } from "./manifest.v3.json";
 
-new App(View.LOGIN);
+const app = new App();
+app.setVersion(version);

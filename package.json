@@ -8,7 +8,8 @@
     "build:report": "rm -rf dist && rm -rf build.zip && parcel build manifest.json --reporter @parcel/reporter-bundle-analyzer && cp manifest.v3.json dist/manifest.json && 7z a -tzip build.zip -w ./dist/*",
     "watch": "rm -rf dist && parcel watch manifest.json",
     "dev": "parcel serve manifest.json",
-    "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open"
+    "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open",
+    "push": "git add . && git commit -m --m && git push origin main"
   },
   "keywords": [],
   "license": "MIT",
@@ -16,6 +17,7 @@
     "h": "./src/utils/h.js",
     "@/*": "./src/views/$1",
     "c/*": "./src/components/$1",
+    "a/*": "./src/assets/$1",
     "_/*": "./src/utils/$1",
     "prototypes/*": "./src/prototypes/$1",
     "data/*": "./src/data/$1",
@@ -27,7 +29,6 @@
     "@parcel/reporter-bundle-analyzer": "^2.4.1",
     "@parcel/resolver-glob": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",
-    "parcel": "^2.4.1",
-    "parcel-reporter-static-files-copy": "^1.3.4"
+    "parcel": "^2.4.1"
   }
 }

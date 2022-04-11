@@ -1,11 +1,12 @@
 import h from "h";
+import ManNDuck from "a/mpp_enroll.webp";
 
 const EnrollView = () =>
   h(
     `
 		<div id="enroll">
 			<div id="illustration">
-				<img src="mpp_enroll.webp" alt="MPP Error" />
+				<img src=${ManNDuck} alt="MPP Error" />
 			</div>
 			<div id="content">
 				<h2>Not cool man...</h2>

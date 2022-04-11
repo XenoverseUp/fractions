@@ -12,6 +12,10 @@ import Select from "c/Select";
 import levels from "data/levels.json";
 import currencyCodes from "data/currency_codes.json";
 
+import Moon from "a/month.svg";
+import Slider from "a/slider.svg";
+import SliderInner from "a/slider-inner.png";
+
 const DailyView = ({
   total,
   totalTax,
@@ -36,7 +40,7 @@ const DailyView = ({
     <div id="daily">
       <div id="total">
         <button id="monthly-button" title="Monthly View">
-          <img src="month.svg" alt="moon" />
+          <img src=${Moon} alt="moon" />
         </button>
         <div id="total-balance" >
           <h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}"> 
@@ -58,8 +62,8 @@ const DailyView = ({
             </div>
           </div>
           <div id="plot" title="%${percent.toShort()}">
-            <img src="slider.svg" alt="slider" />
-            <img src="slider-inner.png" alt="slider inner" style="--width: ${map(percent, 0, 100, 3, 97)}%" />
+            <img src=${Slider} alt="slider" />
+            <img src=${SliderInner} alt="slider inner" style="--width: ${map(percent, 0, 100, 3, 97)}%" />
           </div>
           <div id="bottom">
               <span>${currency} ${convert(rate, level.from).toShort()}</span>

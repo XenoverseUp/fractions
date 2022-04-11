@@ -11,9 +11,9 @@
 
 import "prototypes/Date";
 import "prototypes/Number";
+import "prototypes/Array";
 
 import Enum from "_/enum";
-import wait from "_/wait";
 
 import LoadingView from "@/LoadingView";
 import LoginView from "@/LoginView";
@@ -41,9 +41,9 @@ class App {
 
     /* !! TESTS */
 
-    // this.#initializeApp(false, fakeRes) // Logged out
-    // this.#initializeApp(true, fakeRes) // Logged in
-    // this.#initializeApp(true, fakeRes2) // MPP enroll error
+    // this.#initializeApp(false, fakeRes); // Logged out
+    // this.#initializeApp(true, fakeRes); // Logged in
+    // this.#initializeApp(true, fakeRes2); // MPP enroll error
 
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {

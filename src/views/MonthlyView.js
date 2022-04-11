@@ -7,6 +7,8 @@ import MonthlyReportLine from "c/MonthlyReportLine";
 import StatLine from "c/StatLine";
 import Separator from "c/Separator";
 
+import Day from "a/day.svg";
+
 const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valuableStoryId, currency, rate }) => {
   const date = new Date();
   const previousMonthEarnings = completedMonths[0].amount;
@@ -24,7 +26,7 @@ const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valua
       <div id="monthly">
         <div id="monthly-total">
           <button id="daily-button" title="Daily View">
-            <img src="day.svg" alt="day" />
+            <img src=${Day} alt="day" />
           </button>
           <div id="monthly-balance" title="Net ${getSign(currency)}${convert(rate, (monthlyTotal - monthlyTax) / 100).toShort()}">
             <p>This month you've earned</p>
@@ -52,17 +54,15 @@ const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valua
         </div>
         ${Separator({ title: "Monthly Report" })}
         <div id="monthly-report">
-          ${completedMonths
-            .map(month =>
-              MonthlyReportLine({
-                monthlyTotal: convert(rate, month.amount),
-                monthlyTax: convert(rate, month.tax),
-                date: month.date,
-                sign: getSign(currency),
-                taxRate,
-              })
-            )
-            .join("\n")}
+          ${completedMonths.render(month =>
+            MonthlyReportLine({
+              monthlyTotal: convert(rate, month.amount),
+              monthlyTax: convert(rate, month.tax),
+              date: month.date,
+              sign: getSign(currency),
+              taxRate,
+            })
+          )}
         </div>
       </div>
 	  `

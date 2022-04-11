@@ -71,7 +71,7 @@ const DailyView = ({
       <div id="monthly-stats">
         <article>
           <div id="monthly-balance">
-            <h3 title="${getSign(currency)}${convert(rate, monthlyTotal / 100).toShort()}">
+            <h3 title="${getSign(currency)}${convert(rate, monthlyTotal / 100).toFixed(2)}">
               ${getSign(currency)} ${convert(rate, monthlyTotal / 100).toShort()}
             </h3>
             <p title="Net ${getSign(currency)}${convert(rate, (monthlyTotal - monthlyTax) / 100).toShort()}" >

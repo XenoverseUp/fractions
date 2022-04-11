@@ -1,6 +1,6 @@
 # Version History
 
-### **v1.0.2**
+### **v1.1.0**
 
 Currency converter is added. | April 11<sup>th</sup>, 2022<br>
 

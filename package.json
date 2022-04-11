@@ -5,11 +5,13 @@
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
     "build": "rm -rf dist && rm -rf build.zip && parcel build manifest.json && cp manifest.v3.json dist/manifest.json && 7z a -tzip build.zip -w ./dist/*",
+    "build:report": "rm -rf dist && rm -rf build.zip && parcel build manifest.json --reporter @parcel/reporter-bundle-analyzer && cp manifest.v3.json dist/manifest.json && 7z a -tzip build.zip -w ./dist/*",
     "watch": "rm -rf dist && parcel watch manifest.json",
-    "dev": "parcel serve manifest.json"
+    "dev": "parcel serve manifest.json",
+    "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open"
   },
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "alias": {
     "h": "./src/utils/h.js",
     "@/*": "./src/views/$1",
@@ -22,6 +24,7 @@
   "dependencies": {},
   "devDependencies": {
     "@parcel/config-webextension": "^2.4.1",
+    "@parcel/reporter-bundle-analyzer": "^2.4.1",
     "@parcel/resolver-glob": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",
     "parcel": "^2.4.1",

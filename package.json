@@ -9,7 +9,7 @@
     "watch": "rm -rf dist && parcel watch manifest.json",
     "dev": "parcel serve manifest.json",
     "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open",
-    "push": "git add . && git commit -m --m && git push origin main"
+    "push": "git add . && git commit -m %npm_config_m% && git push origin main"
   },
   "keywords": [],
   "license": "MIT",

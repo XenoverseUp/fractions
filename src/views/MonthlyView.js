@@ -58,6 +58,7 @@ const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valua
                 monthlyTotal: convert(rate, month.amount),
                 monthlyTax: convert(rate, month.tax),
                 date: month.date,
+                sign: getSign(currency),
                 taxRate,
               })
             )

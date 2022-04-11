@@ -1,10 +1,10 @@
 {
-  "extends": "@parcel/config-webextension",
   "reporters": [
     "..."
   ],
   "resolvers": [
     "@parcel/resolver-glob",
     "..."
-  ]
+  ],
+  "extends": "@parcel/config-webextension"
 }

@@ -6,7 +6,6 @@ import convert from "_/convert";
 import MonthlyReportLine from "c/MonthlyReportLine";
 import StatLine from "c/StatLine";
 import Separator from "c/Separator";
-
 import Day from "a/day.svg";
 
 const MonthlyView = ({ monthlyTotal, monthlyTax, taxRate, completedMonths, valuableStoryId, currency, rate }) => {

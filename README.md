@@ -1,4 +1,12 @@
-# Fractions
+# Fractions v1.1.0
+
+<p align="center">
+	<a href="https://medium.com/better-marketing/a-better-medium-partner-dashboard-fractions-c68cc211fbc1">
+		<img src="docs/cover.png"  >
+	</a>
+</p>
+
+<br />
 
 **Fractions** is a fully-featured Chrome extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 
@@ -56,6 +64,12 @@ Lately, I've started a blog on Medium and tried to share my programming knowledg
 
 So, I decided to use this data to create a Chrome extension for anyone who is interested. The primary concern of this extension is to show you your **net** earnings, without the taxes you have to pay. To make things interesting, I added a level system on top of stats that you can pass each level, simply by earning or writing more.
 
+<p align="center">
+	<a href="https://medium.com/better-marketing/a-better-medium-partner-dashboard-fractions-c68cc211fbc1">
+		<img src="docs/ss.png" >
+	</a>
+</p>
+
 By the way, you might be thinking what the duck is **Fractions**? Well, it is the name of tech publication I run. Feel free to [check it out](https://medium.com/fractions), as well.
 
 <br/>
@@ -69,6 +83,7 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 - Daily total member reading time
 - Monthly earning estimation
 - Daily earning amount (yesterday)
+- Realtime currency converter
 - Daily average earning
 - Net earnings, calculated without taxes
 - Daily top earning story
@@ -93,22 +108,17 @@ I am a 21-year old sophomore Electric and Electronics Engineering student in Koc
 
 ## Future fixes and bugs
 
-- Currency conversion
+- Support for Firefox, Safari, Opera and Edge web stores
+- Follower, email subscriber and referred member analysis
 - More animations
-- Seperation of styles for components and views
 - Partial request from backend and skeleton loading
 - A better estimation algorithm
-- Setting up a bundler
 
 ## **Known issues**
 
 ### **Slow loading time**
 
 I tried this extension just for my blog which has 35 story currently, and it takes a few seconds to fetch the data. As the number of stories grow, the retrieving time also increases since I make a request for each story, separately. I'll find a way to get around this. Please try the extension and give me feedback about it.
-
-### **Currency converter doesn't work**
-
-This feature will be implemented later on.
 
 ### **Monthly estimation is not close to real**
 

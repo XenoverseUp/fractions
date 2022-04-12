@@ -108,7 +108,7 @@ I am a 21-year old sophomore Electric and Electronics Engineering student in Koc
 
 ## Future fixes and bugs
 
-- Support for Firefox, Safari, Opera and Edge web stores
+- Support for Safari, Opera and Edge web stores
 - Follower, email subscriber and referred member analysis
 - More animations
 - Partial request from backend and skeleton loading

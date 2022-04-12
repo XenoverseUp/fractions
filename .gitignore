@@ -6,6 +6,7 @@ coverage/
 .nyc_output/
 .cache/
 .parcel-cache/
+build/
 dist/
 lib/
 .vscode/

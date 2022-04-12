@@ -2,7 +2,10 @@
 
 ### **v1.1.0**
 
-Currency converter is added. | April 11<sup>th</sup>, 2022<br>
+##### April 11<sup>th</sup>, 2022<br>
+
+The extension is supported on Firefox.
+Currency converter is added.
 
 ### **v1.0.1**
 

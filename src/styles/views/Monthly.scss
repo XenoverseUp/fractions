@@ -86,5 +86,10 @@
     flex-direction: column;
     gap: 0.75rem;
     padding: 0.75rem var(--padding);
+
+    @supports (scrollbar-width: thin) and (not (overflow: overlay)) {
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
   }
 }

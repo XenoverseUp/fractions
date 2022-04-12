@@ -35,6 +35,11 @@
     height: 300px;
     overflow-y: overlay;
 
+    @supports (scrollbar-width: thin) and (not (overflow: overlay)) {
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
     &::-webkit-scrollbar {
       width: 4px;
     }

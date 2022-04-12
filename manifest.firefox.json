@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "Fractions - Medium Partner Dashboard",
+  "short_name": "Fractions",
+  "version": "1.1.0",
+  "description": "A Better Partner Dashboard for Medium",
+  "author": "Can Durmus",
+  "permissions": ["https://medium.com/"],
+  "background": {
+    "scripts": ["serviceWorker.js"],
+    "persistent": false
+  },
+  "content_scripts": [],
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "64": "icons/64.png",
+    "128": "icons/128.png"
+  },
+  "browser_action": {
+    "default_title": "Fractions",
+    "default_popup": "/popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{6a3d8bbc-24ac-4d2c-8b67-c658388e9c8d}",
+      "strict_min_version": "57.0"
+    }
+  }
+}

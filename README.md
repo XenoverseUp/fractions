@@ -8,7 +8,7 @@
 
 <br />
 
-\*\*TL;DR: (Here)[https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf] is the extension and (here)[https://bettermarketing.pub/a-better-medium-partner-dashboard-fractions-c68cc211fbc1] is the blog post about it.
+\*\*TL;DR: [Here](https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf) is the extension and [here](https://bettermarketing.pub/a-better-medium-partner-dashboard-fractions-c68cc211fbc1) is the blog post about it.
 
 **Fractions** is a fully-featured Chromium | Firefox extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 

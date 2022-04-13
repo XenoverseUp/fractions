@@ -40,4 +40,4 @@ with open(os.path.join(root, "popup.html"), "r+", encoding="utf8") as html_strin
 
   html_string.close()
 
-print("Done.")
+print("\nDone.")

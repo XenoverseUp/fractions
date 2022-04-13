@@ -8,7 +8,9 @@
 
 <br />
 
-**Fractions** is a fully-featured Chrome extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
+\*\*TL;DR: (Here)[https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf] is the extension and (here)[https://bettermarketing.pub/a-better-medium-partner-dashboard-fractions-c68cc211fbc1] is the blog post about it.
+
+**Fractions** is a fully-featured Chromium | Firefox extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 
 - lifetime earnings since you enrolled into Medium Partner Program,
 - monthly earnings,
@@ -53,16 +55,16 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Who am I?](#who-am-i)
-- [Downloads](#)
-- [Future Fixes and Features](#)
-- [Known Issues](#)  
+- [Downloads](#https://github.com/XenoverseUp/fractions/releases)
+- [Future Fixes and Features](#future-fixes-and-bugs)
+- [Known Issues](#known-issues)  
   <br />
 
 ## Why I created Fractions?
 
 Lately, I've started a blog on Medium and tried to share my programming knowledge, even though it is not so much. One day, while wandering around my MPP Dashboard, I looked up the sources (JSON) of the page and noticed there is a bulk of unusued data about almost anyhting about my page, and Medium doesn't even bother to show them to me.
 
-So, I decided to use this data to create a Chrome extension for anyone who is interested. The primary concern of this extension is to show you your **net** earnings, without the taxes you have to pay. To make things interesting, I added a level system on top of stats that you can pass each level, simply by earning or writing more.
+So, I decided to use this data to create a browser extension for anyone who is interested. The primary concern of this extension is to show you your **net** earnings, without the taxes you have to pay. To make things interesting, I added a level system on top of stats that you can pass each level, simply by earning or writing more.
 
 <p align="center">
 	<a href="https://medium.com/better-marketing/a-better-medium-partner-dashboard-fractions-c68cc211fbc1">
@@ -76,7 +78,7 @@ By the way, you might be thinking what the duck is **Fractions**? Well, it is th
 
 ## How is it different from Partner Dashboard?
 
-In Partner Dashboard, all we get is monthly and referred member earnings. There's no stat about what I earned yesterday, total member time, or the net earnings without taxes. So, I made this Chrome extension as a total replacement for Partner Dashboard. It includes everything Partner Dashboard, but adds more [features](#) on top of them, using the data scattered around.
+In Partner Dashboard, all we get is monthly and referred member earnings. There's no stat about what I earned yesterday, total member time, or the net earnings without taxes. So, I made this Chrome extension as a total replacement for Partner Dashboard. It includes everything Partner Dashboard, but adds more [features](#features) on top of them, using the data scattered around.
 
 ## Features
 
@@ -96,11 +98,12 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 ## Tech Stack
 
 - Vanilla JavaScript
+- Python
 - HTML
 - SASS
 - Parcel
 
-In this project, I decided to use nothing but Vanilla JavaScript. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS.
+In this project, I decided to use nothing but Vanilla JavaScript. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS. In the end, there is Parcel bundler to build and distribute everything up. In addition, I wrote a Python script for Firefox compatibility.
 
 ## Who am I?
 
@@ -108,7 +111,9 @@ I am a 21-year old sophomore Electric and Electronics Engineering student in Koc
 
 ## Future fixes and bugs
 
-- Support for Safari, Opera and Edge web stores
+- Support for Safari
+- Opera, Edge and Safari web store publishing
+- Report the problem button
 - Follower, email subscriber and referred member analysis
 - More animations
 - Partial request from backend and skeleton loading
@@ -118,7 +123,7 @@ I am a 21-year old sophomore Electric and Electronics Engineering student in Koc
 
 ### **Slow loading time**
 
-I tried this extension just for my blog which has 35 story currently, and it takes a few seconds to fetch the data. As the number of stories grow, the retrieving time also increases since I make a request for each story, separately. I'll find a way to get around this. Please try the extension and give me feedback about it.
+I tried this extension for a bunch of accounts which have roughly 450+ story, and it takes a few seconds to fetch the data. As the number of stories grow, the retrieving time also increases since I make a request for each story, separately. I'll find a way to get around this. Please try the extension and give me feedback about it.
 
 ### **Monthly estimation is not close to real**
 

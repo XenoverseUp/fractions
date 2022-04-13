@@ -55,7 +55,7 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Who am I?](#who-am-i)
-- [Downloads](#https://github.com/XenoverseUp/fractions/releases)
+- [Downloads](https://github.com/XenoverseUp/fractions/releases)
 - [Future Fixes and Features](#future-fixes-and-bugs)
 - [Known Issues](#known-issues)  
   <br />

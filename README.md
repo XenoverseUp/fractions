@@ -6,9 +6,20 @@
 	</a>
 </p>
 
+[Here](https://bettermarketing.pub/a-better-medium-partner-dashboard-fractions-c68cc211fbc1) is the blog post about it.
+
 <br />
 
-**TL;DR**: [Here](https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf) is the extension and [here](https://bettermarketing.pub/a-better-medium-partner-dashboard-fractions-c68cc211fbc1) is the blog post about it.
+<p>
+  <a href="https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf" > 
+     <img height="60" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Get it on Chrome Web Store" />
+  </a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/fractions-medium-earnings/">
+    <img height="60" alt="Get it on Firefox Add-ons" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon.png" />
+  </a>
+</p>
+
+<br>
 
 **Fractions** is a fully-featured Chromium | Firefox extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 
@@ -128,3 +139,15 @@ I tried this extension for a bunch of accounts which have roughly 450+ story, an
 ### **Monthly estimation is not close to real**
 
 I implemented an algortihm that approximately estimates earnings based on your previous month's data. It is just a silly algortihm for now but it'll get better gradually.
+
+<br>
+<br>
+
+<p align="center">
+  <a href="https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf" > 
+     <img height="70" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Get it on Chrome Web Store" />
+  </a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/fractions-medium-earnings/">
+    <img height="70" alt="Get it on Firefox Add-ons" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon.png" />
+  </a>
+</p>

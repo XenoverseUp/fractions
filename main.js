@@ -1,7 +1,6 @@
 import App from "./src/App";
-import { version } from "./manifest.chromium.json";
 
 const app = new App();
-app.setVersion(version);
+app.setVersion(process.env.VERSION);
 
 // npm run push --message="README is updated."

@@ -30,97 +30,75 @@ fragment StatsPostChart_dailyEarnings on Post {
 			 __typename
 			}
 			__typename
-	}`
+	}`;
 
-const oneDayInMilliseconds = 24 * 3600 * 1000
+const oneDayInMilliseconds = 24 * 3600 * 1000;
 
 // !TODO Firstly send authenticated data, then the heavy ones.
 
 chrome.runtime.onMessage.addListener((request, _, sendRes) => {
   if (request.getData) {
-    getEarningData().then((res) => {
+    getEarningData().then(res => {
       if (res.success) {
-        const { payload } = res
+        const { payload } = res;
 
-        Promise.all(
-          payload.postAmounts.map(({ post }) => getEarningOfPost(post))
-        )
-          .then((results) => {
-            const postData = results.filter((result) => result !== null)
+        Promise.all(payload.postAmounts.map(({ post }) => getEarningOfPost(post)))
+          .then(results => {
+            const postData = results.filter(result => result !== null);
 
-            const dailyReadingTime = postData.reduce(
-              (aggr, post) => aggr + safe(post.dailyStats.at(-1)?.memberTtr),
-              0
-            )
+            const dailyReadingTime = postData.reduce((aggr, post) => aggr + safe(post.dailyStats.at(-1)?.memberTtr), 0);
 
-            let yesterdayEarnings = 0
+            let yesterdayEarnings = 0;
 
             for (let post of postData) {
-              if (safe(post.earnings.dailyEarnings.at(-1)?.amount === 0)) break
-              yesterdayEarnings += post.earnings?.dailyEarnings.at(-1)?.amount
+              if (safe(post.earnings.dailyEarnings.at(-1)?.amount === 0)) break;
+              yesterdayEarnings += post.earnings?.dailyEarnings.at(-1)?.amount;
             }
 
             let valuableStoryId,
-              valuableStoryEarning = 0
+              valuableStoryEarning = 0;
 
             for (let post of postData) {
-              const currentEarning = safe(
-                post?.earnings.dailyEarnings.at(-1).amount
-              )
+              const currentEarning = safe(post?.earnings.dailyEarnings.at(-1).amount);
               if (currentEarning > valuableStoryEarning) {
-                valuableStoryEarning = currentEarning
-                valuableStoryId = post.id
+                valuableStoryEarning = currentEarning;
+                valuableStoryId = post.id;
               }
             }
 
             const thisMonth =
               payload.currentMonthAmount.amount +
-              safe(
-                payload.currentMonthAmount?.hightowerConvertedMemberEarnings
-              ) +
-              safe(payload.currentMonthAmount?.hightowerUserBonusAmount)
+              safe(payload.currentMonthAmount?.hightowerConvertedMemberEarnings) +
+              safe(payload.currentMonthAmount?.hightowerUserBonusAmount);
 
-            const monthlyTax =
-              thisMonth *
-              safe(payload.userTaxWithholding.withholdingPercentage / 100)
+            const monthlyTax = thisMonth * safe(payload.userTaxWithholding.withholdingPercentage / 100);
 
             const total =
               [...payload.completedMonthlyAmounts].reduce(
-                (aggr, month) =>
-                  aggr +
-                  month.amount +
-                  safe(month?.hightowerConvertedMemberEarnings) +
-                  safe(month?.hightowerUserBonusAmount),
+                (aggr, month) => aggr + month.amount + safe(month?.hightowerConvertedMemberEarnings) + safe(month?.hightowerUserBonusAmount),
                 0
-              ) + thisMonth
+              ) + thisMonth;
 
-            const taxRate = payload.userTaxWithholding.withholdingPercentage
+            const taxRate = payload.userTaxWithholding.withholdingPercentage;
 
             const totalTax =
               [...payload.completedMonthlyAmounts].reduce((aggr, month) => {
-                const tax =
-                  month.state === 2
-                    ? month?.withholdingAmount
-                    : month.amount * (taxRate / 100)
+                const tax = month.state === 2 ? month?.withholdingAmount : safe(month?.amount) * (taxRate / 100);
 
-                return aggr + tax
-              }, 0) + monthlyTax
+                return aggr + tax;
+              }, 0) + monthlyTax;
 
             const completedMonths = [
-              ...payload.completedMonthlyAmounts.map((month) => ({
-                amount:
-                  month.amount + safe(month?.hightowerConvertedMemberEarnings),
+              ...payload.completedMonthlyAmounts.map(month => ({
+                amount: safe(month?.amount) + safe(month?.hightowerConvertedMemberEarnings),
                 tax: month.withholdingAmount,
                 date: month.createdAt,
               })),
-            ]
+            ];
 
-            const estimatedEarnings = estimate(
-              thisMonth,
-              completedMonths?.[0].amount
-            )
+            const estimatedEarnings = estimate(thisMonth, safe(completedMonths?.[0].amount));
 
-            const monthlyValuableStoryId = payload.postAmounts[0].post.id
+            const monthlyValuableStoryId = payload.postAmounts[0].post.id;
 
             const data = {
               userId: payload.userId,
@@ -139,43 +117,43 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               completedMonths,
               monthlyValuableStoryId,
               estimatedEarnings,
-            }
+            };
 
-            sendRes({ authenticated: true, data })
+            sendRes({ authenticated: true, data });
           })
-          .catch((err) => console.log(err))
+          .catch(err => console.log(err));
       } else if (res.success === false)
         if (res.error === "User does not have permission to partner program.")
           sendRes({
             authenticated: true,
             data: { error: "not enrolled to MPP" },
-          })
+          });
         else
           sendRes({
             authenticated: false,
             error: "not logged in",
-          })
-    })
+          });
+    });
   }
 
-  return true
-})
+  return true;
+});
 
 function safe(dangerousData) {
-  return dangerousData ?? 0
+  return dangerousData ?? 0;
 }
 
 async function getEarningData() {
-  const res = await fetch("https://medium.com/me/partner/dashboard?format=json")
-  const text = await res.text()
-  const validJson = text.split("</x>")[1]
-  const data = await JSON.parse(validJson)
+  const res = await fetch("https://medium.com/me/partner/dashboard?format=json");
+  const text = await res.text();
+  const validJson = text.split("</x>")[1];
+  const data = await JSON.parse(validJson);
 
-  return data
+  return data;
 }
 
 async function getEarningOfPost(post) {
-  let startDate = 0 // earning of all time!
+  let startDate = 0; // earning of all time!
 
   try {
     const res = await fetch("https://medium.com/_/graphql", {
@@ -195,29 +173,26 @@ async function getEarningOfPost(post) {
         },
         query: STORY_STATS_QUERY,
       }),
-    })
+    });
     if (res.status !== 200) {
-      const message = `Fail to fetch data: (${res.status}) - ${res.statusText}`
-      console.log("another log message", message)
-      return []
+      const message = `Fail to fetch data: (${res.status}) - ${res.statusText}`;
+      console.log("another log message", message);
+      return [];
     }
-    const text = await res.text()
-    const payload = JSON.parse(text)
-    return await payload.data.post
+    const text = await res.text();
+    const payload = JSON.parse(text);
+    return await payload.data.post;
   } catch (error) {
-    return console.log(error)
+    return console.log(error);
   }
 }
 
 function estimate(currentMonth, previousMonth = currentMonth) {
-  const now = new Date()
-  const day = now.getDate()
+  const now = new Date();
+  const day = now.getDate();
 
-  var d = new Date(now.getFullYear(), now.getMonth() + 1, 0)
-  monthDay = d.getDate()
+  var d = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  monthDay = d.getDate();
 
-  return (
-    currentMonth +
-    (1 - (day - 1) / monthDay) * ((previousMonth + currentMonth) / 2)
-  )
+  return currentMonth + (1 - (day - 1) / monthDay) * ((previousMonth + currentMonth) / 2);
 }

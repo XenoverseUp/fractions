@@ -12,9 +12,9 @@
 	<img src="https://img.shields.io/chrome-web-store/rating/fileepgfmlpabmkbocijoaggdmlhenbf" >
 <p>
 <br />
-
-<img src="https://img.shields.io/github/followers/XenoverseUp?style=social" >
-
+<a href="https://github.com/XenoverseUp">
+	<img src="https://img.shields.io/github/followers/XenoverseUp?style=social" >
+</a>
 <br />
 
 # Fractions

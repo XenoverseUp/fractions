@@ -1,4 +1,20 @@
-# Fractions v1.1.0
+<img src="https://img.shields.io/github/languages/count/XenoverseUp/fractions" />
+<img src="https://img.shields.io/tokei/lines/github/XenoverseUp/fractions" >
+<img src="https://img.shields.io/github/languages/code-size/XenoverseUp/fractions" >
+<img src="https://img.shields.io/github/languages/top/XenoverseUp/fractions" >
+<img src="https://img.shields.io/github/last-commit/XenoverseUp/fractions" >
+<br>
+<img src="https://img.shields.io/chrome-web-store/users/fileepgfmlpabmkbocijoaggdmlhenbf?color=dark-green&label=chrome%20web%20store%20users" >
+<img src="https://img.shields.io/chrome-web-store/v/fileepgfmlpabmkbocijoaggdmlhenbf?label=version" >
+<img src="https://img.shields.io/chrome-web-store/rating/fileepgfmlpabmkbocijoaggdmlhenbf" >
+
+<br />
+
+<img src="https://img.shields.io/github/followers/XenoverseUp?style=social" >
+
+<br />
+
+# Fractions
 
 <p align="center">
 	<a href="https://medium.com/better-marketing/a-better-medium-partner-dashboard-fractions-c68cc211fbc1">

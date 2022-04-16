@@ -20,5 +20,17 @@
   "browser_action": {
     "default_title": "Fractions",
     "default_popup": "/popup.html"
+  },
+  "chromium": {
+    "manifest_version": 3
+  },
+  "firefox": {
+    "short_name": "Fractions",
+    "browser_specific_setttings": {
+      "gecko": {
+        "id": "{6a3d8bbc-24ac-4d2c-8b67-c658388e9c8d}",
+        "strict_min_version": "57.0"
+      }
+    }
   }
 }

@@ -1,4 +1,6 @@
 import h from "h";
+import Button from "c/Button";
+
 import Dominoes from "a/dominoes.svg";
 
 const LoginView = () =>
@@ -16,7 +18,7 @@ const LoginView = () =>
 					your journey with <strong>Fractions</strong>.
 				</p>
 				<a href="https://medium.com/m/signin" target="_blank">
-					<button>LOGIN</button>
+					${Button("LOGIN")}
 				</a>
 			</div>
 		</div>

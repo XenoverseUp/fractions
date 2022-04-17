@@ -7,6 +7,7 @@
 @import "./components/MonthlyReportLine.scss";
 @import "./components/StatLine.scss";
 @import "./components/Select.scss";
+@import "./components/Button.scss";
 
 @import "./Template.scss";
 @import "./Loader.scss";
@@ -63,6 +64,7 @@ html {
 body {
   width: 400px;
   height: 600px;
+  margin: 0;
 }
 
 main {

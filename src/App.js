@@ -6,12 +6,14 @@
 // Modularize CSS for components and views ✅
 // Set up a bundler ✅
 // Currency converter ✅
+// Report button
 // Animate currency converter arrow
 // Split request line in background
 
 import "prototypes/Date";
 import "prototypes/Number";
 import "prototypes/Array";
+import "prototypes/Console";
 
 import Enum from "_/enum";
 
@@ -20,13 +22,14 @@ import LoginView from "@/LoginView";
 import DailyView from "@/DailyView";
 import MonthlyView from "@/MonthlyView";
 import EnrollView from "@/EnrollView";
+import ReportView from "@/ReportView";
 
 import getRate from "services/getRate";
 
 import fakeRes from "data/valid";
 import fakeRes2 from "data/enroll-error";
 
-export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "SKELETON"]);
+export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "REPORT"]);
 
 class App {
   #state = View.LOADING;
@@ -35,6 +38,11 @@ class App {
   #data;
   #currency = "USD";
   #rate = 1;
+  #report = {
+    timer: null,
+    timeout: 7500, //ms
+    isReported: false,
+  };
 
   constructor() {
     this.#renderView(View.LOADING);
@@ -47,9 +55,9 @@ class App {
 
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {
-        this.#initializeApp(res.authenticated, res?.data);
+        !this.#report.isReported && this.#initializeApp(res.authenticated, res?.data);
       } catch (error) {
-        this.setState(View.ERROR);
+        // this.setState(View.ERROR);
       }
     });
   }
@@ -59,6 +67,7 @@ class App {
 
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL);
     else if (authenticated && !data?.error) this.setState(View.DAILY);
+    else if (!authenticated && data?.error === "aborted") this.setState(View.REPORT);
     else this.setState(View.LOGIN);
   }
 
@@ -95,6 +104,8 @@ class App {
         ? LoginView()
         : state === View.LOADING
         ? LoadingView()
+        : state === View.REPORT
+        ? ReportView()
         : state === View.MPP_ENROLL
         ? EnrollView()
         : state === View.DAILY
@@ -134,11 +145,11 @@ class App {
 
   #removeView(state) {
     if (state == View.LOADING) {
-      // Remove loading screen
-      const loader = document.getElementById("loader");
       setTimeout(() => {
+        const report = document.querySelector("#report");
         const loadingText = document.getElementById("loading-text");
         const spinners = document.querySelectorAll(".spinner");
+        report.classList.remove("visible");
         spinners.forEach((spinner, i) =>
           spinner.animate(
             [
@@ -171,9 +182,11 @@ class App {
             fill: "forwards",
           }
         );
+
+        report.classList.remove("visible");
       }, 0);
 
-      setTimeout(() => this.#root.removeChild(loader), this.#duration);
+      setTimeout(() => this.#root.removeChild(this.#root.children[0]), this.#duration);
     } else {
       this.#root.children[0].style.animation = "fade-out ease-out 150ms forwards";
 
@@ -211,6 +224,15 @@ class App {
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button");
       switchButton.addEventListener("click", () => this.setState(View.DAILY));
+    } else if (state === View.LOADING) {
+      const report = document.querySelector("#report");
+      const reportButton = document.querySelector("#report-button");
+      this.#report.timer = setTimeout(() => report.classList.add("visible"), this.#report.timeout);
+
+      reportButton.addEventListener("click", () => {
+        this.setState(View.REPORT);
+        this.#sendReport();
+      });
     }
   }
 
@@ -221,7 +243,20 @@ class App {
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button");
       switchButton.removeEventListener("click", () => this.setState(View.DAILY));
+    } else if (state === View.LOADING) {
+      const reportButton = document.querySelector("#report-button");
+      clearTimeout(this.#report.timer);
+
+      reportButton.removeEventListener("click", () => {
+        this.setState(View.REPORT);
+        this.#sendReport();
+      });
     }
+  }
+
+  #sendReport() {
+    this.#report.isReported = true;
+    chrome.runtime.sendMessage({ report: true });
   }
 }
 

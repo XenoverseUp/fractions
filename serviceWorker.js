@@ -1,57 +1,25 @@
-const STORY_STATS_QUERY = `query StatsPostChart($postId: ID!, $startAt: Long!, $endAt: Long!) {
-	post(id: $postId) {
-			id
-			...StatsPostChart_dailyStats
-			...StatsPostChart_dailyEarnings
-			__typename
-	}
-}
-
-fragment StatsPostChart_dailyStats on Post {
-	dailyStats(startAt: $startAt, endAt: $endAt) {
-			periodStartedAt
-			views
-			internalReferrerViews
-			memberTtr
-			__typename
-	}
-	__typename
-}
-
-fragment StatsPostChart_dailyEarnings on Post {
-	earnings {
-			dailyEarnings(startAt: $startAt, endAt: $endAt) {
-					periodEndedAt
-					periodStartedAt
-					amount
-					__typename
-			}
-			lastCommittedPeriodStartedAt
-			 __typename
-			}
-			__typename
-	}`;
-
-const oneDayInMilliseconds = 24 * 3600 * 1000;
-
-// !TODO Firstly send authenticated data, then the heavy ones.
+import { STORY_STATS_QUERY, ONE_DAY_IN_MILISECONDS } from "backend/constants";
+import handled from "_/handled";
+import safe from "_/safe";
 
 chrome.runtime.onMessage.addListener((request, _, sendRes) => {
   if (request.getData) {
     getEarningData().then(res => {
+      if (res?.name === "AbortError") sendRes({ authenticated: false, data: { error: "aborted" } });
+
       if (res.success) {
         const { payload } = res;
 
         Promise.all(payload.postAmounts.map(({ post }) => getEarningOfPost(post)))
           .then(results => {
-            const postData = results.filter(result => result !== null);
+            let postData = results.filter(result => result !== null);
 
-            const dailyReadingTime = postData.reduce((aggr, post) => aggr + safe(post.dailyStats.at(-1)?.memberTtr), 0);
+            const dailyReadingTime = postData.reduce((aggr, post) => aggr + safe(post?.dailyStats?.at(-1)?.memberTtr), 0);
 
             let yesterdayEarnings = 0;
 
             for (let post of postData) {
-              if (safe(post.earnings.dailyEarnings.at(-1)?.amount === 0)) break;
+              if (safe(post?.earnings?.dailyEarnings?.at(-1)?.amount === 0)) break;
               yesterdayEarnings += post.earnings?.dailyEarnings.at(-1)?.amount;
             }
 
@@ -59,7 +27,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               valuableStoryEarning = 0;
 
             for (let post of postData) {
-              const currentEarning = safe(post?.earnings.dailyEarnings.at(-1).amount);
+              const currentEarning = safe(post?.earnings?.dailyEarnings?.at(-1).amount);
               if (currentEarning > valuableStoryEarning) {
                 valuableStoryEarning = currentEarning;
                 valuableStoryId = post.id;
@@ -91,8 +59,8 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
             const completedMonths = [
               ...payload.completedMonthlyAmounts.map(month => ({
                 amount: safe(month?.amount) + safe(month?.hightowerConvertedMemberEarnings),
-                tax: month.withholdingAmount,
-                date: month.createdAt,
+                tax: safe(month?.withholdingAmount),
+                date: safe(month?.createdAt),
               })),
             ];
 
@@ -131,7 +99,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
         else
           sendRes({
             authenticated: false,
-            error: "not logged in",
+            data: { error: "not logged in" },
           });
     });
   }
@@ -139,12 +107,11 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
   return true;
 });
 
-function safe(dangerousData) {
-  return dangerousData ?? 0;
-}
-
 async function getEarningData() {
-  const res = await fetch("https://medium.com/me/partner/dashboard?format=json");
+  const [err, res] = await handled(fetch, "https://medium.com/me/partner/dashboard?format=json", {
+    method: "GET",
+  });
+
   const text = await res.text();
   const validJson = text.split("</x>")[1];
   const data = await JSON.parse(validJson);
@@ -169,7 +136,7 @@ async function getEarningOfPost(post) {
         variables: {
           postId: post.id,
           startAt: startDate,
-          endAt: Date.now() + oneDayInMilliseconds,
+          endAt: Date.now() + ONE_DAY_IN_MILISECONDS,
         },
         query: STORY_STATS_QUERY,
       }),

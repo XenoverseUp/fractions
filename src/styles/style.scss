@@ -59,9 +59,13 @@ a {
 
 html {
   font-size: 14.5px;
+  width: 400px;
+  height: 600px;
+  overflow: hidden;
 }
 
 body {
+  overflow: hidden;
   width: 400px;
   height: 600px;
   margin: 0;

@@ -1,4 +1,4 @@
-import { STORY_STATS_QUERY, ONE_DAY_IN_MILISECONDS } from "backend/constants";
+import { STORY_STATS_QUERY, ONE_DAY_IN_MILISECONDS } from "background/constants";
 import handled from "_/handled";
 import safe from "_/safe";
 

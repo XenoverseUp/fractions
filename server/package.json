@@ -1,0 +1,29 @@
+{
+  "name": "fractions-logging-server",
+  "version": "1.0.0",
+  "description": "A logging server for Fractions extension.",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XenoverseUp/fractions.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "nodejs",
+    "fractions"
+  ],
+  "author": "Can Durmus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XenoverseUp/fractions/issues"
+  },
+  "homepage": "https://github.com/XenoverseUp/fractions#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

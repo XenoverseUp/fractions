@@ -27,7 +27,7 @@
     "prototypes/*": "./src/prototypes/$1",
     "data/*": "./src/data/$1",
     "services/*": "./src/services/$1",
-    "backend": "./backend/"
+    "background": "./background/"
   },
   "devDependencies": {
     "@parcel/config-webextension": "^2.4.1",

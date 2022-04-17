@@ -3,5 +3,6 @@
   "embeddedLanguageFormatting": "auto",
   "useTabs": false,
   "printWidth": 150,
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "semi": false
 }

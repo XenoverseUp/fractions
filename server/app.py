@@ -1,5 +1,8 @@
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 from flask import Flask, request
 import os
+import io
 import json
 import uuid
 import time
@@ -22,25 +25,14 @@ def log():
     with open(f"temp/{random_id}.json", "w") as json_file:
         json_file.write(json.dumps(log_data))
 
-    headers = {"Authorization": f"Bearer {os.getenv('ACCESS_TOKEN')}"}
-    para = {
-        "name": f"{random_id}.json",
-        "parents": [os.getenv("PARENT_ID")],
-    }
-    files = {
-        "data": ("metadata", json.dumps(para), "application/json; charset=UTF-8"),
-        "file": (
-            "application/json",
-            open(f"./temp/{random_id}.json", "rb"),
-        ),  # replace 'application/zip' by 'image/png' for png images; similarly 'image/jpeg' (also replace your file name)
-    }
-    requests.post(
-        "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
-        headers=headers,
-        files=files,
-    )
-    # TODO: Fix used by another process error.
-    os.remove(f"./temp/{random_id}.json")
+    gauth = GoogleAuth()
+    drive = GoogleDrive(gauth)
+
+    gfile = drive.CreateFile[{"id": os.getenv("PARENT_ID")}]
+    gfile.SetContentFile(f"temp/{random_id}.json")
+    gfile.Upload()
+
+    # os.remove(f"./temp/{random_id}.json")
     return json.dumps({"message": "Ok 👍!"})
 
 

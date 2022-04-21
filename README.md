@@ -129,11 +129,15 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 
 - Vanilla JavaScript
 - Python
+- NodeJS
+- Express
 - HTML
 - SASS
 - Parcel
 
-In this project, I decided to use nothing but Vanilla JavaScript. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS. In the end, there is Parcel bundler to build and distribute everything up. In addition, I wrote a Python script for Firefox compatibility.
+In this project, I decided to use nothing but Vanilla JavaScript for frontend. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS. In the end, there is Parcel bundler to build and distribute everything up. In addition, I wrote a Python script for Firefox compatibility.
+
+Apart from extension itself, I set up a reporting server that collects the reported logs from the users so that I can track the errors and improve the **Fractions** accordingly.
 
 ## Who am I?
 

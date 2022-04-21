@@ -1,0 +1,22 @@
+{
+  "name": "fractions-log-server",
+  "version": "1.0.0",
+  "description": "A web server to handle the log files of Fractions extension.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.mjs",
+    "dev": "nodemon main.mjs"
+  },
+  "author": "Can Durmus",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "googleapis": "^100.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

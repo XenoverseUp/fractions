@@ -27,7 +27,9 @@ app.post("/log", async (request, response) => {
     process.env.GOOGLE_DRIVE_REFRESH_TOKEN
   )
 
-  const filePath = path.resolve(__dirname, `temp/${id}.json`)
+  fs.mkdirSync(path.join(__dirname, "swap"), { recursive: true })
+
+  const filePath = path.resolve(__dirname, `swap/${id}.json`)
   const folderName = "Fractions Logs"
 
   fs.writeFile(filePath, JSON.stringify(log), err => {

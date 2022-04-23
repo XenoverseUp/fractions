@@ -6,7 +6,6 @@
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
     "dev": "parcel serve manifest.json",
-    "server": "node server/main.mjs",
     "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open",
     "clear": "rm -rf build dist parcel-bundle-reports .parcel-cache",
     "clear:all": "rm -rf build dist parcel-bundle-reports .parcel-cache node_modules",

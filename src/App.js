@@ -7,13 +7,16 @@
 // Set up a bundler ✅
 // Currency converter ✅
 // Report button
+// MPP Enroll Illustration To SVG
+// Drawer => Stats Page | Report | Theme | About Me | Support Me | Privacy Policy | Tracked Data
+// Remove Footer
+// Track Email Subscribers
 // Animate currency converter arrow
 // Split request line in background
 
 import "prototypes/Date"
 import "prototypes/Number"
 import "prototypes/Array"
-import "prototypes/Console"
 
 import Enum from "_/enum"
 
@@ -256,7 +259,9 @@ class App {
 
   #sendReport() {
     this.#report.isReported = true
-    chrome.runtime.sendMessage({ report: true })
+    chrome.runtime.sendMessage({
+      report: true,
+    })
   }
 }
 

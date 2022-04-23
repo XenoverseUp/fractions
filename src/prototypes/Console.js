@@ -1,27 +1,37 @@
-console.defaultLog = console.log.bind(console);
-console.logs = [];
-console.log = function () {
-  console.defaultLog.apply(console, arguments);
-  console.logs.push(Array.from(arguments));
-};
+if (console.everything === undefined) {
+  console.everything = []
+  function TS() {
+    return new Date().toLocaleString("sv", { timeZone: "UTC" }) + "Z"
+  }
+  window.onerror = function (error, url, line) {
+    console.everything.push({
+      type: "exception",
+      timeStamp: TS(),
+      value: { error, url, line },
+    })
+    return false
+  }
+  window.onunhandledrejection = function (e) {
+    console.everything.push({
+      type: "promiseRejection",
+      timeStamp: TS(),
+      value: e.reason,
+    })
+  }
 
-console.defaultError = console.error.bind(console);
-console.errors = [];
-console.error = function () {
-  console.defaultError.apply(console, arguments);
-  console.errors.push(Array.from(arguments));
-};
+  function hookLogType(logType) {
+    const original = console[logType].bind(console)
+    return function () {
+      console.everything.push({
+        type: logType,
+        timeStamp: TS(),
+        value: Array.from(arguments),
+      })
+      original.apply(console, arguments)
+    }
+  }
 
-console.defaultWarn = console.warn.bind(console);
-console.warns = [];
-console.warn = function () {
-  console.defaultWarn.apply(console, arguments);
-  console.warns.push(Array.from(arguments));
-};
-
-console.defaultDebug = console.debug.bind(console);
-console.debugs = [];
-console.debug = function () {
-  console.defaultDebug.apply(console, arguments);
-  console.debugs.push(Array.from(arguments));
-};
+  ;["log", "error", "warn", "debug"].forEach(logType => {
+    console[logType] = hookLogType(logType)
+  })
+}

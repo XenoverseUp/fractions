@@ -53,3 +53,9 @@ LoadingView_js: {
   // 		${Button("REPORT", "report-button")}
   // </div>
 }
+
+serviceWorker_js: {
+  // else if (request.report) {
+  //   console.log(request.client_debug)
+  // }
+}

@@ -103,8 +103,6 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
             data: { error: "not logged in" },
           })
     })
-  } else if (request.report) {
-    console.log(request.client_debug)
   }
 
   return true

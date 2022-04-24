@@ -47,7 +47,7 @@ with open(
         appropriate_manifest["short_name"] = manifest["firefox"]["short_name"]
         appropriate_manifest["permissions"] = manifest["permissions"]
         appropriate_manifest["background"] = manifest["background"]
-        appropriate_manifest["action"] = manifest["browser_action"]
+        appropriate_manifest["browser_action"] = manifest["browser_action"]
         appropriate_manifest["browser_specific_settings"] = manifest["firefox"][
             "browser_specific_setttings"
         ]

@@ -1,20 +1,20 @@
-import h from "h";
+import h from "h"
 
-import map from "_/map";
-import toReadable from "_/toReadable";
-import getSign from "_/getSign";
-import convert from "_/convert";
+import map from "_/map"
+import toReadable from "_/toReadable"
+import getSign from "_/getSign"
+import convert from "_/convert"
 
-import StatLine from "c/StatLine";
-import Separator from "c/Separator";
-import Select from "c/Select";
+import StatLine from "c/StatLine"
+import Separator from "c/Separator"
+import Select from "c/Select"
 
-import levels from "data/levels.json";
-import currencyCodes from "data/currency_codes.json";
+import levels from "data/levels.json"
+import currencyCodes from "data/currency_codes.json"
 
-import Moon from "a/month.svg";
-import Slider from "a/slider.svg";
-import SliderInner from "a/slider-inner.png";
+import Moon from "a/month.svg"
+import Slider from "a/slider.svg"
+import SliderInner from "a/slider-inner.png"
 
 const DailyView = ({
   total,
@@ -24,16 +24,17 @@ const DailyView = ({
   dailyReadingTime,
   yesterdayEarnings,
   valuableStoryId,
+  valuableStoryEarning,
   estimatedEarnings,
   currency,
   rate,
 }) => {
-  const totalInUSD = (total / 100).toFixed(2);
+  const totalInUSD = (total / 100).toFixed(2)
 
-  const level = levels.find(level => totalInUSD < level.to && totalInUSD >= level.from);
-  const levelNumber = levels.findIndex(l => l === level) + 1;
+  const level = levels.find(level => totalInUSD < level.to && totalInUSD >= level.from)
+  const levelNumber = levels.findIndex(l => l === level) + 1
 
-  const percent = map(totalInUSD, level?.from, level?.to, 0, 100) ?? 0;
+  const percent = map(totalInUSD, level?.from, level?.to, 0, 100) ?? 0
 
   return h(
     `
@@ -43,8 +44,8 @@ const DailyView = ({
           <img src=${Moon} alt="moon" />
         </button>
         <div id="total-balance" >
-          <h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}"> 
-            ${getSign(currency)} ${convert(rate, totalInUSD).toShort()} 
+          <h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}">
+            ${getSign(currency)} ${convert(rate, totalInUSD).toShort()}
           </h2>
           <p title="Net ${getSign(currency)}${convert(rate, (total - totalTax) / 100).toShort()}">
             with <span>${getSign(currency)} ${convert(rate, totalTax / 100).toShort()} </span> tax
@@ -90,24 +91,25 @@ const DailyView = ({
           ${StatLine({
             title: "Today's Member Reading Time",
             value: toReadable(dailyReadingTime),
-          })}		
+          })}
           ${StatLine({
             title: "Yesterday's Earnings",
             value: `${getSign(currency)} ${convert(rate, yesterdayEarnings / 100).toShort()}`,
-          })}		
+          })}
           ${StatLine({
             title: "This Months's Estimated Earnings",
             value: `${getSign(currency)} ${convert(rate, estimatedEarnings / 100).toShort()}`,
-          })}		
+          })}
           ${StatLine({
             title: "Yesterday's Most Valuable Story",
             link: `https://medium.com/me/stats/post/${valuableStoryId}/`,
-          })}		
+            popup: `${getSign(currency)} ${convert(rate, valuableStoryEarning / 100).toShort()}`,
+          })}
         </div>
       </div>
     </div>
 		`
-  );
-};
+  )
+}
 
-export default DailyView;
+export default DailyView

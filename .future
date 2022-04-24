@@ -6,6 +6,8 @@ App_js: {
   //   timeout: 7500, //ms
   //   isReported: false,
   // }
+  // == Inside the constructor
+  // !this.#report.isReported && this.#initializeApp(res.authenticated, res?.data)
   // ==Inside #initializeApp() method
   // else if (!authenticated && data?.error === "aborted") this.setState(View.REPORT)
   // Inside #renderView() method

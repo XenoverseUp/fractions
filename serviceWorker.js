@@ -82,7 +82,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               dailyReadingTime,
               yesterdayEarnings,
               valuableStoryId,
-              valuableStoryEarning, // Handle in frontend
+              valuableStoryEarning,
               completedMonths,
               monthlyValuableStoryId,
               estimatedEarnings,

@@ -41,11 +41,6 @@ class App {
   #data
   #currency = "USD"
   #rate = 1
-  #report = {
-    timer: null,
-    timeout: 7500, //ms
-    isReported: false,
-  }
 
   constructor() {
     this.#renderView(View.LOADING)
@@ -58,9 +53,9 @@ class App {
 
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {
-        !this.#report.isReported && this.#initializeApp(res.authenticated, res?.data)
+        this.#initializeApp(res.authenticated, res?.data)
       } catch (error) {
-        // this.setState(View.ERROR);
+        console.error(error)
       }
     })
   }
@@ -70,7 +65,6 @@ class App {
 
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
     else if (authenticated && !data?.error) this.setState(View.DAILY)
-    else if (!authenticated && data?.error === "aborted") this.setState(View.REPORT)
     else this.setState(View.LOGIN)
   }
 
@@ -123,6 +117,7 @@ class App {
             estimatedEarnings: this.#data.estimatedEarnings,
             currency: this.#currency,
             rate: this.#rate,
+            valuableStoryEarning: this.#data.valuableStoryEarning,
           })
         : state === View.MONTHLY
         ? MonthlyView({
@@ -149,10 +144,8 @@ class App {
   #removeView(state) {
     if (state == View.LOADING) {
       setTimeout(() => {
-        const report = document.querySelector("#report")
         const loadingText = document.getElementById("loading-text")
         const spinners = document.querySelectorAll(".spinner")
-        report.classList.remove("visible")
         spinners.forEach((spinner, i) =>
           spinner.animate(
             [
@@ -185,8 +178,6 @@ class App {
             fill: "forwards",
           }
         )
-
-        report.classList.remove("visible")
       }, 0)
 
       setTimeout(() => this.#root.removeChild(this.#root.children[0]), this.#duration)
@@ -227,15 +218,6 @@ class App {
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button")
       switchButton.addEventListener("click", () => this.setState(View.DAILY))
-    } else if (state === View.LOADING) {
-      const report = document.querySelector("#report")
-      const reportButton = document.querySelector("#report-button")
-      this.#report.timer = setTimeout(() => report.classList.add("visible"), this.#report.timeout)
-
-      reportButton.addEventListener("click", () => {
-        this.setState(View.REPORT)
-        this.#sendReport()
-      })
     }
   }
 
@@ -246,22 +228,7 @@ class App {
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button")
       switchButton.removeEventListener("click", () => this.setState(View.DAILY))
-    } else if (state === View.LOADING) {
-      const reportButton = document.querySelector("#report-button")
-      clearTimeout(this.#report.timer)
-
-      reportButton.removeEventListener("click", () => {
-        this.setState(View.REPORT)
-        this.#sendReport()
-      })
     }
-  }
-
-  #sendReport() {
-    this.#report.isReported = true
-    chrome.runtime.sendMessage({
-      report: true,
-    })
   }
 }
 

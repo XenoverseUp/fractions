@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               valuableStoryEarning = 0
 
             for (let post of postData) {
-              const currentEarning = safe(post?.earnings?.dailyEarnings?.at(-1).amount)
+              const currentEarning = safe(post?.earnings?.dailyEarnings?.at(-1)?.amount)
               if (currentEarning > valuableStoryEarning) {
                 valuableStoryEarning = currentEarning
                 valuableStoryId = post.id
@@ -82,6 +82,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
               dailyReadingTime,
               yesterdayEarnings,
               valuableStoryId,
+              valuableStoryEarning, // Handle in frontend
               completedMonths,
               monthlyValuableStoryId,
               estimatedEarnings,

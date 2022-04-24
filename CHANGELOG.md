@@ -5,7 +5,6 @@
 ##### **April 17<sup>th</sup>, 2022**
 
 Minor fixes for edge cases and accounts. (Stuck at loading view.) <br>
-Report button is added to loading view.
 
 ---
 

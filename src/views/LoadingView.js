@@ -1,5 +1,5 @@
-import h from "h";
-import Button from "c/Button";
+import h from "h"
+import Button from "c/Button"
 
 const LoadingView = () =>
   h(`
@@ -17,6 +17,6 @@ const LoadingView = () =>
 			${Button("REPORT", "report-button")}
 		</div>
 	</div>
-`);
+`)
 
-export default LoadingView;
+export default LoadingView

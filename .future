@@ -1,0 +1,53 @@
+App_js: {
+  // import ReportView from "@/ReportView"
+  // ==Inside of the App class
+  // #report = {
+  //   timer: null,
+  //   timeout: 7500, //ms
+  //   isReported: false,
+  // }
+  // ==Inside #initializeApp() method
+  // else if (!authenticated && data?.error === "aborted") this.setState(View.REPORT)
+  // Inside #renderView() method
+  // : state === View.REPORT
+  // ? ReportView()
+  // ==Inside #removeView() method
+  // const report = document.querySelector("#report") // beginning
+  // report.classList.remove("visible") // middle
+  // report.classList.remove("visible") // end of the first timeout
+  // ==Inside #setEventHandlers() method
+  // else if (state === View.LOADING) {
+  //   const report = document.querySelector("#report")
+  //   const reportButton = document.querySelector("#report-button")
+  //   this.#report.timer = setTimeout(() => report.classList.add("visible"), this.#report.timeout)
+  //   reportButton.addEventListener("click", () => {
+  //     this.setState(View.REPORT)
+  //     this.#sendReport()
+  //   })
+  // }
+  // ==Inside #removeEventHandlers() method
+  // else if (state === View.LOADING) {
+  //   const reportButton = document.querySelector("#report-button")
+  //   clearTimeout(this.#report.timer)
+  //   reportButton.removeEventListener("click", () => {
+  //     this.setState(View.REPORT)
+  //     this.#sendReport()
+  //   })
+  // }
+  // ==At the end of class
+  // #sendReport() {
+  //   this.#report.isReported = true
+  //   chrome.runtime.sendMessage({
+  //     report: true,
+  //   })
+  // }
+}
+
+LoadingView_js: {
+  // import Button from "c/Button"
+  // ==Sibling to #loader
+  // <div id="report">
+  // 		<p>Having an issue?</p>
+  // 		${Button("REPORT", "report-button")}
+  // </div>
+}

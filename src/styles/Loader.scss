@@ -60,27 +60,4 @@
       }
     }
   }
-  #report {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    perspective: 2px;
-    transform: translateX(-50%);
-    text-align: center;
-    opacity: 0;
-    transition: 250ms ease all;
-    pointer-events: none;
-
-    p {
-      margin-bottom: 10px;
-      font-weight: 500;
-      opacity: 0.75;
-      font-size: 0.85rem;
-    }
-
-    &.visible {
-      pointer-events: all;
-      opacity: 1;
-    }
-  }
 }

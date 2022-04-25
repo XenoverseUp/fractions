@@ -1,10 +1,21 @@
 # Version History
 
+### **v2.0.0**
+
+##### **May 02<sup>th</sup>, 2022**
+
+- Footer is removed and replaced with a drawer.
+- Dark mode support is added.
+- A link to your stats page is added to drawer.
+
+---
+
 ### **v1.1.2**
 
 ##### **April 17<sup>th</sup>, 2022**
 
-Minor fixes for edge cases and accounts. (Stuck at loading view.) <br>
+- Edge cases are covered.
+- Stuck at loading screen bug is fixed.
 
 ---
 
@@ -12,8 +23,8 @@ Minor fixes for edge cases and accounts. (Stuck at loading view.) <br>
 
 ##### **April 11<sup>th</sup>, 2022**
 
-The extension is supported on Firefox.
-Currency converter is added.
+- The extension is supported on Firefox.
+- Currency converter is added.
 
 ---
 

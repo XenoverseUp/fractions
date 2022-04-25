@@ -45,11 +45,13 @@ class App {
   constructor() {
     this.#renderView(View.LOADING)
 
-    /* !! TESTS */
+    /**
+     * TESTS
+     */
 
-    // this.#initializeApp(false, fakeRes); // Logged out
+    // this.#initializeApp(false, fakeRes) // Logged out
     // this.#initializeApp(true, fakeRes); // Logged in
-    // this.#initializeApp(true, fakeRes2); // MPP enroll error
+    // this.#initializeApp(true, fakeRes2) // MPP enroll error
 
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {

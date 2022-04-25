@@ -43,6 +43,7 @@ const DailyView = ({
         <button id="monthly-button" title="Monthly View">
           <img src=${Moon} alt="moon" />
         </button>
+        <div id="toggle-drawer-daily" data-toggle-drawer>Toggle?</div>
         <div id="total-balance" >
           <h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}">
             ${getSign(currency)} ${convert(rate, totalInUSD).toShort()}

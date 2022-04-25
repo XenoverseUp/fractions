@@ -44,6 +44,32 @@
       }
     }
 
+    #toggle-drawer-daily {
+      position: absolute;
+      top: 1.5rem;
+      left: var(--padding);
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: unset;
+      border: 1px solid rgba(0, 0, 0, 0.055);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: ease-in-out 100ms border;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.01);
+      }
+
+      &:active {
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        background-color: rgba(0, 0, 0, 0.025);
+      }
+    }
+
     #total-balance {
       display: flex;
       flex-direction: column;

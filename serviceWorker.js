@@ -1,5 +1,5 @@
-import { STORY_STATS_QUERY, ONE_DAY_IN_MILISECONDS } from "background/constants"
-import handled from "_/handled"
+import { getEarningData, getEarningOfPost } from "background/utils"
+import estimate from "background/estimate"
 import safe from "_/safe"
 
 chrome.runtime.onMessage.addListener((request, _, sendRes) => {
@@ -107,60 +107,3 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
 
   return true
 })
-
-async function getEarningData() {
-  const [err, res] = await handled(fetch, "https://medium.com/me/partner/dashboard?format=json", {
-    method: "GET",
-  })
-
-  const text = await res.text()
-  const validJson = text.split("</x>")[1]
-  const data = await JSON.parse(validJson)
-
-  return data
-}
-
-async function getEarningOfPost(post) {
-  let startDate = 0 // earning of all time!
-
-  try {
-    const res = await fetch("https://medium.com/_/graphql", {
-      credentials: "same-origin",
-      method: "POST",
-      headers: {
-        accept: "*/*",
-        "graphql-operation": "StatsPostChart",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        operationName: "StatsPostChart",
-        variables: {
-          postId: post.id,
-          startAt: startDate,
-          endAt: Date.now() + ONE_DAY_IN_MILISECONDS,
-        },
-        query: STORY_STATS_QUERY,
-      }),
-    })
-    if (res.status !== 200) {
-      const message = `Fail to fetch data: (${res.status}) - ${res.statusText}`
-      console.log("another log message", message)
-      return []
-    }
-    const text = await res.text()
-    const payload = JSON.parse(text)
-    return await payload.data.post
-  } catch (error) {
-    return console.log(error)
-  }
-}
-
-function estimate(currentMonth, previousMonth = currentMonth) {
-  const now = new Date()
-  const day = now.getDate()
-
-  var d = new Date(now.getFullYear(), now.getMonth() + 1, 0)
-  monthDay = d.getDate()
-
-  return currentMonth + (1 - (day - 1) / monthDay) * ((previousMonth + currentMonth) / 2)
-}

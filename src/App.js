@@ -19,6 +19,8 @@ import "prototypes/Number"
 import "prototypes/Array"
 
 import Enum from "_/enum"
+import addDrawer from "_/addDrawer"
+import toggleDrawer from "_/toggleDrawer"
 
 import LoadingView from "@/LoadingView"
 import LoginView from "@/LoginView"
@@ -64,6 +66,7 @@ class App {
 
   async #initializeApp(authenticated, data = {}) {
     this.#data = data
+    addDrawer()
 
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
     else if (authenticated && !data?.error) this.setState(View.DAILY)
@@ -194,6 +197,10 @@ class App {
   }
 
   #setEventHandlers(state) {
+    const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
+    console.log(toggleButtons)
+    toggleButtons.forEach(button => button.addEventListener("click", () => toggleDrawer()))
+
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       const currencySelect = document.querySelector(".custom-select")
@@ -224,6 +231,9 @@ class App {
   }
 
   #removeEventHandlers(state) {
+    const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
+    toggleButtons.forEach(button => button.removeEventListener("click", () => toggleDrawer()))
+
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       switchButton.removeEventListener("click", () => this.setState(View.MONTHLY))

@@ -1,0 +1,95 @@
+#drawer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  #overlay {
+    position: absolute;
+    inset: 0;
+    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) background-color;
+    background-color: rgba(0 0 0 / 0);
+    z-index: 1;
+  }
+
+  #backdrop,
+  #menu {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+
+    transform: translateX(-100%);
+  }
+
+  #menu {
+    z-index: 3;
+    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all;
+    overflow: hidden;
+
+    header {
+      width: 100%;
+      height: 4rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: var(--padding);
+
+      img#menu-name {
+        width: 150px;
+        margin-bottom: -4px;
+        transform: translateX(150%); //translateX(186%);
+        transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all;
+      }
+
+      img#menu-close {
+        opacity: 0;
+        transition: 100ms ease all;
+        margin-right: 0.85rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #backdrop {
+    background-color: rgba(20 20 20);
+    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all 50ms;
+    z-index: 2;
+  }
+
+  &.active {
+    pointer-events: all;
+
+    #overlay {
+      background-color: rgba(0 0 0 / 0.7);
+    }
+
+    #backdrop,
+    #menu {
+      transform: translateX(0);
+    }
+
+    #backdrop {
+      transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all;
+    }
+
+    #menu {
+      transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all 50ms;
+
+      header {
+        img#menu-name {
+          transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all 50ms;
+          transform: translateX(0);
+        }
+
+        img#menu-close {
+          opacity: 1;
+          transition: 250ms cubic-bezier(0.71, 0, 0.22, 0.99) all 450ms;
+        }
+      }
+    }
+  }
+}

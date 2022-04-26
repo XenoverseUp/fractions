@@ -66,11 +66,12 @@ class App {
 
   async #initializeApp(authenticated, data = {}) {
     this.#data = data
-    addDrawer()
 
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
-    else if (authenticated && !data?.error) this.setState(View.DAILY)
-    else this.setState(View.LOGIN)
+    else if (authenticated && !data?.error) {
+      addDrawer(this.#data.author)
+      this.setState(View.DAILY)
+    } else this.setState(View.LOGIN)
   }
 
   setState(nextState) {
@@ -198,7 +199,6 @@ class App {
 
   #setEventHandlers(state) {
     const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
-    console.log(toggleButtons)
     toggleButtons.forEach(button => button.addEventListener("click", () => toggleDrawer()))
 
     if (state === View.DAILY) {

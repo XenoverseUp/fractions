@@ -1,4 +1,4 @@
-import { getEarningData, getEarningOfPost } from "background/utils"
+import { getEarningData, getEarningOfPost, getAuthorData } from "background/utils"
 import estimate from "background/estimate"
 import safe from "_/safe"
 
@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
         const { payload } = res
 
         Promise.all(payload.postAmounts.map(({ post }) => getEarningOfPost(post)))
-          .then(results => {
+          .then(async results => {
             let postData = results.filter(result => result !== null)
 
             const dailyReadingTime = postData.reduce((aggr, post) => aggr + safe(post?.dailyStats?.at(-1)?.memberTtr), 0)
@@ -68,10 +68,18 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
 
             const monthlyValuableStoryId = payload.postAmounts[0].post.id
 
+            const { payload: authorData } = await getAuthorData(payload.userId)
+            console.log(authorData)
+
             const data = {
-              userId: payload.userId,
-              username: payload.username,
-              country: payload.userTaxWithholding.treatyCountry,
+              author: {
+                profileLink: `https://medium.com/@${authorData.user.username}/`,
+                userName: authorData.user.name,
+                profilePic: authorData.user.imageId ? `https://miro.medium.com/fit/c/400/400/${authorData.user.imageId}` : null,
+                country: payload.userTaxWithholding.treatyCountry,
+                followers: authorData.references.SocialStats[payload.userId].usersFollowedByCount,
+                postCount: authorData.userMeta.numberOfPostsPublished,
+              },
 
               // Calculations
               total,

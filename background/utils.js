@@ -12,6 +12,16 @@ export async function getEarningData() {
   return data
 }
 
+export async function getAuthorData(id) {
+  const res = await fetch(`https://medium.com/_/api/users/${id}/profile`)
+
+  const text = await res.text()
+  const validJson = text.split("</x>")[1]
+  const data = await JSON.parse(validJson)
+
+  return data
+}
+
 export async function getEarningOfPost(post) {
   let startDate = 0 // earning of all time!
 

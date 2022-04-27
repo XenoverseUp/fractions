@@ -15,6 +15,7 @@ import currencyCodes from "data/currency_codes.json"
 import Moon from "a/month.svg"
 import Slider from "a/slider.svg"
 import SliderInner from "a/slider-inner.png"
+import Menu from "a/map.svg"
 
 const DailyView = ({
   total,
@@ -43,7 +44,9 @@ const DailyView = ({
         <button id="monthly-button" title="Monthly View">
           <img src=${Moon} alt="moon" />
         </button>
-        <div id="toggle-drawer-daily" data-toggle-drawer>Toggle?</div>
+        <div id="toggle-drawer-daily" data-toggle-drawer>
+          <img src="${Menu}" alt="Menu" />
+        </div>
         <div id="total-balance" >
           <h2 title="${getSign(currency)}${convert(rate, totalInUSD).toFixed(2)}">
             ${getSign(currency)} ${convert(rate, totalInUSD).toShort()}

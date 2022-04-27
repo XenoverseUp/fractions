@@ -60,6 +60,10 @@
       overflow: hidden;
       transition: ease-in-out 100ms border;
 
+      img {
+        width: 120%;
+      }
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.01);
       }

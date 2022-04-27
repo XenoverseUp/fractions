@@ -27,14 +27,14 @@ import LoginView from "@/LoginView"
 import DailyView from "@/DailyView"
 import MonthlyView from "@/MonthlyView"
 import EnrollView from "@/EnrollView"
-import ReportView from "@/ReportView"
+import AboutView from "@/AboutView"
 
 import getRate from "services/getRate"
 
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
 
-export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "REPORT"])
+export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "ABOUT"])
 
 class App {
   #state = View.LOADING
@@ -107,8 +107,8 @@ class App {
         ? LoginView()
         : state === View.LOADING
         ? LoadingView()
-        : state === View.REPORT
-        ? ReportView()
+        : state === View.ABOUT
+        ? AboutView()
         : state === View.MPP_ENROLL
         ? EnrollView()
         : state === View.DAILY
@@ -201,6 +201,9 @@ class App {
     const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
     toggleButtons.forEach(button => button.addEventListener("click", () => toggleDrawer()))
 
+    const aboutButton = document.querySelectorAll("[data-about-trigger]")
+    aboutButton.forEach(button => button.addEventListener("click", () => this.setState(View.ABOUT)))
+
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       const currencySelect = document.querySelector(".custom-select")
@@ -227,6 +230,7 @@ class App {
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button")
       switchButton.addEventListener("click", () => this.setState(View.DAILY))
+    } else if (state === View.ABOUT) {
     }
   }
 
@@ -234,12 +238,16 @@ class App {
     const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
     toggleButtons.forEach(button => button.removeEventListener("click", () => toggleDrawer()))
 
+    const aboutButton = document.querySelectorAll("[data-about-trigger]")
+    aboutButton.forEach(button => button.removeEventListener("click", () => this.setState(View.ABOUT)))
+
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       switchButton.removeEventListener("click", () => this.setState(View.MONTHLY))
     } else if (state === View.MONTHLY) {
       const switchButton = document.querySelector("#daily-button")
       switchButton.removeEventListener("click", () => this.setState(View.DAILY))
+    } else if (state === View.ABOUT) {
     }
   }
 }

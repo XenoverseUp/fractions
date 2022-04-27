@@ -97,16 +97,16 @@
         .menu-link {
           cursor: pointer;
           margin: 0.5rem 0;
-
           font-weight: 500;
           font-size: 1rem;
           display: flex;
           align-items: center;
 
           &::before {
-            content: "as";
+            content: ".";
             overflow: hidden;
-            background: #000;
+            background: var(--accent-color);
+            color: var(--accent-color);
             height: 100%;
             width: 0;
             transition: 300ms ease all;
@@ -138,9 +138,10 @@
         gap: 1rem;
         padding: 0.25rem;
         padding-right: 0.5rem;
-        background-color: #fbfbfb;
         border-radius: 10px;
-        transition: ease 250ms all;
+        transition: ease 175ms all;
+        background-color: #fcfcfc;
+
         cursor: pointer;
 
         img {
@@ -162,6 +163,7 @@
 
         &:hover {
           transform: translateY(-5px);
+          background-color: #fbfbfb;
         }
       }
 

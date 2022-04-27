@@ -5,15 +5,14 @@
   "description": "A Better Partner Dashboard for Medium",
   "author": "Can Durmus <@candurmuss>",
   "scripts": {
-    "dev": "parcel serve manifest.json",
+    "dev": "rm -rf build/chromium && py scripts/set_version.py && parcel watch manifest.json --dist-dir build/chromium",
     "analyze": "npm run build:report && parcel serve parcel-bundle-reports/default.html --open",
     "clear": "rm -rf build dist parcel-bundle-reports .parcel-cache",
     "clear:all": "rm -rf build dist parcel-bundle-reports .parcel-cache node_modules",
     "build": "py scripts/set_version.py && npm run build:chromium && npm run build:firefox",
     "build:firefox": "rm -rf build/firefox && rm -rf dist/firefox.zip && py scripts/set_version.py && parcel build manifest.json --dist-dir build/firefox && py scripts/update_manifest.py firefox && py scripts/rename_firefox_modules.py && 7z a -tzip dist/firefox.zip -w ./build/firefox/*",
     "build:chromium": "rm -rf build/chromium && rm -rf dist/chromium.zip && py scripts/set_version.py && parcel build manifest.json --dist-dir build/chromium && py scripts/update_manifest.py chromium && 7z a -tzip dist/chromium.zip -w ./build/chromium/*",
-    "build:report": "rm -rf build/chromium && rm -rf dist/chromium.zip && py scripts/set_version.py && parcel build manifest.json --dist-dir build/chromium --reporter @parcel/reporter-bundle-analyzer && py scripts/update_manifest.py chromium && 7z a -tzip dist/chromium.zip -w ./build/chromium/*",
-    "watch:chromium": "rm -rf build/chromium && py scripts/set_version.py && parcel watch manifest.json --dist-dir build/chromium"
+    "build:report": "rm -rf build/chromium && rm -rf dist/chromium.zip && py scripts/set_version.py && parcel build manifest.json --dist-dir build/chromium --reporter @parcel/reporter-bundle-analyzer && py scripts/update_manifest.py chromium && 7z a -tzip dist/chromium.zip -w ./build/chromium/*"
   },
   "keywords": [],
   "license": "MIT",

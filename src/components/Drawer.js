@@ -20,7 +20,7 @@ const Drawer = author => {
 						<img src="${author.profilePic}"/>
 						<div id="author-content">
 							<a href="${author.profileLink}">
-								<h2>${author.userName}</h2>
+								<h2>${author.username}</h2>
 							</a>
 							<div id="info">
 								<p>${author.followers} followers</p>
@@ -29,23 +29,23 @@ const Drawer = author => {
 						</div>
 					</div>
 					<div id="links">
-						<div class="menu-link">
+						<a href="${author.profileLink}" target="_blank" class="menu-link">
 							<p>Your Profile</p>
-						</div>
-						<div class="menu-link">
+						</a href="">
+						<a href="https://medium.com/me/stats" target="_blank" class="menu-link">
 							<p>Post Stats Page</p>
-						</div>
-						<div class="menu-link">
+						</a>
+						<a href="${author.audienceStatsLink}" target="_blank" class="menu-link">
 							<p>Audience Stats Page</p>
-						</div>
-						<div class="menu-link">
+						</a>
+						<a href="https://medium.com/me/partner/dashboard" target="_blank" class="menu-link">
 							<p>Partner Dashboard</p>
-						</div>
+						</a>
 						<div class="separator"></div>
-						<div class="menu-link">
+						<a href="https://candurmuss.bio.link/" target="_blank"  class="menu-link">
 							<p>Connect With Developer</p>
-						</div>
-						<div class="menu-link">
+						</a>
+						<div class="menu-link" data-about-trigger data-toggle-drawer>
 							<p>About Fractions</p>
 						</div>
 					</div>

@@ -74,7 +74,8 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
             const data = {
               author: {
                 profileLink: `https://medium.com/@${authorData.user.username}/`,
-                userName: authorData.user.name,
+                audienceStatsLink: `https://medium.com/@${authorData.user.username}/audience/`,
+                username: authorData.user.name,
                 profilePic: authorData.user.imageId ? `https://miro.medium.com/fit/c/400/400/${authorData.user.imageId}` : null,
                 country: payload.userTaxWithholding.treatyCountry,
                 followers: authorData.references.SocialStats[payload.userId].usersFollowedByCount,

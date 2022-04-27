@@ -9,7 +9,7 @@ main > footer {
 
   // Header specific styles
   &:not(footer) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
     // h1 {
     //   font-weight: 800;
@@ -35,10 +35,9 @@ main > footer {
 
   // Footer specific styles
   &:not(header) {
-    background-color: rgba(0, 10, 255, 0.01);
-    border-top: 1px solid rgba(0, 0, 0, 0.04);
     position: relative;
     font-size: 0.9rem;
+    height: 3rem;
 
     & > a:first-child {
       font-weight: 600;
@@ -49,6 +48,7 @@ main > footer {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 0.75rem;
 
       a {
         font-weight: bold;

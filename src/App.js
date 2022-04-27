@@ -6,6 +6,7 @@
 // Modularize CSS for components and views ✅
 // Set up a bundler ✅
 // Currency converter ✅
+// Offline View
 // Report button
 // MPP Enroll Illustration To SVG
 // Drawer => Stats Page | Report | Theme | About Me | Support Me | Privacy Policy | Tracked Data
@@ -62,6 +63,8 @@ class App {
         console.error(error)
       }
     })
+
+    // this.setState(View.ABOUT)
   }
 
   async #initializeApp(authenticated, data = {}) {
@@ -231,6 +234,8 @@ class App {
       const switchButton = document.querySelector("#daily-button")
       switchButton.addEventListener("click", () => this.setState(View.DAILY))
     } else if (state === View.ABOUT) {
+      const backButton = document.querySelector("#about-back-button")
+      backButton.addEventListener("click", () => this.setState(View.DAILY))
     }
   }
 
@@ -248,6 +253,9 @@ class App {
       const switchButton = document.querySelector("#daily-button")
       switchButton.removeEventListener("click", () => this.setState(View.DAILY))
     } else if (state === View.ABOUT) {
+      const backButton = document.querySelector("#about-back-button")
+
+      backButton.removeEventListener("click", () => this.setState(View.DAILY))
     }
   }
 }

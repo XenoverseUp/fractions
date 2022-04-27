@@ -76,7 +76,9 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
                 profileLink: `https://medium.com/@${authorData.user.username}/`,
                 audienceStatsLink: `https://medium.com/@${authorData.user.username}/audience/`,
                 username: authorData.user.name,
-                profilePic: authorData.user.imageId ? `https://miro.medium.com/fit/c/400/400/${authorData.user.imageId}` : null,
+                profilePic: authorData.user.imageId
+                  ? `https://miro.medium.com/fit/c/400/400/${authorData.user.imageId}`
+                  : "https://source.boringavatars.com/marble/400",
                 country: payload.userTaxWithholding.treatyCountry,
                 followers: authorData.references.SocialStats[payload.userId].usersFollowedByCount,
                 postCount: authorData.userMeta.numberOfPostsPublished,

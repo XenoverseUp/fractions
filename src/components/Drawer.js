@@ -19,7 +19,7 @@ const Drawer = author => {
 					<div id="author">
 						<img src="${author.profilePic}"/>
 						<div id="author-content">
-							<a href="${author.profileLink}">
+							<a href="${author.profileLink}" target="_blank">
 								<h2>${author.username}</h2>
 							</a>
 							<div id="info">

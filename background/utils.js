@@ -13,7 +13,7 @@ export async function getEarningData() {
 }
 
 export async function getAuthorData(id) {
-  const res = await fetch(`https://medium.com/_/api/users/${id}/profile`)
+  const res = await fetch(`https://medium.com/_/api/users/${id}/profile/`)
 
   const text = await res.text()
   const validJson = text.split("</x>")[1]

@@ -5,8 +5,6 @@ import safe from "_/safe"
 chrome.runtime.onMessage.addListener((request, _, sendRes) => {
   if (request.getData) {
     getEarningData().then(res => {
-      if (res?.name === "AbortError") sendRes({ authenticated: false, data: { error: "aborted" } })
-
       if (res.success) {
         const { payload } = res
 
@@ -80,8 +78,8 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
                   ? `https://miro.medium.com/fit/c/400/400/${authorData.user.imageId}`
                   : "https://source.boringavatars.com/marble/400",
                 country: payload.userTaxWithholding.treatyCountry,
-                followers: authorData.references.SocialStats[payload.userId].usersFollowedByCount,
-                postCount: authorData.userMeta.numberOfPostsPublished,
+                followers: safe(authorData?.references?.SocialStats?.[payload.userId]?.usersFollowedByCount),
+                postCount: safe(authorData?.userMeta?.numberOfPostsPublished),
               },
 
               // Calculations

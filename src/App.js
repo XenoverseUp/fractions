@@ -59,6 +59,7 @@ class App {
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {
         this.#initializeApp(res.authenticated, res?.data)
+        console.log(res)
       } catch (error) {
         console.error(error)
       }

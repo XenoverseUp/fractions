@@ -78,6 +78,11 @@
           h2 {
             width: fit-content;
             margin: auto;
+            font-size: 1.25rem;
+          }
+
+          #info {
+            font-size: 0.75rem;
           }
         }
       }
@@ -157,6 +162,7 @@
           p {
             opacity: 0.65;
             line-height: 1.05rem;
+            font-size: 0.75rem;
           }
         }
 
@@ -169,6 +175,7 @@
       & > span {
         font-weight: 500;
         opacity: 0.75;
+        font-size: 0.75rem;
       }
     }
   }

@@ -11,16 +11,17 @@
     position: absolute;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--emphasize-2);
     height: 0.5px;
     z-index: -1;
   }
 
   .separator-inner {
-    background-color: #fff;
+    background-color: var(--background-color);
     padding: 0 0.75rem;
     font-weight: 800;
     font-size: 0.85rem;
-    color: rgba(0, 0, 0, 0.85);
+    color: var(--primary-color);
+    opacity: 0.85;
   }
 }

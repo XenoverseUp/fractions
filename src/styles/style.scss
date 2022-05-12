@@ -1,3 +1,5 @@
+@import "./Variables.scss";
+
 @import "./views/Login.scss";
 @import "./views/Enroll.scss";
 @import "./views/Daily.scss";
@@ -22,10 +24,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Red Hat Display", sans-serif;
+  color: var(--primary-color);
 }
 
 ::selection {
-  background-color: #fffac8;
+  background-color: var(--selection-color);
 }
 
 ::-webkit-scrollbar {
@@ -40,13 +43,8 @@
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.212);
   border-radius: 999px;
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
-}
-
-:root {
-  --accent-color: #ffd119;
-  --padding: 2rem;
+  border-left: 1px solid var(--background-color);
+  border-right: 1px solid var(--background-color);
 }
 
 img {
@@ -64,6 +62,7 @@ html {
   width: 400px;
   height: 600px;
   overflow: hidden;
+  background-color: var(--background-color);
 }
 
 body {

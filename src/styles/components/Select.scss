@@ -18,7 +18,7 @@
     top: calc(100% + 5px);
     left: -12px;
     position: absolute;
-    background-color: rgba(255, 255, 255);
+    background-color: var(--background-color);
     z-index: 2;
     width: 50px;
     display: flex;
@@ -28,7 +28,7 @@
     padding-top: 0.3rem;
     user-select: none;
     border-radius: 7.5px;
-    border: 1px solid rgb(230, 230, 230);
+    border: 1px solid var(--emphasize-2);
     box-shadow: 0px 0.8px 1.9px rgba(0, 0, 0, 0.018), 0px 1.8px 4.3px rgba(0, 0, 0, 0.026), 0px 3.2px 7.7px rgba(0, 0, 0, 0.032),
       0px 5.3px 12.8px rgba(0, 0, 0, 0.038), 0px 8.7px 21.2px rgba(0, 0, 0, 0.044), 0px 15.3px 37px rgba(0, 0, 0, 0.052),
       0px 33px 80px rgba(0, 0, 0, 0.07);

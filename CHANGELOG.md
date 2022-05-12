@@ -1,12 +1,20 @@
 # Version History
 
+### **v2.2.0**
+
+##### **May 13<sup>th</sup>, 2022**
+
+- Dark mode support is added.
+
+---
+
 ### **v2.0.0**
 
-##### **May 02<sup>th</sup>, 2022**
+##### **May 02<sup>nd</sup>, 2022**
 
 - Footer is removed and replaced with a drawer.
-- Dark mode support is added.
 - A link to your stats page is added to drawer.
+- About Fractions view is added.
 
 ---
 

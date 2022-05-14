@@ -9,11 +9,12 @@ main > footer {
 
   // Header specific styles
   &:not(footer) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--emphasize-2);
 
     img#name {
       width: 150px;
       margin-bottom: -4px;
+      filter: var(--filter);
     }
 
     #version {
@@ -21,6 +22,10 @@ main > footer {
       justify-content: center;
       align-items: center;
       gap: 0.5rem;
+
+      #github {
+        filter: var(--filter);
+      }
 
       span {
         font-weight: 500;
@@ -47,6 +52,7 @@ main > footer {
       font-size: 0.75rem;
 
       a {
+        color: var(--primary-color);
         font-weight: bold;
       }
     }

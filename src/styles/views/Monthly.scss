@@ -10,7 +10,7 @@
 
     #daily-button {
       position: absolute;
-      top: 1rem;
+      top: 1.5rem;
       right: var(--padding);
       width: 2.5rem;
       height: 2.5rem;
@@ -23,6 +23,7 @@
       cursor: pointer;
       overflow: hidden;
       transition: ease-in-out 100ms border;
+      filter: var(--filter);
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.01);

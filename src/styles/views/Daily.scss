@@ -28,6 +28,7 @@
       cursor: pointer;
       overflow: hidden;
       transition: ease-in-out 100ms border;
+      filter: var(--filter);
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.01);
@@ -59,6 +60,7 @@
       cursor: pointer;
       overflow: hidden;
       transition: ease-in-out 100ms border;
+      filter: var(--filter);
 
       img {
         width: 120%;
@@ -139,6 +141,11 @@
         img {
           width: 90%;
           margin: auto;
+
+          &:first-child {
+            filter: var(--filter);
+            opacity: var(--slider-opacity);
+          }
 
           &:last-child {
             --width: 0%;

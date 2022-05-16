@@ -18,6 +18,7 @@
     cursor: pointer;
     overflow: hidden;
     transition: ease-in-out 100ms border;
+    filter: var(--filter);
 
     img {
       width: 175%;
@@ -44,12 +45,14 @@
     img {
       &:first-child {
         width: 30%;
-        border-radius: 30px;
+        border-radius: 10px;
+        background-color: rgba(0 0 0 / 0);
       }
 
       &:nth-child(2) {
         margin-top: 1.5rem;
         width: 50%;
+        filter: var(--filter);
       }
     }
 
@@ -83,10 +86,11 @@
     cursor: pointer;
     margin-top: 2rem;
     padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--emphasize-2);
 
     img {
       width: 5rem;
+      filter: var(--filter);
     }
 
     aside {
@@ -106,8 +110,9 @@
     }
 
     &:hover {
-      background-color: rgb(254, 254, 254);
-      border-color: rgba(0, 0, 0, 0.25);
+      background-color: var(--emphasize-3);
+      border-color: var(--emphasize-1);
+      filter: brightness(1.02);
     }
   }
 }

@@ -14,6 +14,7 @@
     background-color: var(--emphasize-2);
     height: 0.5px;
     z-index: -1;
+    transition: var(--transition-duration) ease background-color;
   }
 
   .separator-inner {

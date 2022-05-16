@@ -25,6 +25,7 @@
   box-sizing: border-box;
   font-family: "Red Hat Display", sans-serif;
   color: var(--primary-color);
+  transition: var(--transition-duration) ease color;
 }
 
 ::selection {
@@ -70,6 +71,8 @@ body {
   width: 400px;
   height: 600px;
   margin: 0;
+  background-color: var(--background-color);
+  transition: var(--transition-duration) ease background-color;
 }
 
 main {

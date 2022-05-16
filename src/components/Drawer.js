@@ -1,7 +1,9 @@
 import h from "h"
+import Button from "c/Button"
 import Fractions from "a/fractions.svg"
 import Close from "a/close.svg"
 import Kofi from "a/kofi.svg"
+import Theme from "a/theme.svg"
 
 const Drawer = author => {
   const date = new Date()
@@ -16,6 +18,9 @@ const Drawer = author => {
 					<img id="menu-close" src="${Close}" alt="Close" data-toggle-drawer/>
 				</header>
 				<div id="menu-content">
+					<button id="theme-button" title="Theme Toggle" data-toggle-theme>
+          	<img src=${Theme} alt="brush" />
+					</button>
 					<div id="author">
 						<img src="${author.profilePic}"/>
 						<div id="author-content">

@@ -10,6 +10,7 @@ main > footer {
   // Header specific styles
   &:not(footer) {
     border-bottom: 1px solid var(--emphasize-2);
+    transition: var(--transition-duration) ease border;
 
     img#name {
       width: 150px;
@@ -25,11 +26,13 @@ main > footer {
 
       #github {
         filter: var(--filter);
+        transition: var(--transition-duration) ease filter;
       }
 
       span {
         font-weight: 500;
         font-size: 0.9rem;
+        transition: var(--transition-duration) ease color;
       }
     }
   }

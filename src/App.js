@@ -22,6 +22,7 @@ import "prototypes/Array"
 import Enum from "_/enum"
 import addDrawer from "_/addDrawer"
 import toggleDrawer from "_/toggleDrawer"
+import toggleTheme from "_/toggleTheme"
 
 import LoadingView from "@/LoadingView"
 import LoginView from "@/LoginView"
@@ -44,6 +45,7 @@ class App {
   #data
   #currency = "USD"
   #rate = 1
+  #theme = "light"
 
   constructor() {
     this.#renderView(View.LOADING)
@@ -204,6 +206,8 @@ class App {
   #setEventHandlers(state) {
     const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
     toggleButtons.forEach(button => button.addEventListener("click", () => toggleDrawer()))
+    const themeButtons = document.querySelectorAll("[data-toggle-theme]")
+    themeButtons.forEach(button => button.addEventListener("click", () => toggleTheme(this.#theme)))
 
     const aboutButton = document.querySelectorAll("[data-about-trigger]")
     aboutButton.forEach(button => button.addEventListener("click", () => this.setState(View.ABOUT)))

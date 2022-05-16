@@ -27,7 +27,7 @@
       align-items: center;
       cursor: pointer;
       overflow: hidden;
-      transition: ease-in-out 100ms border;
+      transition: ease-in-out 100ms border, var(--transition-duration) ease filter;
       filter: var(--filter);
 
       &:hover {
@@ -145,6 +145,7 @@
           &:first-child {
             filter: var(--filter);
             opacity: var(--slider-opacity);
+            transition: var(--transition-duration) ease filter;
           }
 
           &:last-child {

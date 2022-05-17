@@ -6,7 +6,7 @@
   #overlay {
     position: absolute;
     inset: 0;
-    transition: var(--transition-duration) cubic-bezier(0.71, 0, 0.22, 0.99) background-color;
+    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all;
     background-color: rgba(0 0 0 / 0);
     z-index: 1;
   }
@@ -28,12 +28,15 @@
 
   #menu {
     z-index: 3;
-    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all;
+    transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all, var(--transition-duration) ease border;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-right: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 
     header {
       width: 100%;
@@ -240,7 +243,8 @@
     }
 
     #menu {
-      transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all 50ms, var(--transition-duration) ease background-color;
+      transition: 400ms cubic-bezier(0.71, 0, 0.22, 0.99) all 50ms, var(--transition-duration) ease background-color,
+        var(--transition-duration) ease border;
 
       header {
         img#menu-name {

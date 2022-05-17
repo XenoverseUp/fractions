@@ -44,7 +44,7 @@ const DailyView = ({
         <button id="monthly-button" title="Monthly View">
           <img src=${Moon} alt="moon" />
         </button>
-        <div id="toggle-drawer-daily" data-toggle-drawer>
+        <div id="toggle-drawer-daily" class="menu-toggle">
           <img src="${Menu}" alt="Menu" />
         </div>
         <div id="total-balance" >

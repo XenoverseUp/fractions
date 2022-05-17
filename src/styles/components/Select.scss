@@ -12,7 +12,7 @@
   img {
     cursor: pointer;
     width: 15px;
-    transition: var(--transition-duration) ease filter;
+    transition: var(--transition-duration) ease filter, 150ms ease transform;
     filter: var(--filter);
   }
 
@@ -20,7 +20,7 @@
     top: calc(100% + 5px);
     left: -12px;
     position: absolute;
-    background-color: var(--background-color);
+    background-color: var(--emphasize-3);
     z-index: 2;
     width: 50px;
     display: flex;
@@ -50,16 +50,16 @@
       margin-top: 10px;
     }
 
-    opacity: 0;
-    transform: translateY(10px);
-    transition: ease 150ms all;
-    pointer-events: none;
-
     &.visible {
       pointer-events: all;
       opacity: 1;
       transform: translateY(0);
     }
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: ease 150ms all;
+    pointer-events: none;
 
     .option {
       display: flex;
@@ -76,6 +76,14 @@
         opacity: 1;
         cursor: pointer;
       }
+    }
+  }
+
+  &.visible {
+    .options {
+      pointer-events: all;
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

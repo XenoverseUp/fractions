@@ -61,7 +61,6 @@ class App {
     chrome.runtime.sendMessage({ getData: true }, res => {
       try {
         this.#initializeApp(res.authenticated, res?.data)
-        console.log(res)
       } catch (error) {
         console.error(error)
       }
@@ -76,6 +75,7 @@ class App {
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
     else if (authenticated && !data?.error) {
       addDrawer(this.#data.author)
+      this.#setGlobalEventHandlers()
       this.setState(View.DAILY)
     } else this.setState(View.LOGIN)
   }
@@ -99,7 +99,7 @@ class App {
 
     this.#currency = currency_code
     this.#rate = rate
-    this.#updateUI(View.DAILY, View.DAILY)
+    this.#updateUI(this.#state, View.DAILY)
   }
 
   #updateUI(previousState, nextState) {
@@ -203,19 +203,28 @@ class App {
     }
   }
 
-  #setEventHandlers(state) {
+  #setGlobalEventHandlers() {
     const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
-    toggleButtons.forEach(button => button.addEventListener("click", () => toggleDrawer()))
+    toggleButtons.forEach(button =>
+      button.addEventListener("click", () => {
+        toggleDrawer()
+      })
+    )
     const themeButtons = document.querySelectorAll("[data-toggle-theme]")
     themeButtons.forEach(button => button.addEventListener("click", () => toggleTheme(this.#theme)))
 
     const aboutButton = document.querySelectorAll("[data-about-trigger]")
     aboutButton.forEach(button => button.addEventListener("click", () => this.setState(View.ABOUT)))
+  }
 
+  #setEventHandlers(state) {
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       const currencySelect = document.querySelector(".custom-select")
       const currencyOptions = document.querySelector(".custom-select > .options")
+
+      const toggleButton = document.querySelector(".menu-toggle")
+      toggleButton.addEventListener("click", () => toggleDrawer())
 
       const currencies = document.querySelectorAll(".custom-select > .options > .option")
 
@@ -245,12 +254,6 @@ class App {
   }
 
   #removeEventHandlers(state) {
-    const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
-    toggleButtons.forEach(button => button.removeEventListener("click", () => toggleDrawer()))
-
-    const aboutButton = document.querySelectorAll("[data-about-trigger]")
-    aboutButton.forEach(button => button.removeEventListener("click", () => this.setState(View.ABOUT)))
-
     if (state === View.DAILY) {
       const switchButton = document.querySelector("#monthly-button")
       switchButton.removeEventListener("click", () => this.setState(View.MONTHLY))

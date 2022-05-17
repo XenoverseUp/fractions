@@ -67,7 +67,6 @@ chrome.runtime.onMessage.addListener((request, _, sendRes) => {
             const monthlyValuableStoryId = payload.postAmounts[0].post.id
 
             const { payload: authorData } = await getAuthorData(payload.userId)
-            console.log(authorData)
 
             const data = {
               author: {

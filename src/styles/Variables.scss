@@ -1,7 +1,8 @@
 body {
-  --transition-duration: 150ms;
+  --transition-duration: 175ms;
 
   --background-color: rgb(255, 255, 255);
+  --border-color: #fff;
   --menu-backdrop-bg: #222222;
   --primary-color: #000;
   --dark-accent-color: #e4810f;
@@ -19,7 +20,8 @@ body {
 }
 
 body.dark {
-  --background-color: #151212;
+  --background-color: #161313;
+  --border-color: rgb(65, 65, 65);
   --menu-backdrop-bg: rgb(40, 40, 40);
   --primary-color: rgb(230, 230, 230);
   --dark-accent-color: #e4810f;

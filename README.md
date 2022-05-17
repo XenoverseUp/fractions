@@ -124,16 +124,18 @@ In Partner Dashboard, all we get is monthly and referred member earnings. There'
 - Monthly earning report
 - Earning levels
 - Percent difference from previous period
+- Dark Mode
+- Direct links to your official Medium stats
 
 ## Tech Stack
 
 - Vanilla JavaScript
 - Python
 - NodeJS
-- Express
 - HTML
 - SASS
 - Parcel
+- Express
 
 In this project, I decided to use nothing but Vanilla JavaScript for frontend. I created a kind of reactive rendering system that renders based on the current state. I fetch the data from Medium in the background and present it in the pop-up. For styling, I used SASS, since I find it more useful than plain CSS. In the end, there is Parcel bundler to build and distribute everything up. In addition, I wrote a Python script for Firefox compatibility.
 
@@ -148,8 +150,7 @@ I am a 21-year old sophomore Electric and Electronics Engineering student in Koc
 - Support for Safari
 - Opera, Edge and Safari web store publishing
 - Report the problem button
-- Follower, email subscriber and referred member analysis
-- More animations
+- Email subscriber and referred member analysis
 - Partial request from backend and skeleton loading
 - A better estimation algorithm
 

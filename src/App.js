@@ -36,6 +36,8 @@ import getRate from "services/getRate"
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
 
+import ascii from "bundle-text:a/text.ascii"
+
 export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "ABOUT"])
 
 class App {
@@ -49,6 +51,7 @@ class App {
 
   constructor() {
     this.#renderView(View.LOADING)
+    this.#asciiPrint()
 
     /**
      * TESTS
@@ -67,6 +70,10 @@ class App {
     })
 
     // this.setState(View.ABOUT)
+  }
+
+  #asciiPrint() {
+    console.log(ascii)
   }
 
   async #initializeApp(authenticated, data = {}) {

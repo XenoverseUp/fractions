@@ -145,7 +145,7 @@
           &:first-child {
             filter: var(--filter);
             opacity: var(--slider-opacity);
-            transition: var(--transition-duration) ease filter;
+            transition: var(--transition-duration) ease all;
           }
 
           &:last-child {

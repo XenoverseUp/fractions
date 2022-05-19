@@ -1,5 +1,4 @@
 import h from "h"
-import Button from "c/Button"
 import Fractions from "a/fractions.svg"
 import Close from "a/close.svg"
 import Kofi from "a/kofi.svg"

@@ -31,6 +31,7 @@
     "@parcel/config-webextension": "^2.4.1",
     "@parcel/reporter-bundle-analyzer": "^2.4.1",
     "@parcel/resolver-glob": "^2.4.1",
+    "@parcel/transformer-inline-string": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",
     "parcel": "^2.4.1"
   }

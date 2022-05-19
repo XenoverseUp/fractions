@@ -22,7 +22,8 @@ import "prototypes/Array"
 import Enum from "_/enum"
 import addDrawer from "_/addDrawer"
 import toggleDrawer from "_/toggleDrawer"
-import toggleTheme from "_/toggleTheme"
+import theme from "_/theme"
+import bodyHasClass from "_/bodyHasClass"
 
 import LoadingView from "@/LoadingView"
 import LoginView from "@/LoginView"
@@ -32,6 +33,8 @@ import EnrollView from "@/EnrollView"
 import AboutView from "@/AboutView"
 
 import getRate from "services/getRate"
+
+import Theme, { negate } from "./enums/Theme"
 
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
@@ -47,9 +50,11 @@ class App {
   #data
   #currency = "USD"
   #rate = 1
-  #theme = "light"
+  #theme = Theme.LIGHT
 
   constructor() {
+    theme.get() && this.#setTheme(theme.get())
+
     this.#renderView(View.LOADING)
     this.#asciiPrint()
 
@@ -70,6 +75,16 @@ class App {
     })
 
     // this.setState(View.ABOUT)
+  }
+
+  #setTheme(theme) {
+    if (theme === Theme.LIGHT && bodyHasClass("dark")) {
+      document.body.classList.remove("dark")
+      this.#theme = Theme.LIGHT
+    } else if (theme === Theme.DARK && !bodyHasClass("dark")) {
+      document.body.classList.add("dark")
+      this.#theme = Theme.DARK
+    }
   }
 
   #asciiPrint() {
@@ -217,8 +232,16 @@ class App {
         toggleDrawer()
       })
     )
+
     const themeButtons = document.querySelectorAll("[data-toggle-theme]")
-    themeButtons.forEach(button => button.addEventListener("click", () => toggleTheme(this.#theme)))
+    themeButtons.forEach(button =>
+      button.addEventListener("click", () => {
+        const negated = negate(this.#theme)
+
+        this.#setTheme(negated)
+        theme.set(negated)
+      })
+    )
 
     const aboutButton = document.querySelectorAll("[data-about-trigger]")
     aboutButton.forEach(button => button.addEventListener("click", () => this.setState(View.ABOUT)))

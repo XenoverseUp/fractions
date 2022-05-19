@@ -20,7 +20,8 @@
       left: 50%;
       height: 100%;
       width: 100%;
-      border: 2px solid rgb(0, 0, 0);
+      border: 2px solid var(--primary-color);
+      opacity: 0.75;
       pointer-events: none;
       animation: spin-loader 7s ease-out infinite;
 

@@ -1,25 +1,16 @@
-/* !TODO */
-
-// Bind data ✅
-// Slider fill animation ✅
-// Estimate month-end earning ✅
-// Modularize CSS for components and views ✅
-// Set up a bundler ✅
-// Currency converter ✅
-// Offline View
-// Report button
-// MPP Enroll Illustration To SVG
-// Drawer => Stats Page | Report | Theme | About Me | Support Me | Privacy Policy | Tracked Data
-// Remove Footer
-// Track Email Subscribers
-// Animate currency converter arrow
-// Split request line in background
+/**
+ * Copyright (c) Xenoverse, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @flow
+ */
 
 import "prototypes/Date"
 import "prototypes/Number"
 import "prototypes/Array"
 
-import Enum from "_/enum"
 import addDrawer from "_/addDrawer"
 import toggleDrawer from "_/toggleDrawer"
 import theme from "_/theme"
@@ -35,22 +26,24 @@ import AboutView from "@/AboutView"
 import getRate from "services/getRate"
 
 import Theme, { negate } from "./enums/Theme"
+import View from "./enums/View"
+
+import ThemeHandler from "./handlers/ThemeHandler"
 
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
 
 import ascii from "bundle-text:a/text.ascii"
 
-export const View = Enum(["LOGIN", "DAILY", "MONTHLY", "LOADING", "ERROR", "MPP_ENROLL", "ABOUT"])
-
 class App {
   #state = View.LOADING
   #root = document.getElementById("root")
   #duration = 250 //ms
-  #data
   #currency = "USD"
   #rate = 1
   #theme = Theme.LIGHT
+  #themeHandler = new ThemeHandler()
+  #data
 
   constructor() {
     theme.get() && this.#setTheme(theme.get())

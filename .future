@@ -1,3 +1,20 @@
+/* !TODO */
+
+// Bind data ✅
+// Slider fill animation ✅
+// Estimate month-end earning ✅
+// Modularize CSS for components and views ✅
+// Set up a bundler ✅
+// Currency converter ✅
+// Offline View
+// Report button
+// MPP Enroll Illustration To SVG
+// Drawer => Stats Page | Report | Theme | About Me | Support Me | Privacy Policy | Tracked Data
+// Remove Footer
+// Track Email Subscribers
+// Animate currency converter arrow
+// Split request line in background
+
 App_js: {
   // import ReportView from "@/ReportView"
   // ==Inside of the App class

@@ -22,6 +22,8 @@ import DailyView from "@/DailyView"
 import MonthlyView from "@/MonthlyView"
 import EnrollView from "@/EnrollView"
 import AboutView from "@/AboutView"
+import ErrorView from "@/ErrorView"
+import OfflineView from "@/OfflineView"
 
 import getRate from "services/getRate"
 
@@ -63,7 +65,7 @@ class App {
       try {
         this.#initializeApp(res.authenticated, res?.data)
       } catch (error) {
-        console.error(error)
+        this.setState(View.ERROR)
       }
     })
 
@@ -128,6 +130,10 @@ class App {
         ? LoginView()
         : state === View.LOADING
         ? LoadingView()
+        : state === View.ERROR
+        ? ErrorView()
+        : state === View.OFFLINE
+        ? OfflineView()
         : state === View.ABOUT
         ? AboutView()
         : state === View.MPP_ENROLL

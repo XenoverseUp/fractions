@@ -6,10 +6,10 @@ class ThemeHandler {
 
   init() {
     if (theme.get()) {
-      this.#theme = theme.get()
+      this.theme = theme.get()
       this.#setTheme(theme.get())
     } else {
-      this.#theme = Theme.LIGHT
+      this.theme = Theme.LIGHT
       theme.set(Theme.LIGHT)
     }
   }
@@ -19,10 +19,10 @@ class ThemeHandler {
   #setTheme(theme) {
     if (theme === Theme.LIGHT && bodyHasClass("dark")) {
       document.body.classList.remove("dark")
-      this.#theme = Theme.LIGHT
+      this.theme = Theme.LIGHT
     } else if (theme === Theme.DARK && !bodyHasClass("dark")) {
       document.body.classList.add("dark")
-      this.#theme = Theme.DARK
+      this.theme = Theme.DARK
     }
   }
 

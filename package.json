@@ -22,6 +22,7 @@
     "@/*": "./src/views/$1",
     "c/*": "./src/components/$1",
     "a/*": "./src/assets/$1",
+    "e/*": "./src/enums/$1",
     "_/*": "./src/utils/$1",
     "prototypes/*": "./src/prototypes/$1",
     "data/*": "./src/data/$1",

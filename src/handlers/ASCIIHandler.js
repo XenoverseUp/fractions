@@ -7,9 +7,7 @@ class ASCIIHandler {
     this.ascii = ascii
   }
 
-  print() {
-    console.log(ascii)
-  }
+  print = () => console.log(ascii)
 }
 
 export default ASCIIHandler

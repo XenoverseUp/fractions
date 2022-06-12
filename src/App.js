@@ -4,15 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ * 2022
+ *
  * @flow
  */
 
 import "prototypes/Date"
 import "prototypes/Number"
 import "prototypes/Array"
-
-import addDrawer from "_/addDrawer"
-import toggleDrawer from "_/toggleDrawer"
 
 import LoadingView from "@/LoadingView"
 import LoginView from "@/LoginView"
@@ -23,12 +22,12 @@ import AboutView from "@/AboutView"
 import ErrorView from "@/ErrorView"
 import OfflineView from "@/OfflineView"
 
-import getRate from "services/getRate"
-import View from "./enums/View"
-
 import ThemeHandler from "h/ThemeHandler"
 import ASCIIHandler from "h/ASCIIHandler"
 import DrawerHandler from "h/DrawerHandler"
+
+import getRate from "services/getRate"
+import View from "e/View"
 
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
@@ -76,9 +75,10 @@ class App {
 
     if (authenticated && data?.error) this.setState(View.MPP_ENROLL)
     else if (authenticated && !data?.error) {
-      addDrawer(this.#data.author)
+      this.#drawerHandler.addDrawer(this.#data.author)
       this.#setGlobalEventHandlers()
-      this.#themeHandler.setEventHandlers()
+      this.#themeHandler.setEventListeners()
+      this.#drawerHandler.setEventListeners()
       this.setState(View.DAILY)
     } else this.setState(View.LOGIN)
   }
@@ -211,13 +211,6 @@ class App {
   }
 
   #setGlobalEventHandlers() {
-    const toggleButtons = document.querySelectorAll("[data-toggle-drawer]")
-    toggleButtons.forEach(button =>
-      button.addEventListener("click", () => {
-        toggleDrawer()
-      })
-    )
-
     const aboutButton = document.querySelectorAll("[data-about-trigger]")
     aboutButton.forEach(button => button.addEventListener("click", () => this.setState(View.ABOUT)))
   }
@@ -229,7 +222,7 @@ class App {
       const currencyOptions = document.querySelector(".custom-select > .options")
 
       const toggleButton = document.querySelector(".menu-toggle")
-      toggleButton.addEventListener("click", () => toggleDrawer())
+      toggleButton.addEventListener("click", () => this.#drawerHandler.toggleDrawer())
 
       const currencies = document.querySelectorAll(".custom-select > .options > .option")
 

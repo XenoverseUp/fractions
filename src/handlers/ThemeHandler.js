@@ -1,6 +1,15 @@
-import Theme, { negate } from "../enums/Theme"
-import themeUtils from "_/themeUtils"
+import Theme, { negate } from "e/Theme"
 import bodyHasClass from "_/bodyHasClass"
+
+const themeUtils = {
+  set: t => localStorage.setItem("fractions-theme-1881", t.toString()),
+  get: () =>
+    localStorage.getItem("fractions-theme-1881") === "Symbol(DARK)"
+      ? Theme.DARK
+      : localStorage.getItem("fractions-theme-1881") === "Symbol(LIGHT)"
+      ? Theme.LIGHT
+      : null,
+}
 
 class ThemeHandler {
   theme = Theme.LIGHT
@@ -19,7 +28,7 @@ class ThemeHandler {
     this.theme = theme
   }
 
-  setEventHandlers() {
+  setEventListeners() {
     const themeButtons = document.querySelectorAll("[data-toggle-theme]")
     themeButtons.forEach(button =>
       button.addEventListener("click", () => {

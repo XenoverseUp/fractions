@@ -1,6 +1,6 @@
 import Theme from "../enums/Theme"
 
-const theme = {
+const themeUtils = {
   set: t => localStorage.setItem("fractions-theme-1881", t.toString()),
   get: () =>
     localStorage.getItem("fractions-theme-1881") === "Symbol(DARK)"
@@ -10,4 +10,4 @@ const theme = {
       : null,
 }
 
-export default theme
+export default themeUtils

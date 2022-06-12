@@ -18,6 +18,7 @@
   "license": "MIT",
   "alias": {
     "h": "./src/utils/h.js",
+    "h/*": "./src/handlers/$1",
     "@/*": "./src/views/$1",
     "c/*": "./src/components/$1",
     "a/*": "./src/assets/$1",

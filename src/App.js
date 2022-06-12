@@ -13,8 +13,6 @@ import "prototypes/Array"
 
 import addDrawer from "_/addDrawer"
 import toggleDrawer from "_/toggleDrawer"
-import theme from "_/theme"
-import bodyHasClass from "_/bodyHasClass"
 
 import LoadingView from "@/LoadingView"
 import LoginView from "@/LoginView"
@@ -26,32 +24,35 @@ import ErrorView from "@/ErrorView"
 import OfflineView from "@/OfflineView"
 
 import getRate from "services/getRate"
-
-import Theme, { negate } from "./enums/Theme"
 import View from "./enums/View"
 
-import ThemeHandler from "./handlers/ThemeHandler"
+import ThemeHandler from "h/ThemeHandler"
+import ASCIIHandler from "h/ASCIIHandler"
+import DrawerHandler from "h/DrawerHandler"
 
 import fakeRes from "data/valid"
 import fakeRes2 from "data/enroll-error"
 
-import ascii from "bundle-text:a/text.ascii"
-
 class App {
+  #themeHandler = new ThemeHandler()
+  #asciiHandler = new ASCIIHandler()
+  #drawerHandler = new DrawerHandler()
+  #viewHandler
+  #currencyHandler
+
   #state = View.LOADING
-  #root = document.getElementById("root")
   #duration = 250 //ms
   #currency = "USD"
   #rate = 1
-  #theme = Theme.LIGHT
-  #themeHandler = new ThemeHandler()
+  #root
   #data
 
-  constructor() {
-    theme.get() && this.#setTheme(theme.get())
+  constructor(rootElement) {
+    this.#root = rootElement
+    this.#themeHandler.init()
+    this.#asciiHandler.print()
 
     this.#renderView(View.LOADING)
-    this.#asciiPrint()
 
     /**
      * TESTS
@@ -68,22 +69,6 @@ class App {
         this.setState(View.ERROR)
       }
     })
-
-    // this.setState(View.ABOUT)
-  }
-
-  #setTheme(theme) {
-    if (theme === Theme.LIGHT && bodyHasClass("dark")) {
-      document.body.classList.remove("dark")
-      this.#theme = Theme.LIGHT
-    } else if (theme === Theme.DARK && !bodyHasClass("dark")) {
-      document.body.classList.add("dark")
-      this.#theme = Theme.DARK
-    }
-  }
-
-  #asciiPrint() {
-    console.log(ascii)
   }
 
   async #initializeApp(authenticated, data = {}) {
@@ -93,6 +78,7 @@ class App {
     else if (authenticated && !data?.error) {
       addDrawer(this.#data.author)
       this.#setGlobalEventHandlers()
+      this.#themeHandler.setEventHandlers()
       this.setState(View.DAILY)
     } else this.setState(View.LOGIN)
   }
@@ -229,16 +215,6 @@ class App {
     toggleButtons.forEach(button =>
       button.addEventListener("click", () => {
         toggleDrawer()
-      })
-    )
-
-    const themeButtons = document.querySelectorAll("[data-toggle-theme]")
-    themeButtons.forEach(button =>
-      button.addEventListener("click", () => {
-        const negated = negate(this.#theme)
-
-        this.#setTheme(negated)
-        theme.set(negated)
       })
     )
 

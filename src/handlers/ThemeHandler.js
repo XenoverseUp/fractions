@@ -1,32 +1,35 @@
-import Theme from "../enums/Theme"
-import theme from "_/theme"
+import Theme, { negate } from "../enums/Theme"
+import themeUtils from "_/themeUtils"
+import bodyHasClass from "_/bodyHasClass"
 
 class ThemeHandler {
-  theme
+  theme = Theme.LIGHT
 
   init() {
-    if (theme.get()) {
-      this.theme = theme.get()
-      this.#setTheme(theme.get())
-    } else {
-      this.theme = Theme.LIGHT
-      theme.set(Theme.LIGHT)
+    if (themeUtils.get()) {
+      this.theme = themeUtils.get()
+      this.#setTheme(themeUtils.get())
     }
   }
-
-  activate() {}
 
   #setTheme(theme) {
-    if (theme === Theme.LIGHT && bodyHasClass("dark")) {
-      document.body.classList.remove("dark")
-      this.theme = Theme.LIGHT
-    } else if (theme === Theme.DARK && !bodyHasClass("dark")) {
-      document.body.classList.add("dark")
-      this.theme = Theme.DARK
-    }
+    if (theme === Theme.LIGHT && bodyHasClass("dark")) document.body.classList.remove("dark")
+    else if (theme === Theme.DARK && !bodyHasClass("dark")) document.body.classList.add("dark")
+
+    this.theme = theme
   }
 
-  #setEventHandlers() {}
+  setEventHandlers() {
+    const themeButtons = document.querySelectorAll("[data-toggle-theme]")
+    themeButtons.forEach(button =>
+      button.addEventListener("click", () => {
+        const negated = negate(this.theme)
+
+        this.#setTheme(negated)
+        themeUtils.set(negated)
+      })
+    )
+  }
 }
 
 export default ThemeHandler

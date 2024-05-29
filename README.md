@@ -34,7 +34,7 @@
      <img height="60" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Get it on Chrome Web Store" />
   </a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/fractions-medium-earnings/">
-    <img height="60" alt="Get it on Firefox Add-ons" src="https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/addons/files/2015/11/get-the-addon.png" />
+    <img height="60" alt="Get it on Firefox Add-ons" src="https://raw.githubusercontent.com/0xRustlang/Save-Tabs/1f3e5cee31e9abe2710bc0e23948079611d15447/assets/firefox_addon.png" />
   </a>
 </p>
 

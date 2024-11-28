@@ -169,7 +169,7 @@ I implemented an algortihm that approximately estimates earnings based on your p
 
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/fractions-medium-partner/fileepgfmlpabmkbocijoaggdmlhenbf" > 
-     <img height="70" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Get it on Chrome Web Store" />
+     <img height="70" src="https://developer.chrome.com/static/docs/webstore/branding/image/HRs9MPufa1J1h5glNhut.png" alt="Get it on Chrome Web Store" />
   </a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/fractions-medium-earnings/">
     <img height="70" alt="Get it on Firefox Add-ons" src="https://raw.githubusercontent.com/0xRustlang/Save-Tabs/1f3e5cee31e9abe2710bc0e23948079611d15447/assets/firefox_addon.png" />

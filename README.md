@@ -17,7 +17,7 @@
 </a>
 <br />
 
-# Fractions
+# Fractions (Deprecated)
 
 <p align="center">
 	<a href="https://medium.com/better-marketing/a-better-medium-partner-dashboard-fractions-c68cc211fbc1">
@@ -39,6 +39,11 @@
 </p>
 
 <br>
+
+## **Deprecation Notice**
+After some changes to GQL API of Medium Dashboard, the extension is not working anymore. As a student, I cannot maintain it actively. Feel free to fork, contribute and distribute it to community if you have such time. Best!
+
+---
 
 **Fractions** is a fully-featured Chromium | Firefox extension that helps you analyze and visualize your Medium Partner Program earnings. It is way more powerful than the default Partner Program Dashboard, Medium provides. Using this extension, you can inspect the data about your,
 
